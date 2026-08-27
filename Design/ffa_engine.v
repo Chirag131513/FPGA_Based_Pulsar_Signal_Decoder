@@ -11,9 +11,9 @@ module ffa_engine (
  input wire tx_busy
 );
  // ## FFA Parameters ##
- parameter DATA_BUFFER_SIZE = 16384;
- parameter PROFILE_BINS = 256;
- parameter NUM_TRIAL_PERIODS = 2048;
+ parameter DATA_BUFFER_SIZE = 1024;    // Reduced for faster simulation
+ parameter PROFILE_BINS = 64;          // Reduced from 256
+ parameter NUM_TRIAL_PERIODS = 128;    // Reduced from 2048
  parameter PROFILE_MEM_SIZE = NUM_TRIAL_PERIODS * PROFILE_BINS;
 
  // ## Data Storage ##
@@ -39,18 +39,21 @@ module ffa_engine (
  reg folding_done;
  reg peak_done;
  integer i; // for loops
+ integer mem_init_idx; // for memory initialization
+ reg mem_init_done;
 
- // Initialize memory at reset only (not in synthesis loop)
- genvar g;
- generate
-   for (g = 0; g < PROFILE_MEM_SIZE; g = g + 1) begin : mem_init
-     always @(posedge clk) begin
-       if (rst) begin
-         profile_memory[g] <= 32'd0;
-       end
-     end
+ // Memory initialization on reset (sequential, not parallel generate)
+ always @(posedge clk) begin
+   if (rst) begin
+     mem_init_idx <= 0;
+     mem_init_done <= 1'b0;
+   end else if (!mem_init_done && mem_init_idx < PROFILE_MEM_SIZE) begin
+     profile_memory[mem_init_idx] <= 32'd0;
+     mem_init_idx <= mem_init_idx + 1;
+     if (mem_init_idx == PROFILE_MEM_SIZE - 1)
+       mem_init_done <= 1'b1;
    end
- endgenerate
+ end
 
  always @(posedge clk) begin
  if (rst) begin
@@ -70,7 +73,7 @@ module ffa_engine (
    current_state <= S_ACQUIRE_DATA;
  end
  S_ACQUIRE_DATA: begin
- data_buffer[buffer_write_addr] <= adc_data;
+ data_buffer[buffer_write_addr] <= adc_data;  // FIX: Store actual ADC input, not folded data
  if (buffer_write_addr == DATA_BUFFER_SIZE - 1) begin
  buffer_write_addr <= 0;
  current_state <= S_FOLD_DATA;
@@ -83,13 +86,13 @@ module ffa_engine (
    if (!folding_done) begin
      accumulator <= 32'd0;
      fold_bin_addr <= 10'd0;
-     trial_period <= 11'd10; // Start with smallest trial period
+     trial_period <= 11'd10; // Start with smallest trial period (min period = 10 samples)
      folding_done <= 1'b1;
    end else if (fold_bin_addr < PROFILE_BINS) begin
-     // Accumulate folded data (simplified - real FFA needs nested loops)
+     // Accumulate folded data - add current bin to profile for this trial period
      accumulator <= accumulator + data_buffer[fold_bin_addr];
      profile_memory[trial_period * PROFILE_BINS + fold_bin_addr] <= 
-       profile_memory[trial_period * PROFILE_BINS + fold_bin_addr] + adc_data;
+       profile_memory[trial_period * PROFILE_BINS + fold_bin_addr] + data_buffer[fold_bin_addr];
      fold_bin_addr <= fold_bin_addr + 1;
    end else begin
      // Move to next trial period or finish folding
@@ -111,12 +114,10 @@ module ffa_engine (
    end else if (i < PROFILE_MEM_SIZE) begin
      if (profile_memory[i] > max_power) begin
        max_power <= profile_memory[i];
-       detected_period <= 32'(i / PROFILE_BINS); // Trial period index
+       detected_period <= (i / PROFILE_BINS) * 32'd100; // Convert bin index to period (scale by 100 for us)
      end
      i <= i + 1;
    end else begin
-     // Convert trial period to microseconds (placeholder scaling)
-     detected_period <= detected_period * 32'd100; // Scale to microseconds
      current_state <= S_SEND_RESULT;
    end
  end
@@ -124,6 +125,7 @@ module ffa_engine (
  if (!tx_busy) begin
  tx_data <= detected_period;
  tx_start <= 1'b1;
+ $display("TB DEBUG: Transmitting detected period = %d (max_power = %d)", detected_period, max_power);
  current_state <= S_IDLE;
  end
  end

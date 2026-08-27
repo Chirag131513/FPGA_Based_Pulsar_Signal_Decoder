@@ -25,7 +25,7 @@ def read_period_from_serial(port, baudrate=9600):
         print(f" Error: {e}")
         return None
 
-def find_pulsar_in_catalogue(period_ms, tolerance=0.005):
+def find_pulsar_in_catalogue(period_ms, tolerance=0.05):  # Increased tolerance to 5% for better matching
     period_seconds = period_ms / 1000.0
     print(f"\nSearching ATNF Catalogue for period: {period_seconds:.6f} s...")
     min_p = period_seconds * (1 - tolerance)

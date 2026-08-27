@@ -14,15 +14,17 @@ module uart_tx #(
 );
  localparam [2:0]
  S_IDLE = 3'b000,
- S_START_BYTE = 3'b001,
- S_START_BIT = 3'b010,
- S_DATA_BITS = 3'b011,
- S_STOP_BIT = 3'b100;
+ S_START_BIT_BYTE = 3'b001,
+ S_DATA_BITS_BYTE = 3'b010,
+ S_STOP_BIT_BYTE = 3'b011,
+ S_START_BIT_DATA = 3'b100,
+ S_DATA_BITS = 3'b101,
+ S_STOP_BIT_DATA = 3'b110;
  reg [2:0] current_state;
  reg [$clog2(CLKS_PER_BIT)-1:0] clk_counter;
  reg [4:0] bit_index;
+ reg [7:0] byte_reg;
  reg [31:0] data_reg;
- reg send_start_byte;
 
  always @(posedge clk) begin
  if (rst) begin
@@ -31,33 +33,52 @@ module uart_tx #(
  tx_busy <= 1'b0;
  clk_counter <= 0;
  bit_index <= 0;
- send_start_byte <= 1'b0;
  end else begin
  case (current_state)
  S_IDLE: begin
  tx_busy <= 1'b0;
  tx_out <= 1'b1;
- send_start_byte <= 1'b0;
  if (tx_start) begin
  data_reg <= data_in;
+ byte_reg <= 8'hAA;  // Start byte for frame sync
  tx_busy <= 1'b1;
- send_start_byte <= 1'b1;
- current_state <= S_START_BYTE;
+ current_state <= S_START_BIT_BYTE;
  end
  end
- S_START_BYTE: begin
- // Send start byte 0xAA for frame synchronization
- tx_out <= 1'b0; // Start bit for 0xAA
+ S_START_BIT_BYTE: begin
+ tx_out <= 1'b0;  // Start bit
  if (clk_counter == CLKS_PER_BIT - 1) begin
- clk_counter <= 0;
- bit_index <= 0;
- current_state <= S_START_BIT;
+   clk_counter <= 0;
+   bit_index <= 0;
+   current_state <= S_DATA_BITS_BYTE;
  end else begin
- clk_counter <= clk_counter + 1;
+   clk_counter <= clk_counter + 1;
  end
  end
- S_START_BIT: begin
- tx_out <= 1'b0;
+ S_DATA_BITS_BYTE: begin
+ tx_out <= byte_reg[bit_index];  // LSB first
+ if (clk_counter == CLKS_PER_BIT - 1) begin
+   clk_counter <= 0;
+   if (bit_index == 7) begin
+     current_state <= S_STOP_BIT_BYTE;
+   end else begin
+     bit_index <= bit_index + 1;
+   end
+ end else begin
+   clk_counter <= clk_counter + 1;
+ end
+ end
+ S_STOP_BIT_BYTE: begin
+ tx_out <= 1'b1;  // Stop bit
+ if (clk_counter == CLKS_PER_BIT - 1) begin
+   clk_counter <= 0;
+   current_state <= S_START_BIT_DATA;
+ end else begin
+   clk_counter <= clk_counter + 1;
+ end
+ end
+ S_START_BIT_DATA: begin
+ tx_out <= 1'b0;  // Start bit for 32-bit data
  if (clk_counter == CLKS_PER_BIT - 1) begin
  clk_counter <= 0;
  bit_index <= 0;
@@ -71,7 +92,7 @@ module uart_tx #(
  if (clk_counter == CLKS_PER_BIT - 1) begin
  clk_counter <= 0;
  if (bit_index == 31) begin
- current_state <= S_STOP_BIT;
+ current_state <= S_STOP_BIT_DATA;
  end else begin
  bit_index <= bit_index + 1;
  end
@@ -79,7 +100,7 @@ module uart_tx #(
  clk_counter <= clk_counter + 1;
  end
  end
- S_STOP_BIT: begin
+ S_STOP_BIT_DATA: begin
  tx_out <= 1'b1;
  if (clk_counter == CLKS_PER_BIT - 1) begin
  clk_counter <= 0;
