@@ -1,0 +1,52 @@
+```
+# Compiled and build artifacts
+*.pyc
+__pycache__/
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.a
+*.out
+*.bin
+*.hex
+*.bit
+*.vcd
+*.fst
+*.log
+*.tmp
+
+# Dependencies
+.venv/
+venv/
+.env
+.env.local
+.env.*
+
+# Build directories (common in Verilog/VHDL projects)
+build/
+dist/
+target/
+synth_*/
+sim_*/
+work/
+
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Coverage and testing
+.coverage
+coverage/
+htmlcov/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+```

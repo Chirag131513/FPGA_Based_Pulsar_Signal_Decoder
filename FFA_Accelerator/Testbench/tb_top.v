@@ -53,9 +53,9 @@ module tb_top;
         // 2. Generate a finite stream of data to fill the buffer
         for (i = 0; i < DATA_BUFFER_SIZE; i = i + 1) begin
             if ((i % period_cycles) < pulse_width_cycles) begin
-                adc_data_in <= 8'hA0 + $urandom_range(0, 15); // Pulse data
+                adc_data_in = 8'hA0 + $urandom_range(0, 15); // Pulse data
             end else begin
-                adc_data_in <= 8'h10 + $urandom_range(0, 31); // Noise data
+                adc_data_in = 8'h10 + $urandom_range(0, 31); // Noise data
             end
             @(posedge clk_50mhz);
         end
@@ -76,8 +76,8 @@ module tb_top;
     always @(negedge uart_tx_pin) begin
         if (rst === 1'b0) begin
             $display(" UART START BIT DETECTED at %0t ns!", $time);
-            @(posedge clk_50mhz);
-            $display("   --> DUT is transmitting period: %0d us", dut.tx_data_signal);
+            #10; // Small delay to stabilize
+            $display("   --> DUT is transmitting data");
         end
     end
 

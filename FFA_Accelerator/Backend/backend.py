@@ -6,7 +6,13 @@ from psrqpy import QueryATNF
 def read_period_from_serial(port, baudrate=9600):
     try:
         with serial.Serial(port, baudrate, timeout=10) as ser:
-                print(f"Listening on {port}...")
+            print(f"Listening on {port}...")
+            # Read start byte (0xAA) to synchronize with UART frame
+            start_byte = ser.read(1)
+            if start_byte != b'\xAA':
+                print(" Waiting for start byte...")
+                return None
+            # Read 4 bytes of period data (little-endian)
             period_bytes = ser.read(4)
             if len(period_bytes) == 4:
                 period_microseconds = struct.unpack('<I', period_bytes)[0]
