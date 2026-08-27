@@ -26,7 +26,6 @@ The FFA works by folding time-series data at multiple trial periods to enhance w
 ## Repository Structure
 
 ```
-FFA_Accelerator/
 ├── Design/
 │   ├── ffa_engine.v              # FFA core: folding algorithm & peak detection FSM
 │   ├── uart_tx.v                 # UART transmitter with start-byte framing
