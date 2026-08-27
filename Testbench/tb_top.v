@@ -6,14 +6,14 @@
 module tb_top;
 
     // ## Testbench Parameters ##
-    parameter DATA_BUFFER_SIZE   = 16384;   // Must match your ffa_engine
+    parameter DATA_BUFFER_SIZE   = 1024;    // Must match ffa_engine.DATA_BUFFER_SIZE
     parameter CLK_PERIOD         = 20;      // ns, for 50 MHz clock
-    parameter PULSAR_PERIOD_US   = 1590;    // us, the period we are simulating
-    parameter PULSE_WIDTH_US     = 50;      // us
+    parameter PULSAR_PERIOD_US   = 1600;    // us, the period we are simulating (adjusted for test)
+    parameter PULSE_WIDTH_US     = 80;      // us
 
-      integer i;
-        integer period_cycles      = (PULSAR_PERIOD_US * 1000) / CLK_PERIOD;
-        integer pulse_width_cycles = (PULSE_WIDTH_US * 1000) / CLK_PERIOD;
+    integer i;
+    integer period_cycles      = (PULSAR_PERIOD_US * 1000) / CLK_PERIOD;
+    integer pulse_width_cycles = (PULSE_WIDTH_US * 1000) / CLK_PERIOD;
 
     // ## Signals to connect to the DUT ##
     reg         clk_50mhz;
@@ -42,12 +42,19 @@ module tb_top;
         $display("--- Simulation Starting ---");
         $display("TB INFO: Resetting the design...");
 
-        // 1. Apply Reset
+        // 1. Apply Reset - FIX: Ensure reset is held before any activity
         rst = 1'b1;
         adc_data_in = 8'h00;
-        #200; // Hold reset for 200 ns
+        
+        // Wait for 20 clock cycles to ensure stable reset
+        repeat(20) @(posedge clk_50mhz);
+        
+        $display("TB INFO: Releasing reset at %0t ns.", $time);
         rst = 1'b0;
-        $display("TB INFO: Reset released at %0t ns.", $time);
+        
+        // Small delay after reset release
+        repeat(5) @(posedge clk_50mhz);
+        
         $display("TB INFO: Starting stimulus generation to fill the FFA buffer (%0d samples)...", DATA_BUFFER_SIZE);
 
         // 2. Generate a finite stream of data to fill the buffer
@@ -64,8 +71,8 @@ module tb_top;
         $display("TB INFO: Waiting for DUT to process and transmit via UART...");
 
         // 3. Wait long enough for processing and transmission
-        //    **THIS IS THE CRITICAL CORRECTION**
-        #1_000_000; // Wait 1 ms. This is longer than the ~328us needed.
+        // The FFA engine needs time for folding (2048 periods * 256 bins) and peak detection
+        #500_000_000; // Wait 500ms to allow full processing
 
         $display("-----------------------------------------");
         $display("--- Simulation Finished ---");
@@ -73,11 +80,55 @@ module tb_top;
     end
 
     // ## UART Output Monitor ##
+    reg [31:0] uart_bit_count;
+    reg [7:0] uart_byte;
+    integer bit_idx;
+    
     always @(negedge uart_tx_pin) begin
         if (rst === 1'b0) begin
             $display(" UART START BIT DETECTED at %0t ns!", $time);
-            #10; // Small delay to stabilize
-            $display("   --> DUT is transmitting data");
+            
+            // Bit time = 5208 clocks * 20ns = 104160 ns
+            // Wait half bit time to sample in middle of start bit
+            #52080;
+            
+            // Sample 8 bits of start byte (0xAA LSB-first)
+            uart_byte = 8'h00;
+            for (bit_idx = 0; bit_idx < 8; bit_idx = bit_idx + 1) begin
+                #104160;  // One full bit period
+                uart_byte[bit_idx] = uart_tx_pin;
+            end
+            
+            if (uart_byte == 8'hAA) begin
+                $display("   --> Start byte 0xAA confirmed (received: 0x%02H)", uart_byte);
+                
+                // Skip stop bit (sample in middle)
+                #52080;
+                
+                // Skip start bit of data frame
+                #104160;
+                
+                // Sample 32-bit period data
+                uart_bit_count = 32'd0;
+                for (bit_idx = 0; bit_idx < 32; bit_idx = bit_idx + 1) begin
+                    #104160;
+                    uart_bit_count[bit_idx] = uart_tx_pin;
+                end
+                
+                $display("   --> Received period value: %d", uart_bit_count);
+            end else begin
+                $display("   --> Start byte received: 0x%02H (expected 0xAA)", uart_byte);
+                #52080;  // Middle of stop bit
+                #104160; // Skip to start bit of data
+                #104160; // Skip start bit
+                
+                uart_bit_count = 32'd0;
+                for (bit_idx = 0; bit_idx < 32; bit_idx = bit_idx + 1) begin
+                    #104160;
+                    uart_bit_count[bit_idx] = uart_tx_pin;
+                end
+                $display("   --> Received period value: %d", uart_bit_count);
+            end
         end
     end
 
