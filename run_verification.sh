@@ -1,8 +1,8 @@
 #!/bin/bash
 # ==============================================================================
 # Script: run_verification.sh
-# Purpose: SINGLE COMMAND to execute the full UVM 1.2 verification architecture
-#          and ATNF pulsar catalogue cross-referencing.
+# Purpose: SINGLE COMMAND to execute the full UVM 1.2 verification architecture,
+#          ATNF catalogue cross-referencing, and generate executive HTML dashboard.
 # ==============================================================================
 
 set -e
@@ -30,14 +30,8 @@ if command -v xrun >/dev/null 2>&1; then
         +UVM_VERBOSITY=UVM_LOW \
         -l xrun_verify.log
 
-    echo "========================================================================"
-    echo " ATNF Catalogue Matching Summary & UVM Scoreboard Status:"
-    echo "========================================================================"
-    grep -E "(\[ATNF-SUCCESS\]|\[SCB_MATCH_EXACT\]|SCB_REPORT|UVM VERIFICATION STATUS)" xrun_verify.log || true
-
-    echo "========================================================================"
-    echo " [DONE] Full Verification Complete! Log: $SIM_DIR/xrun_verify.log"
-    echo "========================================================================"
+    # 3. Generate Executive Summary & Clean White HTML Dashboard
+    python3 generate_dashboard.py || python generate_dashboard.py || true
 else
     echo "[WARNING] Cadence Xcelium ('xrun') not detected in PATH."
     echo "[INFO] Executing automated Python verification regression..."

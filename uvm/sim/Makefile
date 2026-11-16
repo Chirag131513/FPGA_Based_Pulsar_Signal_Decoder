@@ -12,7 +12,7 @@ XRUN        = xrun
 SIMVISION   = simvision
 GTKWAVE     = gtkwave
 
-.PHONY: all help verify re rebuild wave clean regression
+.PHONY: all help verify re rebuild wave dashboard clean regression
 
 all: verify
 
@@ -21,14 +21,15 @@ help:
 	@echo " FFA Accelerator UVM 1.2 Verification Commands"
 	@echo "========================================================================"
 	@echo "  make verify   : [SINGLE COMMAND] Runs the entire verification architecture"
-	@echo "                  (Pre-cleans, compiles, runs SVA + Scoreboard + ATNF DB)"
+	@echo "                  (Pre-cleans, compiles, runs SVA + ATNF DB, generates dashboard)"
+	@echo "  make dashboard: Re-generates and launches HTML dashboard in browser"
 	@echo "  make clean    : Cleans all previous simulation artifacts, databases, and logs"
 	@echo "  make re       : Clean rebuild & verify from scratch"
 	@echo "  make wave     : [WAVEFORM] Runs with waveform dumping & opens GUI"
 	@echo "========================================================================"
 
 # ------------------------------------------------------------------------------
-# 1. Single Command: Run Full Verification Architecture + ATNF Matching
+# 1. Single Command: Run Full Verification Architecture + ATNF Matching + Dashboard
 # ------------------------------------------------------------------------------
 verify: clean
 	@echo "========================================================================"
@@ -40,16 +41,29 @@ verify: clean
 		+UVM_VERBOSITY=$(VERBOSITY) \
 		-svseed $(SEED) \
 		-l xrun_verify.log
-	@echo "========================================================================"
-	@echo " Verification Complete. Full log: xrun_verify.log"
-	@echo "========================================================================"
+	@python3 generate_dashboard.py || python generate_dashboard.py || true
+
+# ------------------------------------------------------------------------------
+# 2. View Interactive HTML Dashboard
+# ------------------------------------------------------------------------------
+dashboard:
+	@python3 generate_dashboard.py || python generate_dashboard.py || true
+	@if command -v firefox >/dev/null 2>&1; then \
+		firefox verification_dashboard.html & \
+	elif command -v google-chrome >/dev/null 2>&1; then \
+		google-chrome verification_dashboard.html & \
+	elif command -v xdg-open >/dev/null 2>&1; then \
+		xdg-open verification_dashboard.html & \
+	else \
+		echo "[INFO] Dashboard generated: verification_dashboard.html"; \
+	fi
 
 # Clean Rebuild
 re: clean verify
 rebuild: clean verify
 
 # ------------------------------------------------------------------------------
-# 2. Separate Command: Waveform Generation & Viewer
+# 3. Separate Command: Waveform Generation & Viewer
 # ------------------------------------------------------------------------------
 wave:
 	@echo "========================================================================"
@@ -74,7 +88,7 @@ wave:
 	fi
 
 # ------------------------------------------------------------------------------
-# 3. Thorough Clean: Wipes all simulation databases, locks, and history
+# 4. Thorough Clean: Wipes all simulation databases, locks, and history
 # ------------------------------------------------------------------------------
 clean:
 	@echo "[CLEAN] Purging all previous simulation artifacts, databases, and logs..."
