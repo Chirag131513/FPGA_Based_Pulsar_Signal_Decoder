@@ -1,0 +1,32 @@
+# Compiled Python files
+*.pyc
+__pycache__/
+
+# Executable/binary files
+ffa_sim_dbg
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+
+# Environment files
+.env
+.env.local
+*.env.*
+
+# Editors
+.vscode/
+.idea/
+
+# Dependencies
+.venv/
+venv/
+node_modules/
+
+# Build artifacts
+dist/
+build/
+target/
+*.vvp
+*.vcd

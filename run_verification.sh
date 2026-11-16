@@ -1,0 +1,58 @@
+#!/bin/bash
+# ==============================================================================
+# Script: run_verification.sh
+# Purpose: SINGLE COMMAND to execute the full UVM 1.2 verification architecture,
+#          ATNF pulsar catalogue cross-referencing, and coverage reporting.
+# ==============================================================================
+
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SIM_DIR="$SCRIPT_DIR/uvm/sim"
+
+echo "========================================================================"
+echo "    FFA ACCELERATOR: RUNNING FULL UVM 1.2 VERIFICATION ARCHITECTURE     "
+echo "========================================================================"
+echo " Directory: $SIM_DIR"
+
+cd "$SIM_DIR"
+
+# Check if Cadence Xcelium is available
+if command -v xrun >/dev/null 2>&1; then
+    echo "[INFO] Detected Cadence Xcelium (xrun). Executing UVM Master Test..."
+    
+    xrun -f xrun_args.f \
+        +UVM_TESTNAME=ffa_master_verification_test \
+        +UVM_VERBOSITY=UVM_LOW \
+        -coverage all \
+        -covoverwrite \
+        -covworkdir cov_work \
+        -l xrun_verify.log
+
+    echo "========================================================================"
+    echo " Generating Code & Functional Coverage Summary via Cadence IMC..."
+    echo "========================================================================"
+    if command -v imc >/dev/null 2>&1; then
+        imc -batch -exec "load cov_work/scope/ffa_master_verification_test; report -summary -metrics all -output cov_summary.txt; exit" || true
+        if [ -f cov_summary.txt ]; then
+            echo ""
+            cat cov_summary.txt | head -n 40
+            echo ""
+        fi
+    else
+        echo "[INFO] Cadence IMC CLI not in PATH. Raw coverage database saved in 'cov_work/'"
+    fi
+
+    echo "========================================================================"
+    echo " ATNF Catalogue Matching Summary & UVM Scoreboard Status:"
+    echo "========================================================================"
+    grep -E "(\[ATNF-SUCCESS\]|\[SCB_MATCH_EXACT\]|SCB_REPORT|UVM VERIFICATION STATUS)" xrun_verify.log || true
+
+    echo "========================================================================"
+    echo " [DONE] Full Verification Complete! Log: $SIM_DIR/xrun_verify.log"
+    echo "========================================================================"
+else
+    echo "[WARNING] Cadence Xcelium ('xrun') not detected in PATH."
+    echo "[INFO] Executing automated Python verification regression..."
+    python3 run_regression.py
+fi
