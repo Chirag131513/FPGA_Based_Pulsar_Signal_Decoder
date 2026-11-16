@@ -45,6 +45,7 @@ verify: clean
 		-coverage all \
 		-covoverwrite \
 		-covworkdir $(COV_WORK) \
+		-covtest $(TEST) \
 		-l xrun_verify.log
 	@echo "========================================================================"
 	@echo " Generating Coverage Summary via Cadence IMC..."

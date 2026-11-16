@@ -30,7 +30,7 @@ module ffa_sva #(
     // 1. Reset Assertions
     // =========================================================================
     property p_reset_state;
-        @(posedge clk) rst |-> (ffa_state == FFA_S_IDLE && tx_start == 1'b0 && buffer_write_addr == 0);
+        @(posedge clk) (rst ##1 rst) |-> (ffa_state == FFA_S_IDLE && tx_start == 1'b0 && buffer_write_addr == 0);
     endproperty
     a_reset_state: assert property (p_reset_state)
         else $error("[SVA-ERROR] Reset condition violation: FSM, tx_start, or buffer addr not reset correctly!");

@@ -31,6 +31,7 @@ if command -v xrun >/dev/null 2>&1; then
         -coverage all \
         -covoverwrite \
         -covworkdir cov_work \
+        -covtest ffa_master_verification_test \
         -l xrun_verify.log
 
     echo "========================================================================"

@@ -13,8 +13,8 @@ module ffa_engine #(
     input  wire        clk,
     input  wire        rst,
     input  wire [7:0]  adc_data,
-    output reg         tx_start,
-    output reg [31:0]  tx_data,
+    output reg         tx_start = 1'b0,
+    output reg [31:0]  tx_data = 32'd0,
     input  wire        tx_busy
 );
 
@@ -35,20 +35,20 @@ module ffa_engine #(
         S_DETECT_PEAK  = 3'b100,
         S_SEND_RESULT  = 3'b101;
 
-    reg [2:0] current_state;
+    reg [2:0] current_state = S_IDLE;
 
     // =========================================================================
     // Internal Registers & Index Counters
     // =========================================================================
-    reg [$clog2(PROFILE_MEM_SIZE):0]  mem_init_idx;
-    reg [$clog2(DATA_BUFFER_SIZE):0]  buffer_write_addr;
-    reg [$clog2(DATA_BUFFER_SIZE):0]  fold_sample_idx;
-    reg [11:0]                        trial_period;
-    reg [11:0]                        phase_counter;
-    reg [$clog2(PROFILE_MEM_SIZE):0]  peak_scan_idx;
-    reg [31:0]                        max_power;
-    reg [31:0]                        detected_period;
-    reg [31:0]                        curr_mem_val;
+    reg [$clog2(PROFILE_MEM_SIZE):0]  mem_init_idx = 0;
+    reg [$clog2(DATA_BUFFER_SIZE):0]  buffer_write_addr = 0;
+    reg [$clog2(DATA_BUFFER_SIZE):0]  fold_sample_idx = 0;
+    reg [11:0]                        trial_period = 12'd10;
+    reg [11:0]                        phase_counter = 12'd0;
+    reg [$clog2(PROFILE_MEM_SIZE):0]  peak_scan_idx = 0;
+    reg [31:0]                        max_power = 32'd0;
+    reg [31:0]                        detected_period = 32'd0;
+    reg [31:0]                        curr_mem_val = 32'd0;
 
     wire [$clog2(PROFILE_MEM_SIZE)-1:0] fold_mem_addr;
     wire [$clog2(PROFILE_BINS)-1:0]     active_bin;

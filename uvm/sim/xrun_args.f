@@ -31,11 +31,3 @@
 # 4. Top-Level UVM Testbench Module
 ../tb_top.sv
 
-# Coverage Instrumentation (Code + Functional Coverage)
--coverage all
--covoverwrite
--covworkdir cov_work
-
-# Default Simulation Controls
-+UVM_TESTNAME=ffa_master_verification_test
-+UVM_VERBOSITY=UVM_LOW

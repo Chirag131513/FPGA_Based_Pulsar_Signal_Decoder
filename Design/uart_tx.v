@@ -11,8 +11,8 @@ module uart_tx #(
     input  wire        rst,
     input  wire        tx_start,
     input  wire [31:0] data_in,
-    output reg         tx_out,
-    output reg         tx_busy
+    output reg         tx_out = 1'b1,
+    output reg         tx_busy = 1'b0
 );
 
     localparam [2:0]
@@ -24,11 +24,11 @@ module uart_tx #(
         S_DATA_BITS       = 3'b101,
         S_STOP_BIT_DATA   = 3'b110;
 
-    reg [2:0]                      current_state;
-    reg [$clog2(CLKS_PER_BIT)-1:0] clk_counter;
-    reg [4:0]                      bit_index;
-    reg [7:0]                      byte_reg;
-    reg [31:0]                     data_reg;
+    reg [2:0]                      current_state = S_IDLE;
+    reg [$clog2(CLKS_PER_BIT)-1:0] clk_counter = 0;
+    reg [4:0]                      bit_index = 0;
+    reg [7:0]                      byte_reg = 8'h00;
+    reg [31:0]                     data_reg = 32'd0;
 
     always @(posedge clk) begin
         if (rst) begin

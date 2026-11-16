@@ -18,6 +18,7 @@ class ffa_base_test extends uvm_test;
 
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
+        uvm_top.set_timeout(500_000_000ns, 1);
         env = ffa_env::type_id::create("env", this);
     endfunction : build_phase
 

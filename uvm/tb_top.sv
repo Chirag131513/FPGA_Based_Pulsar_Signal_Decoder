@@ -115,16 +115,20 @@ module tb_top;
             // pragma coverage on
         `endif
 
-        // 3. Drive Synchronous Reset
+        // 3. Start UVM Test at time 0 (Mandatory for Cadence UVM)
+        run_test();
+    end
+
+    // =========================================================================
+    // Parallel Hardware Reset Generator
+    // =========================================================================
+    initial begin
         intf.rst = 1'b1;
         intf.adc_data_in = 8'h00;
         repeat(20) @(posedge clk_50mhz);
         @(negedge clk_50mhz);
         intf.rst = 1'b0;
         `uvm_info("TB_TOP", "Deasserted Reset. System operational.", UVM_NONE)
-
-        // 4. Run Selected UVM Test
-        run_test();
     end
 
 endmodule : tb_top

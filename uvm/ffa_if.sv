@@ -9,10 +9,10 @@ interface ffa_if #(
     input logic clk
 );
     // Asynchronous / synchronous reset
-    logic        rst;
+    logic        rst = 1'b1;
 
     // ADC input stream
-    logic [7:0]  adc_data_in;
+    logic [7:0]  adc_data_in = 8'h00;
 
     // Serial output
     logic        uart_tx_pin;
