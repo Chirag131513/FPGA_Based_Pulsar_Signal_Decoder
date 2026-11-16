@@ -1,8 +1,8 @@
 #!/bin/bash
 # ==============================================================================
 # Script: run_verification.sh
-# Purpose: SINGLE COMMAND to execute the full UVM 1.2 verification architecture,
-#          ATNF pulsar catalogue cross-referencing, and coverage reporting.
+# Purpose: SINGLE COMMAND to execute the full UVM 1.2 verification architecture
+#          and ATNF pulsar catalogue cross-referencing.
 # ==============================================================================
 
 set -e
@@ -28,25 +28,7 @@ if command -v xrun >/dev/null 2>&1; then
     xrun -f xrun_args.f \
         +UVM_TESTNAME=ffa_master_verification_test \
         +UVM_VERBOSITY=UVM_LOW \
-        -coverage all \
-        -covoverwrite \
-        -covworkdir cov_work \
-        -covtest ffa_master_verification_test \
         -l xrun_verify.log
-
-    echo "========================================================================"
-    echo " Generating Code & Functional Coverage Summary via Cadence IMC..."
-    echo "========================================================================"
-    if command -v imc >/dev/null 2>&1; then
-        imc -batch -exec "load cov_work/scope/ffa_master_verification_test; report -summary -metrics all -output cov_summary.txt; exit" || true
-        if [ -f cov_summary.txt ]; then
-            echo ""
-            cat cov_summary.txt | head -n 40
-            echo ""
-        fi
-    else
-        echo "[INFO] Cadence IMC CLI not in PATH. Raw coverage database saved in 'cov_work/'"
-    fi
 
     echo "========================================================================"
     echo " ATNF Catalogue Matching Summary & UVM Scoreboard Status:"
