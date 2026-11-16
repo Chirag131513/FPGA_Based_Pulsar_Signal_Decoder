@@ -74,7 +74,7 @@ module ffa_sva #(
 
     property p_send_result_handshake;
         @(posedge clk) disable iff (rst)
-        (ffa_state == FFA_S_SEND_RESULT && !tx_busy) |-> (tx_start == 1'b1);
+        (ffa_state == FFA_S_SEND_RESULT && !tx_busy) |=> (tx_start == 1'b1);
     endproperty
     a_send_result_handshake: assert property (p_send_result_handshake)
         else $error("[SVA-ERROR] S_SEND_RESULT failed to assert tx_start when UART was not busy!");

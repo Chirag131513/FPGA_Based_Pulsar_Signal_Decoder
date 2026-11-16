@@ -25,7 +25,7 @@ class ffa_master_verification_test extends ffa_base_test;
         seq.start(env.adc_agent.sequencer);
 
         `uvm_info("MASTER_TEST", "All Verification Stages Executed Successfully. Waiting for Pipeline Drain...", UVM_NONE)
-        #60_000_000;
+        #15_000_000;
 
         phase.drop_objection(this, "Finished ffa_master_verification_test");
     endtask : run_phase

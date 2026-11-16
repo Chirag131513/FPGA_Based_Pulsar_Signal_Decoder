@@ -217,7 +217,7 @@ class ffa_master_seq extends ffa_base_seq;
             `uvm_fatal("RND_FAIL", "Sanity item randomization failed!")
         end
         finish_item(item);
-        #40_000_000;
+        #12_000_000;
 
         // ---------------------------------------------------------------------
         // STAGE 2: ATNF Pulsar Database Signature Injection & Cross-Referencing
@@ -236,7 +236,7 @@ class ffa_master_seq extends ffa_base_seq;
             `uvm_info("ATNF_INJECT", $sformatf("Injected Target: %s (Period: %0d cycles)", 
                       psr_targets[idx].name(), item.period_cycles), UVM_LOW)
             finish_item(item);
-            #40_000_000;
+            #12_000_000;
         end
 
         // ---------------------------------------------------------------------
@@ -255,7 +255,7 @@ class ffa_master_seq extends ffa_base_seq;
             end
             `uvm_info("NOISE_SWEEP", $sformatf("Injected: %s", item.convert2string()), UVM_LOW)
             finish_item(item);
-            #40_000_000;
+            #12_000_000;
         end
 
         // ---------------------------------------------------------------------
@@ -274,7 +274,7 @@ class ffa_master_seq extends ffa_base_seq;
             noise_range     == 8'h40;
         });
         finish_item(item);
-        #40_000_000;
+        #12_000_000;
 
         // 4B: Pure Noise (False-Positive Check)
         item = ffa_adc_item::type_id::create("pure_noise_item");
@@ -284,7 +284,7 @@ class ffa_master_seq extends ffa_base_seq;
             snr_mode    == SNR_PURE_NOISE;
         });
         finish_item(item);
-        #40_000_000;
+        #12_000_000;
 
         `uvm_info("MASTER_SEQ", "All Verification Sequence Stimulus Completed.", UVM_NONE)
     endtask : body

@@ -51,9 +51,9 @@ class ffa_adc_item extends uvm_sequence_item;
     }
 
     constraint c_noise_and_pulse {
-        pulse_amplitude inside {[8'h80 : 8'hF0]};
-        noise_floor     inside {[8'h08 : 8'h30]};
-        noise_range     inside {[8'h04 : 8'h20]};
+        soft pulse_amplitude inside {[8'h10 : 8'hF0]};
+        soft noise_floor     inside {[8'h08 : 8'h40]};
+        soft noise_range     inside {[8'h04 : 8'h50]};
         (pulse_amplitude + noise_range) < 8'hFF;
     }
 
