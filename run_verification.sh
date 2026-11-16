@@ -17,7 +17,11 @@ echo " Directory: $SIM_DIR"
 
 cd "$SIM_DIR"
 
-# Check if Cadence Xcelium is available
+# 1. Clean stale simulation artifacts so previous runs do not taint the new one
+echo "[CLEAN] Purging stale simulation databases, history, and locks..."
+rm -rf INCA_libs xcelium.d cov_work *.log *.history *.key *.shm *.vcd waves* cov_summary.txt .simvision* .bpad* *.diag *.dsn *.trn
+
+# 2. Check if Cadence Xcelium is available
 if command -v xrun >/dev/null 2>&1; then
     echo "[INFO] Detected Cadence Xcelium (xrun). Executing UVM Master Test..."
     
