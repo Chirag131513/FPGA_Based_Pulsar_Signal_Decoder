@@ -99,7 +99,7 @@ class ffa_scoreboard extends uvm_scoreboard;
                 `uvm_info("SCB_ATNF_MATCH",
                     $sformatf(">>> [ATNF-SUCCESS] Cross-referenced detected period (%.6f s) with ATNF catalogue: Found %0d match(es):",
                               act_item.period_s, num_atnf_matches), UVM_NONE)
-                foreach (atnf_db.matches[m]) begin
+                for (int m = 0; m < num_atnf_matches; m++) begin
                     `uvm_info("SCB_ATNF_DETAIL",
                         $sformatf("    -> %s (%s) | P0 = %.6f s | DM = %.2f pc/cm^3",
                                   atnf_db.matches[m].common_name, atnf_db.matches[m].psrj_name,
