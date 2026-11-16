@@ -12,6 +12,7 @@ class ffa_atnf_catalogue extends uvm_object;
     `uvm_object_utils(ffa_atnf_catalogue)
 
     atnf_pulsar_entry_s catalogue[$];
+    atnf_pulsar_entry_s matches[$];
 
     function new(string name = "ffa_atnf_catalogue");
         super.new(name);
@@ -128,13 +129,14 @@ class ffa_atnf_catalogue extends uvm_object;
 
     // =========================================================================
     // Query Catalogue by Period with Tolerance Window
+    // Returns number of matches; matches stored in this.matches[$]
     // =========================================================================
-    function atnf_entry_q_t query_catalogue(
+    function int query_catalogue(
         input real query_period_s,
         input real tolerance_pct
     );
         real error_pct;
-        atnf_entry_q_t matches;
+        matches.delete();
 
         foreach (catalogue[i]) begin
             error_pct = ((query_period_s - catalogue[i].period_s) / catalogue[i].period_s) * 100.0;
@@ -145,7 +147,7 @@ class ffa_atnf_catalogue extends uvm_object;
             end
         end
 
-        return matches;
+        return matches.size();
     endfunction : query_catalogue
 
 endclass : ffa_atnf_catalogue

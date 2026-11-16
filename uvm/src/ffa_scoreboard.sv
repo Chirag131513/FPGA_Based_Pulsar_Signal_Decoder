@@ -60,7 +60,6 @@ class ffa_scoreboard extends uvm_scoreboard;
     virtual function void check_transactions();
         ffa_uart_item exp_item;
         ffa_uart_item act_item;
-        atnf_entry_q_t atnf_matches;
         int num_atnf_matches;
 
         while (exp_queue.size() > 0 && act_queue.size() > 0) begin
@@ -94,18 +93,17 @@ class ffa_scoreboard extends uvm_scoreboard;
             end
 
             // 4. Cross-Reference against ATNF Catalogue
-            atnf_matches = atnf_db.query_catalogue(act_item.period_s, 5.0);
-            num_atnf_matches = atnf_matches.size();
+            num_atnf_matches = atnf_db.query_catalogue(act_item.period_s, 5.0);
             if (num_atnf_matches > 0) begin
                 atnf_matches_found += num_atnf_matches;
                 `uvm_info("SCB_ATNF_MATCH",
                     $sformatf(">>> [ATNF-SUCCESS] Cross-referenced detected period (%.6f s) with ATNF catalogue: Found %0d match(es):",
                               act_item.period_s, num_atnf_matches), UVM_NONE)
-                foreach (atnf_matches[m]) begin
+                foreach (atnf_db.matches[m]) begin
                     `uvm_info("SCB_ATNF_DETAIL",
                         $sformatf("    -> %s (%s) | P0 = %.6f s | DM = %.2f pc/cm^3",
-                                  atnf_matches[m].common_name, atnf_matches[m].psrj_name,
-                                  atnf_matches[m].period_s, atnf_matches[m].dm), UVM_NONE)
+                                  atnf_db.matches[m].common_name, atnf_db.matches[m].psrj_name,
+                                  atnf_db.matches[m].period_s, atnf_db.matches[m].dm), UVM_NONE)
                 end
             end else begin
                 `uvm_info("SCB_ATNF_NEW",
