@@ -129,13 +129,12 @@ class ffa_atnf_catalogue extends uvm_object;
     // =========================================================================
     // Query Catalogue by Period with Tolerance Window
     // =========================================================================
-    function int query_catalogue(
-        input  real                query_period_s,
-        input  real                tolerance_pct,
-        output atnf_pulsar_entry_s matches[$]
+    function atnf_entry_q_t query_catalogue(
+        input real query_period_s,
+        input real tolerance_pct
     );
         real error_pct;
-        matches.delete();
+        atnf_entry_q_t matches;
 
         foreach (catalogue[i]) begin
             error_pct = ((query_period_s - catalogue[i].period_s) / catalogue[i].period_s) * 100.0;
@@ -146,7 +145,7 @@ class ffa_atnf_catalogue extends uvm_object;
             end
         end
 
-        return matches.size();
+        return matches;
     endfunction : query_catalogue
 
 endclass : ffa_atnf_catalogue

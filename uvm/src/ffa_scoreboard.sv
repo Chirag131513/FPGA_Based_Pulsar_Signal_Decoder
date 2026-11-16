@@ -60,7 +60,7 @@ class ffa_scoreboard extends uvm_scoreboard;
     virtual function void check_transactions();
         ffa_uart_item exp_item;
         ffa_uart_item act_item;
-        atnf_pulsar_entry_s atnf_matches[$];
+        atnf_entry_q_t atnf_matches;
         int num_atnf_matches;
 
         while (exp_queue.size() > 0 && act_queue.size() > 0) begin
@@ -94,7 +94,8 @@ class ffa_scoreboard extends uvm_scoreboard;
             end
 
             // 4. Cross-Reference against ATNF Catalogue
-            num_atnf_matches = atnf_db.query_catalogue(act_item.period_s, 5.0, atnf_matches);
+            atnf_matches = atnf_db.query_catalogue(act_item.period_s, 5.0);
+            num_atnf_matches = atnf_matches.size();
             if (num_atnf_matches > 0) begin
                 atnf_matches_found += num_atnf_matches;
                 `uvm_info("SCB_ATNF_MATCH",
@@ -131,7 +132,7 @@ class ffa_scoreboard extends uvm_scoreboard;
         if (period_mismatches == 0 && preamble_errors == 0 && framing_errors == 0 && total_frames_received > 0) begin
             `uvm_info("SCB_REPORT", "                  >>> UVM VERIFICATION STATUS: PASSED <<<        ", UVM_NONE)
         end else if (total_frames_received == 0) begin
-            `uvm_warning("SCB_REPORT", "              >>> UVM VERIFICATION STATUS: NO FRAMES PROCESSED <<<", UVM_NONE)
+            `uvm_warning("SCB_REPORT", "              >>> UVM VERIFICATION STATUS: NO FRAMES PROCESSED <<<")
         end else begin
             `uvm_error("SCB_REPORT", "                  >>> UVM VERIFICATION STATUS: FAILED <<<        ")
         end

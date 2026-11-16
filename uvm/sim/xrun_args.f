@@ -15,16 +15,20 @@
 +incdir+../src
 +incdir+../src/tests
 
-# RTL Design Files
+# 1. SystemVerilog Packages (Must be compiled before interfaces and modules using them)
+../src/ffa_types.sv
+../src/ffa_pkg.sv
+
+# 2. RTL Design Files
 ../../Design/ffa_engine.v
 ../../Design/uart_tx.v
 ../../Design/top.v
 
-# UVM Testbench & Interface Files (Inside uvm/)
+# 3. SystemVerilog Interface & Assertions
 ../ffa_if.sv
 ../ffa_sva.sv
-../src/ffa_types.sv
-../src/ffa_pkg.sv
+
+# 4. Top-Level UVM Testbench Module
 ../tb_top.sv
 
 # Coverage Instrumentation (Code + Functional Coverage)

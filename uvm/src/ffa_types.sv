@@ -64,6 +64,9 @@ package ffa_types_pkg;
         real             tolerance_pct;  // Matching tolerance
     } atnf_pulsar_entry_s;
 
+    // Queue of ATNF pulsar entries
+    typedef atnf_pulsar_entry_s atnf_entry_q_t[$];
+
     // Architectural parameter configuration
     typedef struct {
         int  data_buffer_size;
