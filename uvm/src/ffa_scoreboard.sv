@@ -102,8 +102,8 @@ class ffa_scoreboard extends uvm_scoreboard;
                 for (int m = 0; m < num_atnf_matches; m++) begin
                     `uvm_info("SCB_ATNF_DETAIL",
                         $sformatf("    -> %s (%s) | P0 = %.6f s | DM = %.2f pc/cm^3",
-                                  atnf_db.matches[m].common_name, atnf_db.matches[m].psrj_name,
-                                  atnf_db.matches[m].period_s, atnf_db.matches[m].dm), UVM_NONE)
+                                  atnf_db.matched_pulsars[m].common_name, atnf_db.matched_pulsars[m].psrj_name,
+                                  atnf_db.matched_pulsars[m].period_s, atnf_db.matched_pulsars[m].dm), UVM_NONE)
                 end
             end else begin
                 `uvm_info("SCB_ATNF_NEW",
