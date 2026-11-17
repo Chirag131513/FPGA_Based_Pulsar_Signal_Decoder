@@ -1,0 +1,92 @@
+<svg viewBox="0 0 920 270" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="background:#FFFFFF; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 8 5 L 0 9 z" fill="#2563EB"/>
+        </marker>
+        <marker id="arrowGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 8 5 L 0 9 z" fill="#059669"/>
+        </marker>
+        <marker id="arrowRed" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 8 5 L 0 9 z" fill="#DC2626"/>
+        </marker>
+        <filter id="fsmShadow" x="-10%" y="-10%" width="120%" height="120%">
+            <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#0F172A" flood-opacity="0.08"/>
+        </filter>
+    </defs>
+
+    <!-- S_IDLE -->
+    <g transform="translate(30, 40)" filter="url(#fsmShadow)">
+        <rect width="120" height="75" rx="8" fill="#F8FAFC" stroke="#94A3B8" stroke-width="1.5"/>
+        <text x="60" y="28" text-anchor="middle" font-size="12" font-weight="800" fill="#0F172A">S_IDLE</text>
+        <text x="60" y="46" text-anchor="middle" font-size="10" font-family="monospace" fill="#64748B">3'b000</text>
+        <text x="60" y="63" text-anchor="middle" font-size="9" fill="#475569">Reset &amp; Clear</text>
+    </g>
+
+    <!-- Arrow 1: IDLE to INIT_MEM -->
+    <path d="M 150 78 L 176 78" stroke="#2563EB" stroke-width="1.8" fill="none" marker-end="url(#arrow)"/>
+    <text x="163" y="70" text-anchor="middle" font-size="8.5" fill="#2563EB" font-weight="700">!rst_n</text>
+
+    <!-- S_INIT_MEM -->
+    <g transform="translate(180, 40)" filter="url(#fsmShadow)">
+        <rect width="120" height="75" rx="8" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+        <text x="60" y="28" text-anchor="middle" font-size="12" font-weight="800" fill="#1D4ED8">S_INIT_MEM</text>
+        <text x="60" y="46" text-anchor="middle" font-size="10" font-family="monospace" fill="#64748B">3'b001</text>
+        <text x="60" y="63" text-anchor="middle" font-size="9" fill="#475569">Zero BRAM Bins</text>
+    </g>
+
+    <!-- Arrow 2: INIT_MEM to ACQUIRE -->
+    <path d="M 300 78 L 326 78" stroke="#2563EB" stroke-width="1.8" fill="none" marker-end="url(#arrow)"/>
+    <text x="313" y="70" text-anchor="middle" font-size="8.5" fill="#2563EB" font-weight="700">cleared</text>
+
+    <!-- S_ACQUIRE_DATA -->
+    <g transform="translate(330, 40)" filter="url(#fsmShadow)">
+        <rect width="130" height="75" rx="8" fill="#F8FAFC" stroke="#94A3B8" stroke-width="1.5"/>
+        <text x="65" y="28" text-anchor="middle" font-size="12" font-weight="800" fill="#0F172A">S_ACQUIRE</text>
+        <text x="65" y="46" text-anchor="middle" font-size="10" font-family="monospace" fill="#64748B">3'b010</text>
+        <text x="65" y="63" text-anchor="middle" font-size="9" fill="#475569">1024 ADC Samples</text>
+    </g>
+
+    <!-- Arrow 3: ACQUIRE to FOLD -->
+    <path d="M 460 78 L 486 78" stroke="#2563EB" stroke-width="1.8" fill="none" marker-end="url(#arrow)"/>
+    <text x="473" y="70" text-anchor="middle" font-size="8.5" fill="#2563EB" font-weight="700">full</text>
+
+    <!-- S_FOLD_DATA -->
+    <g transform="translate(490, 40)" filter="url(#fsmShadow)">
+        <rect width="130" height="75" rx="8" fill="#ECFDF5" stroke="#86EFAC" stroke-width="1.5"/>
+        <text x="65" y="28" text-anchor="middle" font-size="12" font-weight="800" fill="#047857">S_FOLD_DATA</text>
+        <text x="65" y="46" text-anchor="middle" font-size="10" font-family="monospace" fill="#64748B">3'b011</text>
+        <text x="65" y="63" text-anchor="middle" font-size="9" fill="#475569">Phase Accumulation</text>
+    </g>
+
+    <!-- Arrow 4: FOLD to DETECT_PEAK -->
+    <path d="M 620 78 L 646 78" stroke="#2563EB" stroke-width="1.8" fill="none" marker-end="url(#arrow)"/>
+    <text x="633" y="70" text-anchor="middle" font-size="8.5" fill="#2563EB" font-weight="700">folded</text>
+
+    <!-- S_DETECT_PEAK -->
+    <g transform="translate(650, 40)" filter="url(#fsmShadow)">
+        <rect width="125" height="75" rx="8" fill="#F8FAFC" stroke="#94A3B8" stroke-width="1.5"/>
+        <text x="62" y="28" text-anchor="middle" font-size="12" font-weight="800" fill="#0F172A">S_DETECT_PEAK</text>
+        <text x="62" y="46" text-anchor="middle" font-size="10" font-family="monospace" fill="#64748B">3'b100</text>
+        <text x="62" y="63" text-anchor="middle" font-size="9" fill="#475569">Max Power Sweep</text>
+    </g>
+
+    <!-- Arrow 5: DETECT to SEND_RESULT (Turn down) -->
+    <path d="M 775 78 L 815 78 L 815 152" stroke="#2563EB" stroke-width="1.8" fill="none" marker-end="url(#arrow)"/>
+    <text x="825" y="115" font-size="8.5" fill="#2563EB" font-weight="700">peak found</text>
+
+    <!-- S_SEND_RESULT -->
+    <g transform="translate(745, 155)" filter="url(#fsmShadow)">
+        <rect width="140" height="75" rx="8" fill="#EEF2FF" stroke="#A5B4FC" stroke-width="1.5"/>
+        <text x="70" y="28" text-anchor="middle" font-size="12" font-weight="800" fill="#4338CA">S_SEND_RESULT</text>
+        <text x="70" y="46" text-anchor="middle" font-size="10" font-family="monospace" fill="#64748B">3'b101</text>
+        <text x="70" y="63" text-anchor="middle" font-size="9" fill="#475569">UART 0xAA Trigger</text>
+    </g>
+
+    <!-- Loopback Return Arrow from S_SEND_RESULT back to S_ACQUIRE_DATA -->
+    <path d="M 745 192 L 395 192 L 395 118" stroke="#059669" stroke-width="2" stroke-dasharray="4,3" fill="none" marker-end="url(#arrowGreen)"/>
+    <text x="570" y="184" text-anchor="middle" font-size="9.5" font-weight="700" fill="#059669">Stream Loop: tx_start pulsed, return to acquire next epoch</text>
+
+    <!-- Global Reset Indicator -->
+    <path d="M 90 170 L 90 118" stroke="#DC2626" stroke-width="1.8" fill="none" marker-end="url(#arrowRed)"/>
+    <text x="90" y="190" text-anchor="middle" font-size="9" font-weight="700" fill="#DC2626">Synchronous Reset (rst_n == 0)</text>
+</svg>

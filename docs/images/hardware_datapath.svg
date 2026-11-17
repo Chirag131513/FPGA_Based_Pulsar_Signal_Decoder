@@ -1,0 +1,70 @@
+<svg viewBox="0 0 920 240" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="background:#FFFFFF; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <defs>
+        <marker id="dpArrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 8 5 L 0 9 z" fill="#2563EB"/>
+        </marker>
+        <filter id="dpShadow" x="-10%" y="-10%" width="120%" height="120%">
+            <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#0F172A" flood-opacity="0.08"/>
+        </filter>
+    </defs>
+
+    <!-- 1. ADC Input Interface -->
+    <g transform="translate(25, 60)" filter="url(#dpShadow)">
+        <rect width="130" height="90" rx="8" fill="#F8FAFC" stroke="#94A3B8" stroke-width="1.5"/>
+        <text x="65" y="32" text-anchor="middle" font-size="11" font-weight="700" fill="#0F172A">Baseband ADC</text>
+        <text x="65" y="52" text-anchor="middle" font-size="9" fill="#475569">8-bit Flash ADC</text>
+        <text x="65" y="68" text-anchor="middle" font-size="9" font-family="monospace" fill="#2563EB">50 MSPS</text>
+    </g>
+
+    <!-- Arrow 1 to 2 -->
+    <path d="M 155 105 L 186 105" stroke="#2563EB" stroke-width="2" fill="none" marker-end="url(#dpArrow)"/>
+    <text x="170" y="98" text-anchor="middle" font-size="8" fill="#2563EB">8-bit</text>
+
+    <!-- 2. Dual-Port Circular Buffer RAM -->
+    <g transform="translate(190, 60)" filter="url(#dpShadow)">
+        <rect width="150" height="90" rx="8" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+        <text x="75" y="30" text-anchor="middle" font-size="11" font-weight="700" fill="#1D4ED8">Circular Buffer</text>
+        <text x="75" y="50" text-anchor="middle" font-size="9" fill="#475569">Dual-Port BRAM</text>
+        <text x="75" y="68" text-anchor="middle" font-size="9" font-family="monospace" fill="#0F172A">1024 &times; 8-bit</text>
+    </g>
+
+    <!-- Arrow 2 to 3 -->
+    <path d="M 340 105 L 371 105" stroke="#2563EB" stroke-width="2" fill="none" marker-end="url(#dpArrow)"/>
+    <text x="355" y="98" text-anchor="middle" font-size="8" fill="#2563EB">samples</text>
+
+    <!-- 3. Modulo-Free Folding Engine -->
+    <g transform="translate(375, 60)" filter="url(#dpShadow)">
+        <rect width="170" height="90" rx="8" fill="#ECFDF5" stroke="#86EFAC" stroke-width="1.5"/>
+        <text x="85" y="28" text-anchor="middle" font-size="11" font-weight="700" fill="#047857">FFA Folding Engine</text>
+        <text x="85" y="48" text-anchor="middle" font-size="8.5" fill="#475569">Phase Accumulator</text>
+        <text x="85" y="66" text-anchor="middle" font-size="8.5" fill="#047857">Single-Cycle Modulo Wrap</text>
+    </g>
+
+    <!-- Arrow 3 to 4 -->
+    <path d="M 545 105 L 576 105" stroke="#2563EB" stroke-width="2" fill="none" marker-end="url(#dpArrow)"/>
+    <text x="560" y="98" text-anchor="middle" font-size="8" fill="#2563EB">accum</text>
+
+    <!-- 4. Profile Memory & Peak Detector -->
+    <g transform="translate(580, 60)" filter="url(#dpShadow)">
+        <rect width="155" height="90" rx="8" fill="#F8FAFC" stroke="#94A3B8" stroke-width="1.5"/>
+        <text x="77" y="28" text-anchor="middle" font-size="11" font-weight="700" fill="#0F172A">Profile Memory &amp;</text>
+        <text x="77" y="44" text-anchor="middle" font-size="11" font-weight="700" fill="#0F172A">Peak Detector</text>
+        <text x="77" y="66" text-anchor="middle" font-size="8.5" fill="#475569">64 Phase Bins &bull; Max &chi;&sup2;</text>
+    </g>
+
+    <!-- Arrow 4 to 5 -->
+    <path d="M 735 105 L 766 105" stroke="#2563EB" stroke-width="2" fill="none" marker-end="url(#dpArrow)"/>
+    <text x="750" y="98" text-anchor="middle" font-size="8" fill="#2563EB">period</text>
+
+    <!-- 5. 50 MHz UART Transmitter -->
+    <g transform="translate(770, 60)" filter="url(#dpShadow)">
+        <rect width="130" height="90" rx="8" fill="#EEF2FF" stroke="#A5B4FC" stroke-width="1.5"/>
+        <text x="65" y="28" text-anchor="middle" font-size="11" font-weight="700" fill="#4338CA">UART Transmitter</text>
+        <text x="65" y="48" text-anchor="middle" font-size="9" fill="#475569">0xAA Preamble Lock</text>
+        <text x="65" y="66" text-anchor="middle" font-size="8.5" font-family="monospace" fill="#4338CA">32-bit &bull; 9600 Baud</text>
+    </g>
+
+    <text x="460" y="200" text-anchor="middle" font-size="11" font-weight="600" fill="#475569">
+        Hardware Datapath: Raw ADC baseband stream &rarr; Dual-Port Circular BRAM &rarr; FFA Folding &rarr; Peak Search &rarr; UART Serialization
+    </text>
+</svg>

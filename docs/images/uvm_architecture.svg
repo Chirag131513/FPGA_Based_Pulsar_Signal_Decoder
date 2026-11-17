@@ -1,0 +1,111 @@
+<svg viewBox="0 0 920 400" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="background:#FFFFFF; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <defs>
+        <marker id="uArrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 8 5 L 0 9 z" fill="#2563EB"/>
+        </marker>
+        <marker id="uGreen" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 8 5 L 0 9 z" fill="#059669"/>
+        </marker>
+        <filter id="uShadow" x="-10%" y="-10%" width="120%" height="120%">
+            <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#0F172A" flood-opacity="0.08"/>
+        </filter>
+    </defs>
+
+    <!-- tb_top outer boundary -->
+    <rect x="20" y="15" width="880" height="370" rx="10" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+    <text x="35" y="38" font-size="12" font-weight="800" fill="#0F172A">tb_top (SystemVerilog Testbench Top)</text>
+
+    <!-- Clock / Reset Block -->
+    <g transform="translate(40, 50)" filter="url(#uShadow)">
+        <rect width="150" height="42" rx="6" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1.2"/>
+        <text x="75" y="25" text-anchor="middle" font-size="10.5" font-weight="700" fill="#334155">50 MHz Clock &amp; Reset</text>
+    </g>
+
+    <!-- Virtual Interface ffa_if -->
+    <g transform="translate(230, 50)" filter="url(#uShadow)">
+        <rect width="420" height="42" rx="6" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.2"/>
+        <text x="210" y="25" text-anchor="middle" font-size="11" font-weight="700" fill="#1D4ED8">ffa_if (SystemVerilog Interface &amp; Clocking Blocks)</text>
+    </g>
+
+    <!-- SVA Block -->
+    <g transform="translate(690, 50)" filter="url(#uShadow)">
+        <rect width="180" height="42" rx="6" fill="#ECFDF5" stroke="#86EFAC" stroke-width="1.2"/>
+        <text x="90" y="25" text-anchor="middle" font-size="11" font-weight="700" fill="#047857">ffa_sva (9 Assertions)</text>
+    </g>
+
+    <!-- Arrow from ffa_if to SVA -->
+    <path d="M 650 71 L 686 71" stroke="#059669" stroke-width="1.5" fill="none" marker-end="url(#uGreen)"/>
+
+    <!-- DUT Box -->
+    <g transform="translate(300, 115)" filter="url(#uShadow)">
+        <rect width="280" height="52" rx="6" fill="#0F172A" stroke="#334155" stroke-width="1.2"/>
+        <text x="140" y="28" text-anchor="middle" font-size="12" font-weight="800" fill="#FFFFFF">DUT: top (FFA Engine + UART Core)</text>
+        <text x="140" y="44" text-anchor="middle" font-size="9" fill="#94A3B8">Dual-Port BRAM &bull; 6-State FSM &bull; 9600 Baud</text>
+    </g>
+
+    <!-- Interface to DUT connections -->
+    <path d="M 370 92 L 370 113" stroke="#2563EB" stroke-width="1.8" fill="none" marker-end="url(#uArrow)"/>
+    <text x="360" y="106" text-anchor="end" font-size="8" fill="#2563EB">adc_data</text>
+    <path d="M 510 115 L 510 94" stroke="#4F46E5" stroke-width="1.8" fill="none" marker-end="url(#uArrow)"/>
+    <text x="520" y="106" font-size="8" fill="#4F46E5">uart_tx</text>
+
+    <!-- ffa_env Container -->
+    <rect x="40" y="185" width="840" height="185" rx="8" fill="#FFFFFF" stroke="#BFDBFE" stroke-width="1.5"/>
+    <text x="55" y="205" font-size="11" font-weight="800" fill="#1D4ED8">ffa_env (UVM Verification Environment)</text>
+
+    <!-- Sub-blocks inside ffa_env -->
+    <!-- adc_agent -->
+    <g transform="translate(60, 215)" filter="url(#uShadow)">
+        <rect width="190" height="135" rx="6" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2"/>
+        <text x="95" y="22" text-anchor="middle" font-size="11" font-weight="700" fill="#0F172A">adc_agent (Active)</text>
+        <rect x="15" y="32" width="160" height="25" rx="4" fill="#FFFFFF" stroke="#E2E8F0"/>
+        <text x="95" y="48" text-anchor="middle" font-size="9" fill="#475569">ffa_adc_sequencer</text>
+        <rect x="15" y="65" width="160" height="25" rx="4" fill="#FFFFFF" stroke="#E2E8F0"/>
+        <text x="95" y="81" text-anchor="middle" font-size="9" fill="#475569">ffa_adc_driver</text>
+        <rect x="15" y="98" width="160" height="25" rx="4" fill="#FFFFFF" stroke="#E2E8F0"/>
+        <text x="95" y="114" text-anchor="middle" font-size="9" fill="#475569">ffa_adc_monitor</text>
+    </g>
+
+    <!-- Reference Model -->
+    <g transform="translate(290, 215)" filter="url(#uShadow)">
+        <rect width="170" height="60" rx="6" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.2"/>
+        <text x="85" y="26" text-anchor="middle" font-size="11" font-weight="700" fill="#1D4ED8">ffa_ref_model</text>
+        <text x="85" y="44" text-anchor="middle" font-size="8.5" fill="#475569">Golden Folding Predictor</text>
+    </g>
+
+    <!-- Scoreboard -->
+    <g transform="translate(500, 215)" filter="url(#uShadow)">
+        <rect width="180" height="135" rx="6" fill="#EEF2FF" stroke="#C7D2FE" stroke-width="1.2"/>
+        <text x="90" y="22" text-anchor="middle" font-size="11" font-weight="700" fill="#4338CA">ffa_scoreboard</text>
+        <rect x="12" y="32" width="156" height="42" rx="4" fill="#FFFFFF" stroke="#E2E8F0"/>
+        <text x="90" y="48" text-anchor="middle" font-size="9" font-weight="600" fill="#059669">Bit-Exact Comparator</text>
+        <text x="90" y="62" text-anchor="middle" font-size="8" fill="#64748B">Expected vs Actual Period</text>
+        <rect x="12" y="82" width="156" height="42" rx="4" fill="#FFFFFF" stroke="#E2E8F0"/>
+        <text x="90" y="98" text-anchor="middle" font-size="9" font-weight="600" fill="#4F46E5">ATNF Database Matcher</text>
+        <text x="90" y="112" text-anchor="middle" font-size="8" fill="#64748B">Crab, Vela, J0737, etc.</text>
+    </g>
+
+    <!-- uart_agent -->
+    <g transform="translate(715, 215)" filter="url(#uShadow)">
+        <rect width="145" height="60" rx="6" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2"/>
+        <text x="72" y="26" text-anchor="middle" font-size="11" font-weight="700" fill="#0F172A">uart_agent (Passive)</text>
+        <text x="72" y="44" text-anchor="middle" font-size="8.5" fill="#475569">9600 Baud Deserializer</text>
+    </g>
+
+    <!-- Coverage Component -->
+    <g transform="translate(290, 290)" filter="url(#uShadow)">
+        <rect width="170" height="60" rx="6" fill="#ECFDF5" stroke="#86EFAC" stroke-width="1.2"/>
+        <text x="85" y="26" text-anchor="middle" font-size="11" font-weight="700" fill="#047857">ffa_coverage</text>
+        <text x="85" y="44" text-anchor="middle" font-size="8.5" fill="#475569">100% Functional Coverage</text>
+    </g>
+
+    <!-- Connectors inside env -->
+    <!-- adc_agent monitor to ref_model -->
+    <path d="M 250 245 L 286 245" stroke="#2563EB" stroke-width="1.5" fill="none" marker-end="url(#uArrow)"/>
+    <!-- ref_model to scoreboard -->
+    <path d="M 460 245 L 496 245" stroke="#2563EB" stroke-width="1.5" fill="none" marker-end="url(#uArrow)"/>
+    <!-- uart_agent to scoreboard -->
+    <path d="M 715 245 L 684 245" stroke="#4F46E5" stroke-width="1.5" fill="none" marker-end="url(#uArrow)"/>
+    <!-- Monitor to Coverage -->
+    <path d="M 250 320 L 286 320" stroke="#059669" stroke-width="1.5" fill="none" marker-end="url(#uGreen)"/>
+</svg>

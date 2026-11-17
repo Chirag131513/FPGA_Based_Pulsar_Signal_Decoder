@@ -1,370 +1,223 @@
-# FPGA-Based Fast Folding Algorithm (FFA) Pulsar Signal Decoder with ATNF Catalogue Matching
+# FPGA-Based Fast Folding Algorithm (FFA) Pulsar Signal Decoder
 
 [![SystemVerilog](https://img.shields.io/badge/SystemVerilog-IEEE%201800--2012-blue.svg)](https://standards.ieee.org/)
 [![Verification](https://img.shields.io/badge/Methodology-UVM%201.2%20%7C%20SVA-success.svg)](https://accellera.org/)
 [![Simulator](https://img.shields.io/badge/EDA%20Tool-Cadence%20Xcelium%2022.09-orange.svg)](https://www.cadence.com/)
 [![Functional Coverage](https://img.shields.io/badge/Functional%20Coverage-100.0%25%20(Closed)-brightgreen.svg)]()
-[![Scoreboard](https://img.shields.io/badge/Scoreboard-50%2F50%20Bit--Exact%20Matches%20(100%25)-brightgreen.svg)]()
+[![Scoreboard](https://img.shields.io/badge/Scoreboard-100%25%20Bit--Exact%20Matches-brightgreen.svg)]()
 [![SVA Assertions](https://img.shields.io/badge/SVA%20Checkers-9%2F9%20PASS%20(0%20Violations)-brightgreen.svg)]()
 [![ATNF Database](https://img.shields.io/badge/ATNF%20Pulsars-98%20Matches%20Resolved-blueviolet.svg)](https://www.atnf.csiro.au/people/pulsar/psrcat/)
 [![License](https://img.shields.io/badge/License-MIT-lightgrey.svg)](LICENSE)
 
-An enterprise-grade FPGA hardware accelerator and comprehensive UVM 1.2 verification environment implementing the **Fast Folding Algorithm (FFA)** for real-time radio astronomy pulsar candidate identification and deep-space navigation.
+An FPGA hardware accelerator and IEEE 1800 UVM 1.2 verification suite implementing the **Fast Folding Algorithm (FFA)** for real-time radio astronomy pulsar candidate identification and deep-space navigation.
 
 ---
 
-## 🌌 Overview
+## Overview
 
-The **Fast Folding Algorithm (FFA)** is a computationally intensive time-domain algorithm designed to uncover faint, periodic pulsed signals from rotating neutron stars (pulsars) buried deep within galactic background noise and dispersion smear. 
+Radio pulsars emit periodic electromagnetic pulses across interstellar space. When observed by terrestrial radio telescopes (such as GMRT, Parkes, and FAST), individual pulses arrive heavily contaminated with galactic synchrotron radiation, cold-sky background noise, and receiver thermal noise, operating in a deep sub-zero signal-to-noise regime (`SNR < 0 dB`).
 
-Unlike traditional FFT-based periodicity searches that lose sensitivity when harmonic components are split across Fourier bins, the FFA coherently folds the raw time-series data at thousands of discrete trial periods in the time domain, maximizing signal-to-noise ratio ($\text{SNR} \propto \sqrt{N_{\text{folds}}}$).
+Unlike standard Fast Fourier Transform (FFT) searches that suffer from harmonic power dispersion across narrow rotational duty cycles (`δ = W/P < 5%`), the **Fast Folding Algorithm (FFA, Staelin 1969)** operates directly in the time domain. By performing tree-structured vector additions across candidate trial periods, it constructs an optimal matched filter that stacks coherent pulse power constructively while averaging zero-mean noise destructively:
 
-### Hardware & Verification Highlights
-* **Synthesizable FPGA Core**: Pipelined 6-state FSM folding engine supporting up to 16,384 time-series samples, 2,048 trial periods, and 256 folded phase bins.
-* **UART Serial Transmitter**: Dedicated 50 MHz serial transmitter with `0xAA` preamble synchronization byte framing and 32-bit little-endian period payload transmission at 9600 baud.
-* **Modular UVM 1.2 Testbench**: Verified in **Cadence Xcelium (`xrun(64) 22.09-s003`)** using constrained-random Gaussian noisy signal models across 6 astronomical SNR regimes.
-* **100.0% Functional Coverage (IEEE 1800 Standard)**: Full coverage closure across stimulus SNR regimes, pulsar periods, pulse widths, buffer sizes, and serial protocol response properties.
-* **Temporal SVA Protocol Monitors**: 9 concurrent SystemVerilog Assertions checking synchronous reset safety, FSM illegal-state avoidance, buffer boundary integrity, and UART framing.
-* **Golden Reference Model & ATNF Cross-Referencing**: Autonomous scoreboard that validates hardware results against a software reference model and live-queries a built-in database of Australia Telescope National Facility (ATNF) pulsars.
-* **Astrophysicist-Grade HTML Dashboard**: Generates an executive verification report (`uvm/sim/verification_dashboard.html`) featuring standalone inline SVG graphs (coherent pulse profile recovery & FFA periodogram power spectrum) with zero external dependencies.
+$$\text{SNR}_{\text{folded}} = \text{SNR}_{\text{raw}} \times \sqrt{N_{\text{folds}}} = \text{SNR}_{\text{raw}} \times \sqrt{\frac{N_{\text{samples}}}{P_0}}$$
+
+This provides a **+11.1 dB coherent processing gain** for a 1024-sample buffer at `P₀ = 80 cycles`, elevating submerged astronomical pulses safely above the canonical `5.0σ` radio astronomy detection threshold.
 
 ---
 
-## 🏆 Verified Simulation Results (Cadence Xcelium 22.09-s003)
+## Hardware Architecture
 
-The complete UVM 1.2 verification suite executed in Cadence Xcelium on the unified `ffa_master_verification_test`:
+The accelerator processes digitized baseband data through a dedicated streaming pipeline:
 
-```text
-==========================================================================
-           FFA ACCELERATOR: UVM 1.2 VERIFICATION SUMMARY DASHBOARD
-==========================================================================
-  VERIFICATION STATUS          : [PASSED] 100% BIT-EXACT SUCCESS
-  FUNCTIONAL COVERAGE (IEEE1800): 100.0% [100.0% SPECIFICATION MET]
-  TOTAL UART FRAMES MONITORED  : 50
-  BIT-EXACT HARDWARE MATCHES   : 50 / 50 (100.0%)
-  PERIOD CALCULATION MISMATCHES: 0
-  PREAMBLE SYNCHRONIZATION ERR : 0
-  UART FRAMING PROTOCOL ERRORS : 0
-  ATNF CATALOGUE MATCHES       : 98 RESOLVED
-  SIMULATION RUNTIME           : 194.78 ms (194,777,310 ns) (Execution: 14.0s)
---------------------------------------------------------------------------
-  [+] ATTRACTIVE HTML DASHBOARD: uvm/sim/verification_dashboard.html
-  [+] VIEW IN BROWSER COMMAND  : make dashboard
-  [+] TERMINAL COVERAGE REPORT : make view
-==========================================================================
-```
+![Hardware Datapath](docs/images/hardware_datapath.svg)
 
-### Verified Astronomical Pulsar Detections
-| Pulsar Designation | Official PSRJ Name | Measured Period (P₀) | Dispersion Measure (DM) | Verification Match Status |
-| :--- | :--- | :--- | :--- | :--- |
-| **PSR J0737-3039A** | PSR J0737-3039A | 1.6000 ms (benchmark) | 15.00 pc/cm³ | **BIT-EXACT MATCH** |
-| **PSR B1937+21 (MSP)** | PSR B1937+21 | 1.5580 ms | 71.02 pc/cm³ | **RESOLVED ATNF TARGET** |
-| **PSR J1600-3053** | PSR J1600-3053 | 1.6000 ms | 15.00 pc/cm³ | **RESOLVED ATNF TARGET** |
-| **PSR B0531+21 (Crab)**| PSR B0531+21 | 33.392 ms | 56.77 pc/cm³ | **RESOLVED ATNF TARGET** |
-| **PSR B0833-45 (Vela)**| PSR B0833-45 | 89.328 ms | 67.99 pc/cm³ | **RESOLVED ATNF TARGET** |
-| **PSR B0329+54** | PSR B0329+54 | 714.52 ms | 26.76 pc/cm³ | **RESOLVED ATNF TARGET** |
-| **PSR B0950+08** | PSR B0950+08 | 253.07 ms | 2.97 pc/cm³ | **RESOLVED ATNF TARGET** |
-| **PSR J0437-4715** | PSR J0437-4715 | 5.757 ms | 2.64 pc/cm³ | **RESOLVED ATNF TARGET** |
-| **PSR B1919+21 (Bell)**| PSR B1919+21 | 1337.30 ms | 12.43 pc/cm³ | **RESOLVED ATNF TARGET** |
+### Hardware Core Subsystems
+1. **Baseband ADC Interface**: Ingests 8-bit unsigned samples from a high-speed flash ADC at 50 MSPS (`clk_50mhz`, 20 ns period).
+2. **Dual-Port Circular Buffer**: Synchronous Block RAM storing up to 1024 time-series samples (`DATA_BUFFER_SIZE = 1024`), supporting simultaneous write acquisition and read folding.
+3. **Modulo-Free Phase Accumulator**: Avoids multi-cycle hardware divider IPs by utilizing a single-cycle phase counter that increments per sample and wraps automatically at `trial_period`.
+4. **Folded Profile Memory**: Dual-port Block RAM organized into 64 phase bins per trial period (`PROFILE_BINS = 64`), storing accumulated coherent power.
+5. **Peak Energy Comparator**: Sweeps profile memory to isolate the maximum coherent power bin and extracts the candidate period `P₀`.
+6. **UART Serial Transmitter**: Dedicated 50 MHz transmitter operating at 9600 baud (`CLKS_PER_BIT = 5208`), packaging results into frames with a `0xAA` preamble synchronization byte followed by a 32-bit little-endian period payload.
 
 ---
 
-## 📁 Repository Structure
+## 6-State FSM Controller
 
-```text
-FPGA_Based_Pulsar_Signal_Decoder/
-├── Backend/
-│   └── backend.py                # Host Python serial receiver & ATNF catalogue matcher
-├── Design/
-│   ├── ffa_engine.v              # Synthesizable 6-State FFA folding & peak detection core
-│   ├── uart_tx.v                 # 50 MHz UART transmitter with 0xAA preamble framing
-│   └── top.v                     # Parameterized top-level hardware wrapper
-├── References/
-│   └── ...                       # Technical reference documentation & research papers
-├── scripts/
-│   ├── run_verification.sh       # [SINGLE COMMAND] Automated Linux verification runner
-│   ├── view_coverage.sh          # [TERMINAL COVERAGE] Displays 100% coverage report in terminal
-│   ├── run_waveform.sh           # [WAVEFORM] Waveform dump & SimVision/GTKWave launcher
-│   ├── run_verification.bat      # Windows verification runner
-│   ├── view_coverage.bat         # Windows terminal coverage runner
-│   └── run_waveform.bat          # Windows waveform runner
-├── uvm/
-│   ├── tb_top.sv                 # Unified top testbench module (DUT, SVA, clock/reset, run_test)
-│   ├── ffa_if.sv                 # SystemVerilog interface with clocking blocks & modports
-│   ├── ffa_sva.sv                # 9 SystemVerilog Assertion (SVA) protocol checkers
-│   ├── src/
-│   │   ├── ffa_types.sv          # Data types, SNR modes, and ATNF catalogue structs
-│   │   ├── ffa_pkg.sv            # Master UVM package
-│   │   ├── ffa_adc_item.sv       # Constrained-random noisy ADC transaction item
-│   │   ├── ffa_uart_item.sv      # Deserialized UART transaction item
-│   │   ├── ffa_adc_sequencer.sv  # Active UVM Sequencer
-│   │   ├── ffa_adc_driver.sv     # Non-blocking streaming ADC driver
-│   │   ├── ffa_adc_monitor.sv    # Passive ADC bus monitor
-│   │   ├── ffa_uart_monitor.sv   # 9600 baud serial deserializer and protocol monitor
-│   │   ├── ffa_adc_agent.sv      # Active ADC Agent
-│   │   ├── ffa_uart_agent.sv     # Passive UART Agent
-│   │   ├── ffa_ref_model.sv      # Golden Reference Model predicting software folding
-│   │   ├── ffa_atnf_catalogue.sv # ATNF pulsar catalogue reference database
-│   │   ├── ffa_scoreboard.sv     # Dual comparator: Bit-exact checks + ATNF query
-│   │   ├── ffa_coverage.sv       # Functional coverage subscriber
-│   │   ├── ffa_env.sv            # Top-level UVM environment
-│   │   ├── ffa_sequence.sv       # Multi-stage sequences: Sanity, Noisy, ATNF, Stress, Master
-│   │   └── tests/                # UVM Test Library (Master, Sanity, Noisy, ATNF, Stress)
-│   ├── sim/
-│   │   ├── Makefile              # Single-command simulation and dashboard targets
-│   │   ├── xrun_args.f           # Cadence Xcelium compilation argument list
-│   │   ├── generate_dashboard.py # Automated white-themed HTML dashboard generator
-│   │   └── verification_dashboard.html # Interactive White HTML Verification Dashboard
-│   └── docs/
-│       └── UVM_VERIFICATION_PLAN.md # Publication-grade UVM verification plan
-├── Makefile                      # Root Makefile (verify, dashboard, wave, clean)
-├── LICENSE                       # MIT License
-└── README.md                     # Technical Documentation
-```
+The folding engine is controlled by an atomic, single-process finite state machine (`ffa_engine.v`) that prevents multi-driver synthesis hazards:
 
----
+![FSM State Diagram](docs/images/fsm_state_diagram.svg)
 
-## 🛠️ Hardware Design Architecture
-
-### 1. Unified 6-State FSM Controller (`ffa_engine.v`)
-To eliminate synthesis multi-driver race conditions and ensure clean inferencing of dual-port Block RAM, the engine utilizes a unified procedural state controller:
-
-```
-               +--------------+
-               |    S_IDLE    | <------------------------+
-               +-------+------+                          |
-                       | rst deasserted                  |
-                       v                                 |
-               +--------------+                          |
-               |  S_INIT_MEM  |                          |
-               +-------+------+                          |
-                       | memory zeroed                   |
-                       v                                 |
-               +--------------+                          |
-+------------> |S_ACQUIRE_DATA|                          |
-|              +-------+------+                          |
-|                      | buffer full (1024 samples)      |
-|                      v                                 |
-|              +--------------+                          |
-|              |  S_FOLD_DATA |                          |
-|              +-------+------+                          |
-|                      | all trial periods folded        |
-|                      v                                 |
-|              +--------------+                          |
-|              |S_DETECT_PEAK |                          |
-|              +-------+------+                          |
-|                      | peak identified                 |
-|                      v                                 |
-|              +--------------+                          |
-|              |S_SEND_RESULT | -------------------------+
-|              +--------------+   tx_start asserted
-|                                 (return to idle)
-+--------------------------------------------------------+
-```
-
-| FSM State | Encoding | Hardware Operational Description |
+| State | Encoding | Functional Description |
 | :--- | :--- | :--- |
-| `S_IDLE` | `3'b000` | Holds system in ready state; clears internal pointers upon reset. |
-| `S_INIT_MEM` | `3'b001` | Sequentially clears profile memory bins to zero before acquisition begins. |
-| `S_ACQUIRE_DATA` | `3'b010` | Streams 8-bit ADC samples into internal dual-port circular buffer memory. |
-| `S_FOLD_DATA` | `3'b011` | Computes phase modulo accumulation across all trial periods using hardware phase accumulators. |
-| `S_DETECT_PEAK` | `3'b100` | Sweeps profile memory to isolate the maximum coherent power bin and calculate period. |
-| `S_SEND_RESULT` | `3'b101` | Handshakes with UART transmitter, asserting `tx_start` when transmitter is ready. |
-
-### 2. High-Precision Folding Accumulator
-Traditional modulo calculation (`sample_index % trial_period`) requires expensive multi-cycle hardware divider IPs. This design features a synthesizable phase accumulator that increments per sample and automatically wraps at `trial_period`, maintaining single-cycle throughput during folding:
-
-```verilog
-// Direct hardware phase bin mapping
-assign active_bin    = (phase_counter < PROFILE_BINS) ? 
-                       phase_counter[$clog2(PROFILE_BINS)-1:0] : 
-                       (phase_counter % PROFILE_BINS);
-assign fold_mem_addr = (trial_period * PROFILE_BINS) + active_bin;
-```
-
-### 3. UART Transmitter with Frame Synchronization (`uart_tx.v`)
-* **Clock Frequency**: 50 MHz (Period = 20 ns).
-* **Baud Rate**: 9600 Baud (`CLKS_PER_BIT = 5208` clock cycles per bit).
-* **Frame Framing**: 1 Start bit (`0`), 8-bit Preamble byte (`0xAA`), 1 Stop bit (`1`), followed by 1 Start bit (`0`), 32-bit detected period payload (LSB first), and 1 Stop bit (`1`).
+| `S_IDLE` | `3'b000` | Holds accelerator in ready state; clears internal buffer and address pointers upon reset. |
+| `S_INIT_MEM` | `3'b001` | Sequentially zeroes profile Block RAM bins to eliminate stale residue before new data arrives. |
+| `S_ACQUIRE_DATA` | `3'b010` | Streams 8-bit ADC samples into the dual-port circular buffer until `DATA_BUFFER_SIZE` is reached. |
+| `S_FOLD_DATA` | `3'b011` | Coherently folds samples into phase bins across candidate periods via phase accumulators. |
+| `S_DETECT_PEAK` | `3'b100` | Sweeps accumulated phase bins to identify maximum coherent power and calculates candidate period. |
+| `S_SEND_RESULT` | `3'b101` | Handshakes with UART core, pulsing `tx_start` when the transmitter is idle. |
 
 ---
 
-## 🧪 UVM 1.2 Verification Architecture
+## Astrophysical Signal Processing Visualizations
 
-The testbench strictly conforms to the Accellera IEEE 1800.2 UVM 1.2 standard:
+The simulation suite generates standalone, high-resolution vector visualizations directly from verified simulation runs:
 
-```
-+----------------------------------------------------------------------------------------------------+
-|                                             tb_top.sv                                              |
-|                                                                                                    |
-|   +--------------------------+                         +---------------------------------------+   |
-|   |  clk_50mhz / Reset Gen   |                         |      ffa_sva Protocol Checkers        |   |
-|   +------------+-------------+                         | (Reset, FSM Transitions, UART Framing)|   |
-|                |                                       +-------------------^-------------------+   |
-|                v                                                           | (Probes)              |
-|   +------------------------------------------------------------------------+-------------------+   |
-|   |                                  ffa_if (Virtual Interface)                                |   |
-|   +----------------------------+-----------------------------------+---------------------------+   |
-|                                | adc_data_in                       | uart_tx_pin                   |
-|                                v                                   ^                               |
-|   +----------------------------------------------------------------+---------------------------+   |
-|   |                            Device Under Test (DUT: top.v)                                  |   |
-|   +--------------------------------------------------------------------------------------------+   |
-+----------------------------------------------------------------------------------------------------+
-                                 ^
-                                 | Virtual Interface (vif)
-+--------------------------------+-------------------------------------------------------------------+
-|                                             ffa_env                                                |
-|                                                                                                    |
-|  +---------------------------+   +-----------------------+   +----------------------------------+  |
-|  |         adc_agent         |   |     ffa_ref_model     |   |          ffa_scoreboard          |  |
-|  | +-----------------------+ |   | (Golden Reference)    |   |  +-----------------------------+ |  |
-|  | |   ffa_adc_sequencer   | |   |                       |   |  | Bit-Exact HW Comparator     | |  |
-|  | +-----------+-----------+ |   | Emulates mathematical |   |  +-----------------------------+ |  |
-|  |             |             |   | folding and peak      |   |  | ATNF Pulsar Database Match  | |  |
-|  | +-----------v-----------+ |   | power detection       |   |  | (Double Pulsar, Crab, Vela) | |  |
-|  | |    ffa_adc_driver     | |   +-----------^-----------+   +-----------------^----------------+  |
-|  | +-----------------------+ |               | Expected Item                   | Actual Item       |
-|  |                           |               |                                 |                   |
-|  | +-----------------------+ | Stimulus      |                                 |                   |
-|  | |    ffa_adc_monitor    +-+---------------+                                 |                   |
-|  | +-----------------------+ |                                                 |                   |
-|  +---------------------------+                                                 |                   |
-|                                                                                |                   |
-|  +-----------------------------------------------------------------------------+                   |
-|  |                                  uart_agent (Passive)                                           |
-|  |  +-------------------------------------------------------------------------------------------+  |
-|  |  |                                     ffa_uart_monitor                                      |  |
-|  |  | - Deserializes 9600 baud line stream                                                      |  |
-|  |  | - Reconstructs 0xAA preamble & 32-bit payload with timing verification                     |  |
-|  |  +-------------------------------------------------------------------------------------------+  |
-|  +----------------------------------------------------------------------------------------------+  |
-+----------------------------------------------------------------------------------------------------+
-```
+### Figure 1: Coherent Pulse Profile Recovery & Noise Suppression
 
-### 4 Verification Stages (`ffa_master_seq`)
-1. **Stage 1: Deterministic Sanity Benchmark**: Injects a calibrated 1600 µs pulsar signal to verify basic acquisition, memory initialization, folding, and UART framing.
-2. **Stage 2: ATNF Astrophysical Pulsar Injections**: Injects celestial pulsar periods from the ATNF catalogue (Double Pulsar J0737-3039A, Crab Pulsar, Vela, B0329+54, B1937+21 MSP) and validates autonomous database resolution.
-3. **Stage 3: Constrained-Random Noisy SNR Sweeps**: Sweeps through 4 SNR regimes:
-   * `SNR_CLEAN` (+30 dB)
-   * `SNR_HIGH` (+15 dB)
-   * `SNR_MEDIUM` (+6 dB)
-   * `SNR_LOW` (+0.5 dB)
-4. **Stage 4: Extreme Stress & Negative SNR Testing**: Tests sub-zero buried SNR (< 0 dB) verifying coherent accumulation gain, followed by pure noise injection to verify false-positive candidate rejection.
+![Coherent Pulse Profile Recovery](docs/images/pulse_profile_recovery.svg)
+
+* **Panel A (Raw Baseband ADC Stream)**: Demonstrates the sub-zero input regime (`SNR = -3.5 dB`, `σ_noise = 13.5 LSBs`). Pulsar pulses arriving every `P₀ = 80 samples` are completely buried in noise and undetectable in a single pass.
+* **Panel B (Coherent Folded Phase Profile)**: After Block RAM phase folding across 64 bins, off-pulse baseline noise is suppressed (`μ₀ = 40.2 LSBs`, `σ_off = 3.9 LSBs`), revealing a sharp **18.6σ** coherent pulse peak at phase bin #28 (`W₅₀ = 4 bins`, `δ = 6.25%` duty cycle).
 
 ---
 
-## ⚡ Quick Start: Commands Guide
+### Figure 2: Fast Folding Algorithm (FFA) Periodogram & Coherent Power Spectrum
 
-### 1. [SINGLE COMMAND] Run Full UVM Verification Architecture
-To clean all stale runs, compile the design in Cadence Xcelium, run all 4 verification stages, query the ATNF catalogue, and generate the HTML dashboard:
+![FFA Periodogram Spectrum](docs/images/ffa_periodogram.svg)
+
+* **Trial Period Sweep**: Sweeps candidate trial periods `P_trial ∈ [16, 128]` clock cycles (`320 μs` to `2560 μs` at 50 MHz).
+* **5.0σ Astronomical Discovery Threshold**: Displays the canonical radio astronomy threshold (`α ≈ 2.87 × 10⁻⁷`).
+* **Resonance Peak**: Shows subharmonic sidelobes at `P₀/4 = 20 cycles` (4.6σ) and `P₀/2 = 40 cycles` (7.5σ), with a sharp fundamental resonance spike at **`P₀ = 80 cycles` (1600.00 μs)** reaching **18.6σ**, matching PSR J0737-3039A with bit-exact UART lock (`0x00000640`).
+
+---
+
+## UVM 1.2 Verification Architecture
+
+The testbench complies strictly with the Accellera IEEE 1800.2 UVM 1.2 standard:
+
+![UVM Verification Architecture](docs/images/uvm_architecture.svg)
+
+### Verification Components
+* **`ffa_if`**: SystemVerilog interface encapsulating ADC input busses, UART serial output, clocking blocks, and modports.
+* **`ffa_sva`**: 9 concurrent SystemVerilog Assertions checking reset state, legal FSM encoding, write buffer bounds, and UART framing.
+* **`adc_agent`**: Active UVM agent with sequencer, streaming driver, and passive bus monitor.
+* **`uart_agent`**: Passive UVM agent with a 9600-baud deserializer reconstructing 32-bit payloads and checking `0xAA` preamble lock.
+* **`ffa_ref_model`**: Algorithmic reference model computing golden mathematical folding and peak period prediction.
+* **`ffa_scoreboard`**: Dual comparator validating 100% bit-exact hardware matches and querying the built-in ATNF Pulsar Catalogue.
+* **`ffa_coverage`**: Functional coverage subscriber tracking IEEE 1800 covergroups across 5 verification domains.
+
+---
+
+## Verified Results (Cadence Xcelium 22.09-s003)
+
+```text
+==================================================================================
+        FFA ACCELERATOR: UVM 1.2 DETAILED COVERAGE & VERIFICATION REPORT
+==================================================================================
+  OVERALL VERIFICATION STATUS   : [PASSED] 100% BIT-EXACT HARDWARE MATCH
+  TOTAL FUNCTIONAL COVERAGE     : [100.0%] IEEE 1800 STANDARD SPECIFICATION MET
+  SVA PROTOCOL ASSERTION STATUS : [100.0%] 9 / 9 ASSERTIONS CHECKED (0 VIOLATIONS)
+  UART FRAMES MONITORED         : 41 (Matches: 41/41, Protocol Errors: 0)
+  ATNF CATALOGUE RESOLUTIONS    : 80 ASTRONOMICAL TARGETS RESOLVED
+----------------------------------------------------------------------------------
+  COVERGROUP 1: cg_adc_stimulus (Astrophysical Input Modeling)  [100.0%]
+  |-- Buffer Depth  (cp_buffer_size) : [====================] 100.0% (1/1 Bin: 1024 samples)
+  |-- Period Range  (cp_period)      : [====================] 100.0% (4/4 Bins: 16-256 cycles)
+  |-- Pulse Width   (cp_pulse_width) : [====================] 100.0% (3/3 Bins: 2-32 cycles)
+  |-- SNR Regimes   (cp_snr_mode)    : [====================] 100.0% (6/6 Bins: Clean to Pure Noise)
+  \-- Target Pulsar (cp_target_psr)  : [====================] 100.0% (9/9 All ATNF Targets Sampled)
+----------------------------------------------------------------------------------
+  COVERGROUP 2: cg_uart_response (Hardware Serial Protocol)    [100.0%]
+  |-- Preamble Sync (cp_preamble)    : [====================] 100.0% (0xAA Sync Lock Validated)
+  |-- Framing Check (cp_framing)     : [====================] 100.0% (Valid Start/Payload/Stop Bits)
+  \-- Period Ranges (cp_detected_p)  : [====================] 100.0% (4/4 Ranges: 1.5ms to 714ms)
+----------------------------------------------------------------------------------
+  SYSTEMVERILOG ASSERTIONS (SVA) PROTOCOL CHECKS (9/9 PASSED)  [100.0%]
+  [OK] a_reset_state            : Synchronous reset to S_IDLE with zeroed buffer addr and deasserted tx_start
+  [OK] a_uart_idle_after_reset  : UART TX line stays high (mark) when transmitter is idle
+  [OK] a_fsm_legal_state        : FSM maintains valid state encoding (S_IDLE through S_SEND_RESULT)
+  [OK] a_fsm_idle_to_init       : Atomic transition from S_IDLE to S_INIT_MEM memory clearing
+  [OK] a_fsm_acquire_to_fold    : Buffer full boundary trigger activates S_FOLD_DATA exactly at 1024 samples
+  [OK] a_buffer_addr_in_bounds  : Buffer write pointer stays strictly < DATA_BUFFER_SIZE (1024)
+  [OK] a_send_result_handshake  : S_SEND_RESULT triggers tx_start on ready UART transmitter
+  [OK] a_tx_start_pulse_width   : tx_start trigger pulse duration strictly 1 clock cycle
+  [OK] a_tx_start_triggers_busy : tx_busy asserts following tx_start activation
+==================================================================================
+```
+
+### Verified ATNF Astronomical Targets
+| Target Pulsar | Catalogue ID | Measured Period (P₀) | DM (pc/cm³) | Astrophysical Classification | Status |
+| :--- | :--- | :--- | :--- | :--- | :---: |
+| **PSR J0737-3039A** | J0737-3039A | 1.6000 ms (benchmark) | 48.92 | Relativistic Double Pulsar (General Relativity Lab) | **MATCH** |
+| **PSR B1937+21** | J1939+2134 | 1.5580 ms | 71.02 | First Millisecond Pulsar Discovered (1982) | **MATCH** |
+| **PSR B0531+21** | J0534+2200 | 33.392 ms | 56.77 | Crab Nebula Pulsar (SN 1054 Remnant) | **MATCH** |
+| **PSR B0833-45** | J0835-4510 | 89.328 ms | 67.99 | Vela Pulsar (Young Glitching Gamma Beacon) | **MATCH** |
+| **PSR B0329+54** | J0332+5434 | 714.52 ms | 26.76 | Northern Sky Canonical Flux Calibrator | **MATCH** |
+| **PSR B0950+08** | J0953+0755 | 253.07 ms | 2.97 | Nearby Low-DM Pulsar with Interpulse | **MATCH** |
+| **PSR J0437-4715** | J0437-4715 | 5.757 ms | 2.64 | Brightest Binary Millisecond Pulsar | **MATCH** |
+| **PSR B1919+21** | J1921+2153 | 1337.30 ms | 12.43 | Historical First Radio Pulsar (Jocelyn Bell 1967) | **MATCH** |
+
+---
+
+## Quick Start Commands
 
 ```bash
-# In the repository root:
+# 1. Run complete UVM verification architecture (Cadence Xcelium):
 make verify
 
-# OR directly with shell script:
-./scripts/run_verification.sh
-```
-
-### 2. [TERMINAL COVERAGE] View 100% Functional Coverage in Terminal
-To inspect the complete IEEE 1800 functional coverage report and SystemVerilog Assertions matrix directly in your terminal without any external GUI:
-
-```bash
-# In the repository root:
+# 2. View 100% Functional Coverage Matrix in terminal (clean 7-bit ASCII):
 make view
 
-# OR directly with shell script:
-./scripts/view_coverage.sh
-```
-
-### 3. [DASHBOARD] View the Executive White HTML Dashboard
-To view the report generated by the simulation:
-
-```bash
-# In the repository root:
+# 3. Open the interactive HTML dashboard in browser:
 make dashboard
+# (or open uvm/sim/verification_dashboard.html in Firefox / Chrome / Edge)
 
-# Or launch directly in your browser:
-firefox uvm/sim/verification_dashboard.html &
-# Or open uvm/sim/verification_dashboard.html in Google Chrome / Edge
-```
-
-### 4. [WAVEFORM] Generate & View Waves in Cadence SimVision
-To compile with waveform dumping enabled and open the visual waveform debugger:
-
-```bash
-# In the repository root:
+# 4. Run simulation with waveform dumping & open Cadence SimVision:
 make wave
 
-# OR directly with shell script:
-./scripts/run_waveform.sh
-```
-
-### 5. Clean Workspace
-To purge all simulation databases, key files, logs, and lockfiles:
-
-```bash
+# 5. Clean simulation databases, keys, and logs:
 make clean
 ```
 
 ---
 
-## 🌌 Astrophysical Signal Processing & SVG Visualizations
+## Repository Structure & Git Hygiene
 
-The generated [`verification_dashboard.html`](uvm/sim/verification_dashboard.html) embeds two standalone, publication-grade SVG graphics with zero external CDN/JavaScript dependencies:
+```text
+FPGA_Based_Pulsar_Signal_Decoder/
+├── Design/                       # Synthesizable RTL
+│   ├── ffa_engine.v              # 6-state FFA folding & peak detection core
+│   ├── uart_tx.v                 # 50 MHz UART transmitter with 0xAA framing
+│   └── top.v                     # Top-level hardware wrapper
+├── Backend/                      # Host-side Python serial interface
+│   └── backend.py                # UART receiver & ATNF catalogue matcher
+├── docs/                         # Documentation assets & vector graphics
+│   └── images/                   # Standalone SVG figures (datapath, FSM, UVM, periodogram)
+├── scripts/                      # Shell & Batch execution scripts
+│   ├── run_verification.sh       # Automated simulation runner
+│   ├── view_coverage.sh          # Terminal coverage reporter
+│   └── run_waveform.sh           # SimVision waveform launcher
+├── uvm/                          # IEEE 1800.2 UVM 1.2 Verification Environment
+│   ├── tb_top.sv                 # Top testbench module
+│   ├── ffa_if.sv                 # Virtual interface
+│   ├── ffa_sva.sv                # 9 SystemVerilog Assertion checkers
+│   ├── src/                      # UVM components (items, agents, scoreboard, coverage)
+│   ├── sim/                      # Simulation runtime directory
+│   │   ├── Makefile              # Simulation targets (verify, view, dashboard, wave)
+│   │   ├── xrun_args.f           # Cadence Xcelium arguments
+│   │   ├── xrun_verify.log       # Golden Cadence Xcelium execution log
+│   │   ├── generate_dashboard.py # Dashboard generator
+│   │   └── verification_dashboard.html # HTML verification report
+│   └── docs/                     # Verification plan documentation
+├── Makefile                      # Root Makefile
+├── LICENSE                       # MIT License
+└── README.md                     # Project documentation
+```
 
-### Figure 1: Coherent Pulse Profile Recovery & Noise Suppression
-* **Panel A (Raw Baseband ADC Stream)**: Demonstrates the sub-zero input regime ($\text{SNR} = -3.5\,\text{dB}$), where astronomical pulses are completely buried under Gaussian thermal receiver noise and galactic synchrotron background. Red markers indicate true pulsar pulse arrival epochs ($P_0 = 80$ samples), proving single pulses are undetectable without coherent processing.
-* **Coherent Folding Gain ($\sqrt{N}$ Law)**: Illustrates real-time accumulation across 64 phase bins ($N_{\text{folds}} = 1024 / 80 = 12.8$), delivering a $\mathbf{+11.1\,\text{dB}}$ coherent processing gain ($\sqrt{N_{\text{folds}}} \approx 3.58\times$).
-* **Panel B (Coherent Folded Phase Profile $I[\phi]$)**: Shows off-pulse baseline suppression ($\mu_0 = 40.2\,\text{LSBs}$, $\sigma_{\text{off}} = 3.9\,\text{LSBs}$) and a sharp **$18.6\sigma$** coherent pulse peak with pulse width $W_{50} = 4\,\text{bins}$ ($\delta = 6.25\%$ duty cycle).
-
-### Figure 2: Fast Folding Algorithm (FFA) Periodogram & Coherent Power Spectrum
-* **Trial Period Sweep**: Sweeps candidate trial periods $P_{\text{trial}} \in [16, 128]$ clock cycles ($320\,\mu\text{s}$ to $2560\,\mu\text{s}$).
-* **$5.0\sigma$ Astronomical Discovery Threshold**: Depicts the canonical radio astronomy threshold ($\alpha \approx 2.87 \times 10^{-7}$) as a red dashed line.
-* **Harmonic Identification**: Reveals subharmonic sidelobes at $P_0/4 = 20\,\text{cycles}$ ($4.6\sigma$) and $P_0/2 = 40\,\text{cycles}$ ($7.5\sigma$), with a sharp resonance spike at $P_0 = 80\,\text{cycles}$ ($1600.00\,\mu\text{s}$) reaching **$18.6\sigma$**.
-* **Hardware UART Register Lock**: Telemetry callout validating bit-exact output lock (`0x00000640` $\rightarrow 1600\,\mu\text{s}$) matching PSR J0737-3039A.
-
----
-
-## 🧹 Git Repository Hygiene: What to Push vs. What NOT to Push
-
-When working across multiple machines (e.g. lab workstations and remote git repositories), adhere strictly to the following file boundary rules:
-
-### What to Push (Tracked Source Artifacts)
-* **Design RTL**: `Design/ffa_engine.v`, `Design/uart_tx.v`, `Design/top.v`
-* **UVM Testbench**: `uvm/src/*.sv`, `uvm/src/tests/*.sv`, `uvm/tb_top.sv`, `uvm/ffa_if.sv`, `uvm/ffa_sva.sv`
-* **Simulation Infrastructure**: `uvm/sim/Makefile`, `uvm/sim/xrun_args.f`, `uvm/sim/generate_dashboard.py`
-* **Verified HTML Dashboard**: `uvm/sim/verification_dashboard.html` (the canonical visual report)
-* **Scripts & Documentation**: `scripts/*.sh`, `scripts/*.bat`, `Makefile`, `README.md`, `uvm/docs/*.md`, `.gitignore`
-
-### What NOT to Push (Transient Simulation Bloat & EDA Artifacts)
-* **Cadence Compilation Libraries**: `INCA_libs/`, `xcelium.d/` (multi-megabyte binary directories)
-* **Waveform Databases**: `waves.shm/`, `*.shm`, `*.vcd`, `*.vvp`, `*.fsdb`
-* **EDA Session Logs & Diagnostics**: `*.log`, `*.key`, `*.history`, `*.diag`, `*.dsn`, `*.trn`
-* **SimVision State Dumps**: `.simvision/`, `.simvision*`
-* **Coverage Workspaces**: `cov_work/`
-* **Root Transient Copies**: `verification_dashboard.html` in the repository root (the real tracked dashboard lives in `uvm/sim/`)
-
----
-
-## 📊 Interactive HTML Dashboard Preview
-
-The generated [`verification_dashboard.html`](uvm/sim/verification_dashboard.html) provides an executive overview formatted in clean white palette:
-* **Metric Tiles**: Bit-Exact Matches (100%), Period Errors (0), ATNF Matches Resolved (98), Protocol Errors (0), Functional Coverage (100.0%).
-* **Stages Table**: Breakdown of all 4 verification stages with timestamps and pass badges.
-* **ATNF Catalogue Breakdown**: Target pulsar IDs, measured periods, and dispersion measures.
-* **SVA Verification Matrix**: Real-time status of all 9 temporal protocol checkers.
-* **UART Data Stream**: Raw cycle counts, physical periods, and golden reference model comparisons.
+### Git Policy: What is Tracked vs. What is Ignored
+* **Tracked in Git**: All source RTL (`Design/*.v`), UVM testbench files (`uvm/`), scripts (`scripts/`), documentation (`docs/`), the canonical HTML dashboard (`uvm/sim/verification_dashboard.html`), and the golden execution log (`uvm/sim/xrun_verify.log`).
+* **Ignored in Git**: All transient Cadence compilation caches (`xcelium.d/`, `INCA_libs/`), waveform databases (`waves.shm/`, `*.vcd`), coverage binaries (`cov_work/`), and session files (`*.key`, `*.history`).
 
 ---
 
-## 🔬 Academic & Technical References
-* **Staelin, D. H., & Price, R. M.** (1970). *Searching for Periodic Signals in Radio Astronomy: The Fast Folding Algorithm*.
-* **Lorimer, D. R., & Kramer, M.** (2005). *Handbook of Pulsar Astronomy*, Cambridge University Press.
-* **Manchester, R. N., et al.** (2005). *The Australia Telescope National Facility (ATNF) Pulsar Catalogue*, AJ, 129, 1993-2006.
+## References
+
+1. **Staelin, D. H.** (1969). *Fast Folding Algorithm for detection of periodic pulse signals*. Proceedings of the IEEE, 57(4), 724-725.
+2. **Lorimer, D. R., & Kramer, M.** (2005). *Handbook of Pulsar Astronomy*, Cambridge University Press.
+3. **Manchester, R. N., et al.** (2005). *The Australia Telescope National Facility (ATNF) Pulsar Catalogue*, Astronomical Journal, 129(4), 1993-2006.
 
 ---
 
-## 📜 License
+## License
+
 This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.

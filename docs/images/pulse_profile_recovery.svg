@@ -1,0 +1,82 @@
+<svg viewBox="0 0 960 410" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="background:#FFFFFF; border-radius:12px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <defs>
+        <linearGradient id="foldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#2563EB" stop-opacity="0.38"/>
+            <stop offset="70%" stop-color="#3B82F6" stop-opacity="0.12"/>
+            <stop offset="100%" stop-color="#EFF6FF" stop-opacity="0.02"/>
+        </linearGradient>
+        <filter id="shadowGlow" x="-10%" y="-10%" width="120%" height="120%">
+            <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#2563EB" flood-opacity="0.25"/>
+        </filter>
+    </defs>
+
+    <!-- ==================== TOP PANEL: RAW BASEBAND TIME-SERIES ==================== -->
+    <rect x="75" y="32" width="840" height="110" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2"/>
+    
+    <!-- Gridlines Top -->
+    <line x1="75" y1="90" x2="915" y2="90" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="4,4"/>
+    <text x="87" y="52" font-size="11" font-weight="700" fill="#1E293B">PANEL A: RAW DIGITIZED BASEBAND ADC STREAM [1024 SAMPLES]</text>
+    <text x="903" y="52" text-anchor="end" font-size="10" font-weight="600" fill="#EF4444">&bull; Negative Input SNR = -3.5 dB (Signal Submerged in Sky/Receiver Noise)</text>
+    
+    <!-- True Pulse Arrival Markers -->
+    <line x1="103.7" y1="36" x2="103.7" y2="44" stroke="#EF4444" stroke-width="2" /><circle cx="103.7" cy="40" r="2" fill="#EF4444" /><line x1="169.3" y1="36" x2="169.3" y2="44" stroke="#EF4444" stroke-width="2" /><circle cx="169.3" cy="40" r="2" fill="#EF4444" /><line x1="235.0" y1="36" x2="235.0" y2="44" stroke="#EF4444" stroke-width="2" /><circle cx="235.0" cy="40" r="2" fill="#EF4444" /><line x1="300.6" y1="36" x2="300.6" y2="44" stroke="#EF4444" stroke-width="2" /><circle cx="300.6" cy="40" r="2" fill="#EF4444" /><line x1="366.2" y1="36" x2="366.2" y2="44" stroke="#EF4444" stroke-width="2" /><circle cx="366.2" cy="40" r="2" fill="#EF4444" /><line x1="431.8" y1="36" x2="431.8" y2="44" stroke="#EF4444" stroke-width="2" /><circle cx="431.8" cy="40" r="2" fill="#EF4444" /><line x1="497.5" y1="36" x2="497.5" y2="44" stroke="#EF4444" stroke-width="2" /><circle cx="497.5" cy="40" r="2" fill="#EF4444" /><line x1="563.1" y1="36" x2="563.1" y2="44" stroke="#EF4444" stroke-width="2" /><circle cx="563.1" cy="40" r="2" fill="#EF4444" /><line x1="628.7" y1="36" x2="628.7" y2="44" stroke="#EF4444" stroke-width="2" /><circle cx="628.7" cy="40" r="2" fill="#EF4444" /><line x1="694.3" y1="36" x2="694.3" y2="44" stroke="#EF4444" stroke-width="2" /><circle cx="694.3" cy="40" r="2" fill="#EF4444" /><line x1="760.0" y1="36" x2="760.0" y2="44" stroke="#EF4444" stroke-width="2" /><circle cx="760.0" cy="40" r="2" fill="#EF4444" /><line x1="825.6" y1="36" x2="825.6" y2="44" stroke="#EF4444" stroke-width="2" /><circle cx="825.6" cy="40" r="2" fill="#EF4444" /><line x1="891.2" y1="36" x2="891.2" y2="44" stroke="#EF4444" stroke-width="2" /><circle cx="891.2" cy="40" r="2" fill="#EF4444" />
+    <text x="87" y="132" font-size="9" fill="#94A3B8">Red markers: True pulsar pulse arrival epoch (P0 = 80 samples). Notice pulse is undetectable in single pass.</text>
+
+    <!-- Raw Waveform Polyline -->
+    <polyline points="75.0,90.0 78.3,85.8 81.6,99.3 84.8,83.5 88.1,90.1 91.4,93.1 94.7,82.3 98.0,98.5 101.2,83.5 104.5,75.4 107.8,95.0 111.1,81.1 114.4,94.3 117.7,93.2 120.9,84.6 124.2,97.7 127.5,83.3 130.8,88.5 134.1,96.1 137.3,83.4 140.6,97.4 143.9,88.5 147.2,83.8 150.5,96.8 153.8,83.4 157.0,94.1 160.3,94.5 163.6,81.9 166.9,91.0 170.2,73.7 173.4,87.6 176.7,98.5 180.0,83.1 183.3,94.3 186.6,88.9 189.8,83.0 193.1,98.8 196.4,85.8 199.7,91.9 203.0,94.1 206.2,80.2 209.5,95.8 212.8,88.6 216.1,88.2 219.4,98.7 222.7,81.6 225.9,91.5 229.2,91.2 232.5,79.0 235.8,88.6 239.1,85.5 242.3,88.1 245.6,94.1 248.9,80.8 252.2,96.8 255.5,91.7 258.8,86.0 262.0,97.0 265.3,81.1 268.6,90.7 271.9,95.1 275.2,84.6 278.4,98.5 281.7,85.7 285.0,85.0 288.3,96.0 291.6,83.3 294.8,96.8 298.1,87.5 301.4,71.0 304.7,94.7 308.0,83.2 311.2,91.4 314.5,97.9 317.8,83.2 321.1,95.2 324.4,85.9 327.7,84.5 330.9,99.2 334.2,85.4 337.5,94.2 340.8,91.6 344.1,80.0 347.3,96.4 350.6,87.3 353.9,91.2 357.2,97.9 360.5,80.4 363.8,87.4 367.0,77.4 370.3,84.9 373.6,101.0 376.9,85.2 380.2,89.7 383.4,91.5 386.7,80.6 390.0,98.6 393.3,90.5 396.6,88.3 399.8,95.8 403.1,79.2 406.4,92.3 409.7,93.6 413.0,86.5 416.2,99.7 419.5,83.3 422.8,86.1 426.1,94.1 429.4,78.6 432.7,88.1 435.9,89.9 439.2,83.5 442.5,94.5 445.8,81.3 449.1,93.9 452.3,97.1 455.6,84.3 458.9,95.8 462.2,82.8 465.5,85.8 468.8,98.6 472.0,85.7 475.3,96.8 478.6,89.2 481.9,80.1 485.2,96.0 488.4,85.9 491.7,94.3 495.0,92.2 498.3,68.9 501.6,91.9 504.8,85.9 508.1,87.8 511.4,101.7 514.7,84.9 518.0,91.5 521.2,88.5 524.5,80.6 527.8,99.6 531.1,89.6 534.4,91.2 537.7,94.6 540.9,77.7 544.2,93.1 547.5,91.5 550.8,89.0 554.1,100.6 557.3,81.7 560.6,82.3 563.9,80.1 567.2,83.0 570.5,101.7 573.8,89.8 577.0,85.4 580.3,92.8 583.6,79.4 586.9,95.9 590.2,96.1 593.4,86.4 596.7,96.4 600.0,80.0 603.3,86.9 606.6,97.2 609.8,86.6 613.1,99.4 616.4,87.1 619.7,80.8 623.0,94.6 626.2,79.5 629.5,86.1 632.8,95.5 636.1,81.1 639.4,92.8 642.7,82.7 645.9,89.7 649.2,101.7 652.5,85.5 655.8,93.6 659.1,85.4 662.3,80.6 665.6,99.5 668.9,88.9 672.2,94.6 675.5,93.3 678.8,76.9 682.0,93.2 685.3,89.0 688.6,91.6 691.9,96.4 695.2,69.7 698.4,87.5 701.7,88.2 705.0,84.4 708.3,103.3 711.6,89.2 714.8,88.0 718.1,90.7 721.4,77.7 724.7,97.1 728.0,94.8 731.2,89.3 734.5,96.9 737.8,77.8 741.1,87.6 744.4,94.8 747.7,87.9 750.9,102.0 754.2,85.6 757.5,77.0 760.8,81.1 764.1,82.1 767.3,100.2 770.6,95.8 773.9,82.9 777.2,92.5 780.5,79.5 783.8,91.1 787.0,100.9 790.3,86.9 793.6,95.9 796.9,82.6 800.2,80.8 803.4,98.4 806.7,88.4 810.0,98.2 813.3,92.3 816.6,77.0 819.8,92.4 823.1,81.2 826.4,83.0 829.7,100.9 833.0,81.5 836.2,89.6 839.5,84.5 842.8,84.8 846.1,103.9 849.4,89.2 852.7,91.2 855.9,88.5 859.2,76.4 862.5,97.3 865.8,93.2 869.1,92.7 872.3,97.3 875.6,76.4 878.9,88.1 882.2,91.7 885.5,89.2 888.8,99.1 892.0,73.6 895.3,82.7 898.6,89.5 901.9,81.6 905.2,102.2 908.4,95.3 911.7,85.7" fill="none" stroke="#64748B" stroke-width="1.3" opacity="0.85"/>
+
+    <!-- ==================== TRANSITION: COHERENT FOLDING ACCUMULATOR ==================== -->
+    <g transform="translate(0, 150)">
+        <rect x="75" y="0" width="840" height="32" rx="6" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
+        <path d="M 450,16 L 462,16 M 458,11 L 464,16 L 458,21" stroke="#2563EB" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <text x="480" y="20" font-size="11" font-weight="700" fill="#1D4ED8">
+            FPGA Dual-Port BRAM Fast Folding (N_folds = 1024/80 = 12.8) &bull; Coherent Stacking Processing Gain = &radic;N = +11.1 dB
+        </text>
+    </g>
+
+    <!-- ==================== BOTTOM PANEL: COHERENT FOLDED PHASE PROFILE ==================== -->
+    <rect x="75" y="190" width="840" height="175" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2"/>
+    
+    <!-- Baseline Gridline -->
+    <line x1="75" y1="350" x2="915" y2="350" stroke="#CBD5E1" stroke-width="1"/>
+    <text x="87" y="210" font-size="11" font-weight="700" fill="#1E293B">PANEL B: COHERENT INTEGRATED PHASE PROFILE I(&phi;) [64 BRAM PHASE BINS]</text>
+    <text x="903" y="210" text-anchor="end" font-size="10" font-weight="700" fill="#059669">&bull; Coherent Peak SNR = 18.6 &sigma; &bull; HW Matched-Filter Detection Confirmed</text>
+
+    <!-- Off-Pulse Baseline Noise Bounds -->
+    <rect x="75" y="344" width="840" height="12" fill="#E2E8F0" opacity="0.45"/>
+    <text x="87" y="368" font-size="9" fill="#64748B">Off-Pulse Baseline Noise Floor: &mu;_0 = 40.2 LSBs, &sigma;_off = 3.9 LSBs (Suppressed by &radic;N_folds)</text>
+
+    <!-- Folded Profile Shaded Area & Line -->
+    <polygon points="75.0,350.0 75.0,348.2 88.3,348.4 101.7,349.1 115.0,347.7 128.3,350.1 141.7,354.2 155.0,352.4 168.3,348.2 181.7,348.4 195.0,349.1 208.3,347.7 221.7,350.1 235.0,354.2 248.3,352.3 261.7,348.1 275.0,348.4 288.3,349.0 301.7,347.7 315.0,350.2 328.3,354.2 341.7,352.1 355.0,347.6 368.3,346.5 381.7,342.1 395.0,328.5 408.3,307.8 421.7,279.3 435.0,246.7 448.3,230.0 461.7,243.1 475.0,274.0 488.3,305.2 501.7,331.2 515.0,347.4 528.3,350.0 541.7,347.6 555.0,348.4 568.3,349.0 581.7,347.7 595.0,350.5 608.3,354.3 621.7,351.9 635.0,348.0 648.3,348.6 661.7,349.0 675.0,347.7 688.3,350.6 701.7,354.3 715.0,351.8 728.3,347.9 741.7,348.6 755.0,348.9 768.3,347.7 781.7,350.7 795.0,354.4 808.3,351.7 821.7,347.9 835.0,348.6 848.3,348.9 861.7,347.7 875.0,350.8 888.3,354.4 901.7,351.6 915.0,347.9 915.0,350.0" fill="url(#foldGrad)"/>
+    <polyline points="75.0,348.2 88.3,348.4 101.7,349.1 115.0,347.7 128.3,350.1 141.7,354.2 155.0,352.4 168.3,348.2 181.7,348.4 195.0,349.1 208.3,347.7 221.7,350.1 235.0,354.2 248.3,352.3 261.7,348.1 275.0,348.4 288.3,349.0 301.7,347.7 315.0,350.2 328.3,354.2 341.7,352.1 355.0,347.6 368.3,346.5 381.7,342.1 395.0,328.5 408.3,307.8 421.7,279.3 435.0,246.7 448.3,230.0 461.7,243.1 475.0,274.0 488.3,305.2 501.7,331.2 515.0,347.4 528.3,350.0 541.7,347.6 555.0,348.4 568.3,349.0 581.7,347.7 595.0,350.5 608.3,354.3 621.7,351.9 635.0,348.0 648.3,348.6 661.7,349.0 675.0,347.7 688.3,350.6 701.7,354.3 715.0,351.8 728.3,347.9 741.7,348.6 755.0,348.9 768.3,347.7 781.7,350.7 795.0,354.4 808.3,351.7 821.7,347.9 835.0,348.6 848.3,348.9 861.7,347.7 875.0,350.8 888.3,354.4 901.7,351.6 915.0,347.9" fill="none" stroke="#2563EB" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" filter="url(#shadowGlow)"/>
+
+    <!-- Peak Callout Pin -->
+    <circle cx="448" cy="232" r="5" fill="#2563EB" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="448" y1="227" x2="448" y2="216" stroke="#2563EB" stroke-width="1.5"/>
+    <rect x="360" y="215" width="176" height="20" rx="4" fill="#1E293B" opacity="0.92"/>
+    <text x="448" y="229" text-anchor="middle" font-size="10" font-weight="700" fill="#FFFFFF">Coherent Peak (18.6 &sigma;, Bin #28)</text>
+
+    <!-- FWHM Width Indicator W50 -->
+    <line x1="428" y1="290" x2="468" y2="290" stroke="#059669" stroke-width="1.8" stroke-dasharray="2,2"/>
+    <circle cx="428" cy="290" r="2.5" fill="#059669"/>
+    <circle cx="468" cy="290" r="2.5" fill="#059669"/>
+    <text x="448" y="285" text-anchor="middle" font-size="9" font-weight="700" fill="#059669">W_50 = 4 Bins (Duty Cycle &delta; = 6.25%)</text>
+
+    <!-- Phase Axis Ticks -->
+    <line x1="75" y1="350" x2="75" y2="356" stroke="#475569" stroke-width="1.2"/>
+    <text x="75" y="368" text-anchor="middle" font-size="10" fill="#475569">0.0&phi;</text>
+
+    <line x1="285.0" y1="350" x2="285.0" y2="356" stroke="#475569" stroke-width="1.2"/>
+    <text x="285.0" y="368" text-anchor="middle" font-size="10" fill="#475569">0.25&phi;</text>
+
+    <line x1="495.0" y1="350" x2="495.0" y2="356" stroke="#475569" stroke-width="1.2"/>
+    <text x="495.0" y="368" text-anchor="middle" font-size="10" fill="#475569">0.50&phi;</text>
+
+    <line x1="705.0" y1="350" x2="705.0" y2="356" stroke="#475569" stroke-width="1.2"/>
+    <text x="705.0" y="368" text-anchor="middle" font-size="10" fill="#475569">0.75&phi;</text>
+
+    <line x1="915" y1="350" x2="915" y2="356" stroke="#475569" stroke-width="1.2"/>
+    <text x="915" y="368" text-anchor="middle" font-size="10" fill="#475569">1.00&phi;</text>
+
+    <text x="495.0" y="398" text-anchor="middle" font-size="11" font-weight="600" fill="#334155">Rotational Pulse Phase (&phi; &isin; [0, 1))</text>
+</svg>
