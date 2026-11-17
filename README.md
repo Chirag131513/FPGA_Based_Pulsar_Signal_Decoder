@@ -41,9 +41,9 @@ The accelerator processes digitized baseband data through a dedicated streaming 
 
 ---
 
-## 6-State FSM Controller
+## 5-State FSM Folding Engine
 
-The folding engine is controlled by an atomic, single-process finite state machine (`ffa_engine.v`) that prevents multi-driver synthesis hazards:
+The folding engine (`ffa_engine.v`) is designed around a 5-state operational pipeline (`S_IDLE`, `S_ACQUIRE_DATA`, `S_FOLD_DATA`, `S_DETECT_PEAK`, `S_SEND_RESULT`) with an auxiliary synchronous memory-clearing state (`S_INIT_MEM`) executed upon reset release to prevent Block RAM synthesis multi-driver hazards:
 
 ![FSM State Diagram](docs/images/fsm_state_diagram.png)
 

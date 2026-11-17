@@ -12,7 +12,7 @@
 This verification dossier details the production-grade **UVM 1.2 testbench** designed to verify the **FPGA Hardware Accelerator for the Fast Folding Algorithm (FFA)**. The hardware accelerator accelerates the detection of periodic, dispersed radio signals emitted by rapidly rotating neutron stars (pulsars) for deep space navigation and timekeeping.
 
 ### Core Verified Subsystems:
-* **6-State FSM Folding Engine**: Supports up to 16k time-series buffer (`DATA_BUFFER_SIZE = 16384`), 2,048 trial periods (`NUM_TRIAL_PERIODS = 2048`), and 256 folded profile phase bins (`PROFILE_BINS = 256`). Incorporates sequential BRAM zeroing (`S_INIT_MEM`) to prevent multi-driver synthesis hazards.
+* **5-State FSM Folding Engine**: Configured to scale up to 16k time-series buffer (`DATA_BUFFER_SIZE = 16384`), 2,048 trial periods (`NUM_TRIAL_PERIODS = 2048`), and 256 folded profile phase bins (`PROFILE_BINS = 256`). Incorporates sequential BRAM zeroing (`S_INIT_MEM`) to prevent multi-driver synthesis hazards.
 * **50 MHz UART Transmitter**: Transmits detected periods with a mandatory `0xAA` preamble synchronization byte, 32-bit little-endian payload, and 9600 baud rate framing.
 * **Dual-Domain UVM Environment**:
   - **Constrained-Random Noisy Signal Generator**: Simulates realistic astronomical RF signal feeds across 5 SNR regimes (Clean, High, Medium, Low, Buried/Sub-zero SNR).
