@@ -1,0 +1,1440 @@
+xrun(64): 22.09-s003: (c) Copyright 1995-2022 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	22.09-s003: Started on Nov 16, 2026 at 23:07:06 IST
+xrun
+	-f xrun_args.f
+		-64bit
+		-uvm
+		-uvmhome CDNS-1.2
+		-sv
+		-timescale 1ns/1ps
+		-access +rwc
+		-licqueue
+		-nowarn DSEMEL
+		-nowarn SPDUSD
+		+incdir+../../Design
+		+incdir+..
+		+incdir+../src
+		+incdir+../src/tests
+		../src/ffa_types.sv
+		../src/ffa_pkg.sv
+		../../Design/ffa_engine.v
+		../../Design/uart_tx.v
+		../../Design/top.v
+		../ffa_if.sv
+		../ffa_sva.sv
+		../tb_top.sv
+	+UVM_TESTNAME=ffa_master_verification_test
+	+UVM_VERBOSITY=UVM_LOW
+	-svseed 1
+	-l xrun_verify.log
+
+   User defined plus("+") options:
+	+UVM_VERBOSITY=UVM_LOW
+
+DEFINE gpdk045_sc		$STDCELL/gsclib045
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,47): cds.lib Invalid path '/home/install/FOUNDRY/stdcell/gsclib045' (cds.lib command ignored).
+DEFINE gpdk45_iolib		$STDCELL/giolib045
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,48): cds.lib Invalid path '/home/install/FOUNDRY/stdcell/giolib045' (cds.lib command ignored).
+DEFINE globalfoundries /home/install/FOUNDRY/globalfoundries
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,64): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries' (cds.lib command ignored).
+DEFINE gf180mcu /home/install/FOUNDRY/gf180mcu
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,65): cds.lib Invalid path '/home/install/FOUNDRY/gf180mcu' (cds.lib command ignored).
+DEFINE globalfoundries-pdk /home/install/FOUNDRY/globalfoundries-pdk
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,66): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries-pdk' (cds.lib command ignored).
+DEFINE 180MCU_SPICE_DATA /home/install/FOUNDRY/globalfoundries-pdk/models/ngspice/testing/180MCU_SPICE_DATA
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,67): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries-pdk/models/ngspice/testing/180MCU_SPICE_DATA' (cds.lib command ignored).
+DEFINE imported_sram_lib /home/cmos/Downloads/array_29june_new
+|
+xrun: *W,DLCPTH (/home/install/IC618/share/cdssetup/cds.lib,6): cds.lib Invalid path '/home/cmos/Downloads/array_29june_new' (cds.lib command ignored).
+DEFINE mohan11 /home/cmos/mohan11
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,5): cds.lib Invalid path '/home/cmos/mohan11' (cds.lib command ignored).
+DEFINE pes920 /home/cmos/pes920
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,6): cds.lib Invalid path '/home/cmos/pes920' (cds.lib command ignored).
+DEFINE lab /home/cmos/lab
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,7): cds.lib Invalid path '/home/cmos/lab' (cds.lib command ignored).
+DEFINE lab1 /home/cmos/lab1
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,8): cds.lib Invalid path '/home/cmos/lab1' (cds.lib command ignored).
+DEFINE labe /home/cmos/labe
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,9): cds.lib Invalid path '/home/cmos/labe' (cds.lib command ignored).
+DEFINE labebe /home/cmos/labebe
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,10): cds.lib Invalid path '/home/cmos/labebe' (cds.lib command ignored).
+DEFINE exam /home/cmos/exam
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,11): cds.lib Invalid path '/home/cmos/exam' (cds.lib command ignored).
+DEFINE aryan /home/cmos/aryan
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,12): cds.lib Invalid path '/home/cmos/aryan' (cds.lib command ignored).
+DEFINE new123 /home/cmos/new123
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,13): cds.lib Invalid path '/home/cmos/new123' (cds.lib command ignored).
+DEFINE nnm /home/cmos/nnm
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,14): cds.lib Invalid path '/home/cmos/nnm' (cds.lib command ignored).
+DEFINE ec088 /home/cmos/ec088
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,15): cds.lib Invalid path '/home/cmos/ec088' (cds.lib command ignored).
+DEFINE exam2 /home/cmos/exam2
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,16): cds.lib Invalid path '/home/cmos/exam2' (cds.lib command ignored).
+DEFINE week6 /home/cmos/week6
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,17): cds.lib Invalid path '/home/cmos/week6' (cds.lib command ignored).
+DEFINE ORANGE /home/cmos/ORANGE
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,18): cds.lib Invalid path '/home/cmos/ORANGE' (cds.lib command ignored).
+DEFINE orange_problem /home/cmos/orange_problem
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,19): cds.lib Invalid path '/home/cmos/orange_problem' (cds.lib command ignored).
+DEFINE EC252 /home/cmos/EC252
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,20): cds.lib Invalid path '/home/cmos/EC252' (cds.lib command ignored).
+DEFINE Dhanya_EC340 /home/cmos/Dhanya_EC340
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,21): cds.lib Invalid path '/home/cmos/Dhanya_EC340' (cds.lib command ignored).
+DEFINE PES1UG25EC812 /home/cmos/Documents/PES1UG25EC812
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,22): cds.lib Invalid path '/home/cmos/Documents/PES1UG25EC812' (cds.lib command ignored).
+DEFINE 336 /home/cmos/336
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,24): cds.lib Invalid path '/home/cmos/336' (cds.lib command ignored).
+DEFINE mohanyt /home/vlsilab/mohanyt
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,25): cds.lib Invalid path '/home/vlsilab/mohanyt' (cds.lib command ignored).
+DEFINE gpdk045_sc		$STDCELL/gsclib045
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,47): cds.lib Invalid path '/home/install/FOUNDRY/stdcell/gsclib045' (cds.lib command ignored).
+DEFINE gpdk45_iolib		$STDCELL/giolib045
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,48): cds.lib Invalid path '/home/install/FOUNDRY/stdcell/giolib045' (cds.lib command ignored).
+DEFINE globalfoundries /home/install/FOUNDRY/globalfoundries
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,64): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries' (cds.lib command ignored).
+DEFINE gf180mcu /home/install/FOUNDRY/gf180mcu
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,65): cds.lib Invalid path '/home/install/FOUNDRY/gf180mcu' (cds.lib command ignored).
+DEFINE globalfoundries-pdk /home/install/FOUNDRY/globalfoundries-pdk
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,66): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries-pdk' (cds.lib command ignored).
+DEFINE 180MCU_SPICE_DATA /home/install/FOUNDRY/globalfoundries-pdk/models/ngspice/testing/180MCU_SPICE_DATA
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,67): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries-pdk/models/ngspice/testing/180MCU_SPICE_DATA' (cds.lib command ignored).
+DEFINE imported_sram_lib /home/cmos/Downloads/array_29june_new
+|
+xrun: *W,DLCPTH (/home/install/IC618/share/cdssetup/cds.lib,6): cds.lib Invalid path '/home/cmos/Downloads/array_29june_new' (cds.lib command ignored).
+DEFINE mohan11 /home/cmos/mohan11
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,5): cds.lib Invalid path '/home/cmos/mohan11' (cds.lib command ignored).
+DEFINE pes920 /home/cmos/pes920
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,6): cds.lib Invalid path '/home/cmos/pes920' (cds.lib command ignored).
+DEFINE lab /home/cmos/lab
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,7): cds.lib Invalid path '/home/cmos/lab' (cds.lib command ignored).
+DEFINE lab1 /home/cmos/lab1
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,8): cds.lib Invalid path '/home/cmos/lab1' (cds.lib command ignored).
+DEFINE labe /home/cmos/labe
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,9): cds.lib Invalid path '/home/cmos/labe' (cds.lib command ignored).
+DEFINE labebe /home/cmos/labebe
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,10): cds.lib Invalid path '/home/cmos/labebe' (cds.lib command ignored).
+DEFINE exam /home/cmos/exam
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,11): cds.lib Invalid path '/home/cmos/exam' (cds.lib command ignored).
+DEFINE aryan /home/cmos/aryan
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,12): cds.lib Invalid path '/home/cmos/aryan' (cds.lib command ignored).
+DEFINE new123 /home/cmos/new123
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,13): cds.lib Invalid path '/home/cmos/new123' (cds.lib command ignored).
+DEFINE nnm /home/cmos/nnm
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,14): cds.lib Invalid path '/home/cmos/nnm' (cds.lib command ignored).
+DEFINE ec088 /home/cmos/ec088
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,15): cds.lib Invalid path '/home/cmos/ec088' (cds.lib command ignored).
+DEFINE exam2 /home/cmos/exam2
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,16): cds.lib Invalid path '/home/cmos/exam2' (cds.lib command ignored).
+DEFINE week6 /home/cmos/week6
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,17): cds.lib Invalid path '/home/cmos/week6' (cds.lib command ignored).
+DEFINE ORANGE /home/cmos/ORANGE
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,18): cds.lib Invalid path '/home/cmos/ORANGE' (cds.lib command ignored).
+DEFINE orange_problem /home/cmos/orange_problem
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,19): cds.lib Invalid path '/home/cmos/orange_problem' (cds.lib command ignored).
+DEFINE EC252 /home/cmos/EC252
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,20): cds.lib Invalid path '/home/cmos/EC252' (cds.lib command ignored).
+DEFINE Dhanya_EC340 /home/cmos/Dhanya_EC340
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,21): cds.lib Invalid path '/home/cmos/Dhanya_EC340' (cds.lib command ignored).
+DEFINE PES1UG25EC812 /home/cmos/Documents/PES1UG25EC812
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,22): cds.lib Invalid path '/home/cmos/Documents/PES1UG25EC812' (cds.lib command ignored).
+DEFINE 336 /home/cmos/336
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,24): cds.lib Invalid path '/home/cmos/336' (cds.lib command ignored).
+DEFINE mohanyt /home/vlsilab/mohanyt
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,25): cds.lib Invalid path '/home/vlsilab/mohanyt' (cds.lib command ignored).
+DEFINE gpdk045_sc		$STDCELL/gsclib045
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,47): cds.lib Invalid path '/home/install/FOUNDRY/stdcell/gsclib045' (cds.lib command ignored).
+DEFINE gpdk45_iolib		$STDCELL/giolib045
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,48): cds.lib Invalid path '/home/install/FOUNDRY/stdcell/giolib045' (cds.lib command ignored).
+DEFINE globalfoundries /home/install/FOUNDRY/globalfoundries
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,64): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries' (cds.lib command ignored).
+DEFINE gf180mcu /home/install/FOUNDRY/gf180mcu
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,65): cds.lib Invalid path '/home/install/FOUNDRY/gf180mcu' (cds.lib command ignored).
+DEFINE globalfoundries-pdk /home/install/FOUNDRY/globalfoundries-pdk
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,66): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries-pdk' (cds.lib command ignored).
+DEFINE 180MCU_SPICE_DATA /home/install/FOUNDRY/globalfoundries-pdk/models/ngspice/testing/180MCU_SPICE_DATA
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,67): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries-pdk/models/ngspice/testing/180MCU_SPICE_DATA' (cds.lib command ignored).
+DEFINE imported_sram_lib /home/cmos/Downloads/array_29june_new
+|
+xrun: *W,DLCPTH (/home/install/IC618/share/cdssetup/cds.lib,6): cds.lib Invalid path '/home/cmos/Downloads/array_29june_new' (cds.lib command ignored).
+DEFINE mohan11 /home/cmos/mohan11
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,5): cds.lib Invalid path '/home/cmos/mohan11' (cds.lib command ignored).
+DEFINE pes920 /home/cmos/pes920
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,6): cds.lib Invalid path '/home/cmos/pes920' (cds.lib command ignored).
+DEFINE lab /home/cmos/lab
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,7): cds.lib Invalid path '/home/cmos/lab' (cds.lib command ignored).
+DEFINE lab1 /home/cmos/lab1
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,8): cds.lib Invalid path '/home/cmos/lab1' (cds.lib command ignored).
+DEFINE labe /home/cmos/labe
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,9): cds.lib Invalid path '/home/cmos/labe' (cds.lib command ignored).
+DEFINE labebe /home/cmos/labebe
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,10): cds.lib Invalid path '/home/cmos/labebe' (cds.lib command ignored).
+DEFINE exam /home/cmos/exam
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,11): cds.lib Invalid path '/home/cmos/exam' (cds.lib command ignored).
+DEFINE aryan /home/cmos/aryan
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,12): cds.lib Invalid path '/home/cmos/aryan' (cds.lib command ignored).
+DEFINE new123 /home/cmos/new123
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,13): cds.lib Invalid path '/home/cmos/new123' (cds.lib command ignored).
+DEFINE nnm /home/cmos/nnm
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,14): cds.lib Invalid path '/home/cmos/nnm' (cds.lib command ignored).
+DEFINE ec088 /home/cmos/ec088
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,15): cds.lib Invalid path '/home/cmos/ec088' (cds.lib command ignored).
+DEFINE exam2 /home/cmos/exam2
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,16): cds.lib Invalid path '/home/cmos/exam2' (cds.lib command ignored).
+DEFINE week6 /home/cmos/week6
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,17): cds.lib Invalid path '/home/cmos/week6' (cds.lib command ignored).
+DEFINE ORANGE /home/cmos/ORANGE
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,18): cds.lib Invalid path '/home/cmos/ORANGE' (cds.lib command ignored).
+DEFINE orange_problem /home/cmos/orange_problem
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,19): cds.lib Invalid path '/home/cmos/orange_problem' (cds.lib command ignored).
+DEFINE EC252 /home/cmos/EC252
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,20): cds.lib Invalid path '/home/cmos/EC252' (cds.lib command ignored).
+DEFINE Dhanya_EC340 /home/cmos/Dhanya_EC340
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,21): cds.lib Invalid path '/home/cmos/Dhanya_EC340' (cds.lib command ignored).
+DEFINE PES1UG25EC812 /home/cmos/Documents/PES1UG25EC812
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,22): cds.lib Invalid path '/home/cmos/Documents/PES1UG25EC812' (cds.lib command ignored).
+DEFINE 336 /home/cmos/336
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,24): cds.lib Invalid path '/home/cmos/336' (cds.lib command ignored).
+DEFINE mohanyt /home/vlsilab/mohanyt
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,25): cds.lib Invalid path '/home/vlsilab/mohanyt' (cds.lib command ignored).
+DEFINE gpdk045_sc		$STDCELL/gsclib045
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,47): cds.lib Invalid path '/home/install/FOUNDRY/stdcell/gsclib045' (cds.lib command ignored).
+DEFINE gpdk45_iolib		$STDCELL/giolib045
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,48): cds.lib Invalid path '/home/install/FOUNDRY/stdcell/giolib045' (cds.lib command ignored).
+DEFINE globalfoundries /home/install/FOUNDRY/globalfoundries
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,64): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries' (cds.lib command ignored).
+DEFINE gf180mcu /home/install/FOUNDRY/gf180mcu
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,65): cds.lib Invalid path '/home/install/FOUNDRY/gf180mcu' (cds.lib command ignored).
+DEFINE globalfoundries-pdk /home/install/FOUNDRY/globalfoundries-pdk
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,66): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries-pdk' (cds.lib command ignored).
+DEFINE 180MCU_SPICE_DATA /home/install/FOUNDRY/globalfoundries-pdk/models/ngspice/testing/180MCU_SPICE_DATA
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,67): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries-pdk/models/ngspice/testing/180MCU_SPICE_DATA' (cds.lib command ignored).
+DEFINE imported_sram_lib /home/cmos/Downloads/array_29june_new
+|
+xrun: *W,DLCPTH (/home/install/IC618/share/cdssetup/cds.lib,6): cds.lib Invalid path '/home/cmos/Downloads/array_29june_new' (cds.lib command ignored).
+DEFINE mohan11 /home/cmos/mohan11
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,5): cds.lib Invalid path '/home/cmos/mohan11' (cds.lib command ignored).
+DEFINE pes920 /home/cmos/pes920
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,6): cds.lib Invalid path '/home/cmos/pes920' (cds.lib command ignored).
+DEFINE lab /home/cmos/lab
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,7): cds.lib Invalid path '/home/cmos/lab' (cds.lib command ignored).
+DEFINE lab1 /home/cmos/lab1
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,8): cds.lib Invalid path '/home/cmos/lab1' (cds.lib command ignored).
+DEFINE labe /home/cmos/labe
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,9): cds.lib Invalid path '/home/cmos/labe' (cds.lib command ignored).
+DEFINE labebe /home/cmos/labebe
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,10): cds.lib Invalid path '/home/cmos/labebe' (cds.lib command ignored).
+DEFINE exam /home/cmos/exam
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,11): cds.lib Invalid path '/home/cmos/exam' (cds.lib command ignored).
+DEFINE aryan /home/cmos/aryan
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,12): cds.lib Invalid path '/home/cmos/aryan' (cds.lib command ignored).
+DEFINE new123 /home/cmos/new123
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,13): cds.lib Invalid path '/home/cmos/new123' (cds.lib command ignored).
+DEFINE nnm /home/cmos/nnm
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,14): cds.lib Invalid path '/home/cmos/nnm' (cds.lib command ignored).
+DEFINE ec088 /home/cmos/ec088
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,15): cds.lib Invalid path '/home/cmos/ec088' (cds.lib command ignored).
+DEFINE exam2 /home/cmos/exam2
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,16): cds.lib Invalid path '/home/cmos/exam2' (cds.lib command ignored).
+DEFINE week6 /home/cmos/week6
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,17): cds.lib Invalid path '/home/cmos/week6' (cds.lib command ignored).
+DEFINE ORANGE /home/cmos/ORANGE
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,18): cds.lib Invalid path '/home/cmos/ORANGE' (cds.lib command ignored).
+DEFINE orange_problem /home/cmos/orange_problem
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,19): cds.lib Invalid path '/home/cmos/orange_problem' (cds.lib command ignored).
+DEFINE EC252 /home/cmos/EC252
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,20): cds.lib Invalid path '/home/cmos/EC252' (cds.lib command ignored).
+DEFINE Dhanya_EC340 /home/cmos/Dhanya_EC340
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,21): cds.lib Invalid path '/home/cmos/Dhanya_EC340' (cds.lib command ignored).
+DEFINE PES1UG25EC812 /home/cmos/Documents/PES1UG25EC812
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,22): cds.lib Invalid path '/home/cmos/Documents/PES1UG25EC812' (cds.lib command ignored).
+DEFINE 336 /home/cmos/336
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,24): cds.lib Invalid path '/home/cmos/336' (cds.lib command ignored).
+DEFINE mohanyt /home/vlsilab/mohanyt
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,25): cds.lib Invalid path '/home/vlsilab/mohanyt' (cds.lib command ignored).
+DEFINE gpdk045_sc		$STDCELL/gsclib045
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,47): cds.lib Invalid path '/home/install/FOUNDRY/stdcell/gsclib045' (cds.lib command ignored).
+DEFINE gpdk45_iolib		$STDCELL/giolib045
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,48): cds.lib Invalid path '/home/install/FOUNDRY/stdcell/giolib045' (cds.lib command ignored).
+DEFINE globalfoundries /home/install/FOUNDRY/globalfoundries
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,64): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries' (cds.lib command ignored).
+DEFINE gf180mcu /home/install/FOUNDRY/gf180mcu
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,65): cds.lib Invalid path '/home/install/FOUNDRY/gf180mcu' (cds.lib command ignored).
+DEFINE globalfoundries-pdk /home/install/FOUNDRY/globalfoundries-pdk
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,66): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries-pdk' (cds.lib command ignored).
+DEFINE 180MCU_SPICE_DATA /home/install/FOUNDRY/globalfoundries-pdk/models/ngspice/testing/180MCU_SPICE_DATA
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,67): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries-pdk/models/ngspice/testing/180MCU_SPICE_DATA' (cds.lib command ignored).
+DEFINE imported_sram_lib /home/cmos/Downloads/array_29june_new
+|
+xrun: *W,DLCPTH (/home/install/IC618/share/cdssetup/cds.lib,6): cds.lib Invalid path '/home/cmos/Downloads/array_29june_new' (cds.lib command ignored).
+DEFINE mohan11 /home/cmos/mohan11
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,5): cds.lib Invalid path '/home/cmos/mohan11' (cds.lib command ignored).
+DEFINE pes920 /home/cmos/pes920
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,6): cds.lib Invalid path '/home/cmos/pes920' (cds.lib command ignored).
+DEFINE lab /home/cmos/lab
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,7): cds.lib Invalid path '/home/cmos/lab' (cds.lib command ignored).
+DEFINE lab1 /home/cmos/lab1
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,8): cds.lib Invalid path '/home/cmos/lab1' (cds.lib command ignored).
+DEFINE labe /home/cmos/labe
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,9): cds.lib Invalid path '/home/cmos/labe' (cds.lib command ignored).
+DEFINE labebe /home/cmos/labebe
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,10): cds.lib Invalid path '/home/cmos/labebe' (cds.lib command ignored).
+DEFINE exam /home/cmos/exam
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,11): cds.lib Invalid path '/home/cmos/exam' (cds.lib command ignored).
+DEFINE aryan /home/cmos/aryan
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,12): cds.lib Invalid path '/home/cmos/aryan' (cds.lib command ignored).
+DEFINE new123 /home/cmos/new123
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,13): cds.lib Invalid path '/home/cmos/new123' (cds.lib command ignored).
+DEFINE nnm /home/cmos/nnm
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,14): cds.lib Invalid path '/home/cmos/nnm' (cds.lib command ignored).
+DEFINE ec088 /home/cmos/ec088
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,15): cds.lib Invalid path '/home/cmos/ec088' (cds.lib command ignored).
+DEFINE exam2 /home/cmos/exam2
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,16): cds.lib Invalid path '/home/cmos/exam2' (cds.lib command ignored).
+DEFINE week6 /home/cmos/week6
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,17): cds.lib Invalid path '/home/cmos/week6' (cds.lib command ignored).
+DEFINE ORANGE /home/cmos/ORANGE
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,18): cds.lib Invalid path '/home/cmos/ORANGE' (cds.lib command ignored).
+DEFINE orange_problem /home/cmos/orange_problem
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,19): cds.lib Invalid path '/home/cmos/orange_problem' (cds.lib command ignored).
+DEFINE EC252 /home/cmos/EC252
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,20): cds.lib Invalid path '/home/cmos/EC252' (cds.lib command ignored).
+DEFINE Dhanya_EC340 /home/cmos/Dhanya_EC340
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,21): cds.lib Invalid path '/home/cmos/Dhanya_EC340' (cds.lib command ignored).
+DEFINE PES1UG25EC812 /home/cmos/Documents/PES1UG25EC812
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,22): cds.lib Invalid path '/home/cmos/Documents/PES1UG25EC812' (cds.lib command ignored).
+DEFINE 336 /home/cmos/336
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,24): cds.lib Invalid path '/home/cmos/336' (cds.lib command ignored).
+DEFINE mohanyt /home/vlsilab/mohanyt
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,25): cds.lib Invalid path '/home/vlsilab/mohanyt' (cds.lib command ignored).
+Compiling UVM packages (uvm_pkg.sv cdns_uvm_pkg.sv) using uvmhome location /home/install/XCELIUM2209/tools/methodology/UVM/CDNS-1.2
+DEFINE gpdk045_sc		$STDCELL/gsclib045
+|
+xmvlog: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,47): cds.lib Invalid path '/home/install/FOUNDRY/stdcell/gsclib045' (cds.lib command ignored).
+DEFINE gpdk45_iolib		$STDCELL/giolib045
+|
+xmvlog: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,48): cds.lib Invalid path '/home/install/FOUNDRY/stdcell/giolib045' (cds.lib command ignored).
+DEFINE globalfoundries /home/install/FOUNDRY/globalfoundries
+|
+xmvlog: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,64): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries' (cds.lib command ignored).
+DEFINE gf180mcu /home/install/FOUNDRY/gf180mcu
+|
+xmvlog: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,65): cds.lib Invalid path '/home/install/FOUNDRY/gf180mcu' (cds.lib command ignored).
+DEFINE globalfoundries-pdk /home/install/FOUNDRY/globalfoundries-pdk
+|
+xmvlog: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,66): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries-pdk' (cds.lib command ignored).
+DEFINE 180MCU_SPICE_DATA /home/install/FOUNDRY/globalfoundries-pdk/models/ngspice/testing/180MCU_SPICE_DATA
+|
+xmvlog: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,67): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries-pdk/models/ngspice/testing/180MCU_SPICE_DATA' (cds.lib command ignored).
+DEFINE imported_sram_lib /home/cmos/Downloads/array_29june_new
+|
+xmvlog: *W,DLCPTH (/home/install/IC618/share/cdssetup/cds.lib,6): cds.lib Invalid path '/home/cmos/Downloads/array_29june_new' (cds.lib command ignored).
+DEFINE mohan11 /home/cmos/mohan11
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,5): cds.lib Invalid path '/home/cmos/mohan11' (cds.lib command ignored).
+DEFINE pes920 /home/cmos/pes920
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,6): cds.lib Invalid path '/home/cmos/pes920' (cds.lib command ignored).
+DEFINE lab /home/cmos/lab
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,7): cds.lib Invalid path '/home/cmos/lab' (cds.lib command ignored).
+DEFINE lab1 /home/cmos/lab1
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,8): cds.lib Invalid path '/home/cmos/lab1' (cds.lib command ignored).
+DEFINE labe /home/cmos/labe
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,9): cds.lib Invalid path '/home/cmos/labe' (cds.lib command ignored).
+DEFINE labebe /home/cmos/labebe
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,10): cds.lib Invalid path '/home/cmos/labebe' (cds.lib command ignored).
+DEFINE exam /home/cmos/exam
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,11): cds.lib Invalid path '/home/cmos/exam' (cds.lib command ignored).
+DEFINE aryan /home/cmos/aryan
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,12): cds.lib Invalid path '/home/cmos/aryan' (cds.lib command ignored).
+DEFINE new123 /home/cmos/new123
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,13): cds.lib Invalid path '/home/cmos/new123' (cds.lib command ignored).
+DEFINE nnm /home/cmos/nnm
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,14): cds.lib Invalid path '/home/cmos/nnm' (cds.lib command ignored).
+DEFINE ec088 /home/cmos/ec088
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,15): cds.lib Invalid path '/home/cmos/ec088' (cds.lib command ignored).
+DEFINE exam2 /home/cmos/exam2
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,16): cds.lib Invalid path '/home/cmos/exam2' (cds.lib command ignored).
+DEFINE week6 /home/cmos/week6
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,17): cds.lib Invalid path '/home/cmos/week6' (cds.lib command ignored).
+DEFINE ORANGE /home/cmos/ORANGE
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,18): cds.lib Invalid path '/home/cmos/ORANGE' (cds.lib command ignored).
+DEFINE orange_problem /home/cmos/orange_problem
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,19): cds.lib Invalid path '/home/cmos/orange_problem' (cds.lib command ignored).
+DEFINE EC252 /home/cmos/EC252
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,20): cds.lib Invalid path '/home/cmos/EC252' (cds.lib command ignored).
+DEFINE Dhanya_EC340 /home/cmos/Dhanya_EC340
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,21): cds.lib Invalid path '/home/cmos/Dhanya_EC340' (cds.lib command ignored).
+DEFINE PES1UG25EC812 /home/cmos/Documents/PES1UG25EC812
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,22): cds.lib Invalid path '/home/cmos/Documents/PES1UG25EC812' (cds.lib command ignored).
+DEFINE 336 /home/cmos/336
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,24): cds.lib Invalid path '/home/cmos/336' (cds.lib command ignored).
+DEFINE mohanyt /home/vlsilab/mohanyt
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,25): cds.lib Invalid path '/home/vlsilab/mohanyt' (cds.lib command ignored).
+DEFINE gpdk045_sc		$STDCELL/gsclib045
+|
+xmvlog: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,47): cds.lib Invalid path '/home/install/FOUNDRY/stdcell/gsclib045' (cds.lib command ignored).
+DEFINE gpdk45_iolib		$STDCELL/giolib045
+|
+xmvlog: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,48): cds.lib Invalid path '/home/install/FOUNDRY/stdcell/giolib045' (cds.lib command ignored).
+DEFINE globalfoundries /home/install/FOUNDRY/globalfoundries
+|
+xmvlog: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,64): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries' (cds.lib command ignored).
+DEFINE gf180mcu /home/install/FOUNDRY/gf180mcu
+|
+xmvlog: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,65): cds.lib Invalid path '/home/install/FOUNDRY/gf180mcu' (cds.lib command ignored).
+DEFINE globalfoundries-pdk /home/install/FOUNDRY/globalfoundries-pdk
+|
+xmvlog: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,66): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries-pdk' (cds.lib command ignored).
+DEFINE 180MCU_SPICE_DATA /home/install/FOUNDRY/globalfoundries-pdk/models/ngspice/testing/180MCU_SPICE_DATA
+|
+xmvlog: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,67): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries-pdk/models/ngspice/testing/180MCU_SPICE_DATA' (cds.lib command ignored).
+DEFINE imported_sram_lib /home/cmos/Downloads/array_29june_new
+|
+xmvlog: *W,DLCPTH (/home/install/IC618/share/cdssetup/cds.lib,6): cds.lib Invalid path '/home/cmos/Downloads/array_29june_new' (cds.lib command ignored).
+DEFINE mohan11 /home/cmos/mohan11
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,5): cds.lib Invalid path '/home/cmos/mohan11' (cds.lib command ignored).
+DEFINE pes920 /home/cmos/pes920
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,6): cds.lib Invalid path '/home/cmos/pes920' (cds.lib command ignored).
+DEFINE lab /home/cmos/lab
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,7): cds.lib Invalid path '/home/cmos/lab' (cds.lib command ignored).
+DEFINE lab1 /home/cmos/lab1
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,8): cds.lib Invalid path '/home/cmos/lab1' (cds.lib command ignored).
+DEFINE labe /home/cmos/labe
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,9): cds.lib Invalid path '/home/cmos/labe' (cds.lib command ignored).
+DEFINE labebe /home/cmos/labebe
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,10): cds.lib Invalid path '/home/cmos/labebe' (cds.lib command ignored).
+DEFINE exam /home/cmos/exam
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,11): cds.lib Invalid path '/home/cmos/exam' (cds.lib command ignored).
+DEFINE aryan /home/cmos/aryan
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,12): cds.lib Invalid path '/home/cmos/aryan' (cds.lib command ignored).
+DEFINE new123 /home/cmos/new123
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,13): cds.lib Invalid path '/home/cmos/new123' (cds.lib command ignored).
+DEFINE nnm /home/cmos/nnm
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,14): cds.lib Invalid path '/home/cmos/nnm' (cds.lib command ignored).
+DEFINE ec088 /home/cmos/ec088
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,15): cds.lib Invalid path '/home/cmos/ec088' (cds.lib command ignored).
+DEFINE exam2 /home/cmos/exam2
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,16): cds.lib Invalid path '/home/cmos/exam2' (cds.lib command ignored).
+DEFINE week6 /home/cmos/week6
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,17): cds.lib Invalid path '/home/cmos/week6' (cds.lib command ignored).
+DEFINE ORANGE /home/cmos/ORANGE
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,18): cds.lib Invalid path '/home/cmos/ORANGE' (cds.lib command ignored).
+DEFINE orange_problem /home/cmos/orange_problem
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,19): cds.lib Invalid path '/home/cmos/orange_problem' (cds.lib command ignored).
+DEFINE EC252 /home/cmos/EC252
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,20): cds.lib Invalid path '/home/cmos/EC252' (cds.lib command ignored).
+DEFINE Dhanya_EC340 /home/cmos/Dhanya_EC340
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,21): cds.lib Invalid path '/home/cmos/Dhanya_EC340' (cds.lib command ignored).
+DEFINE PES1UG25EC812 /home/cmos/Documents/PES1UG25EC812
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,22): cds.lib Invalid path '/home/cmos/Documents/PES1UG25EC812' (cds.lib command ignored).
+DEFINE 336 /home/cmos/336
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,24): cds.lib Invalid path '/home/cmos/336' (cds.lib command ignored).
+DEFINE mohanyt /home/vlsilab/mohanyt
+|
+xmvlog: *W,DLCPTH (/home/vlsilab/cds.lib,25): cds.lib Invalid path '/home/vlsilab/mohanyt' (cds.lib command ignored).
+file: ../src/ffa_types.sv
+	package worklib.ffa_types_pkg:sv
+		errors: 0, warnings: 0
+file: ../src/ffa_pkg.sv
+	package worklib.ffa_pkg:sv
+		errors: 0, warnings: 0
+file: ../../Design/ffa_engine.v
+	module worklib.ffa_engine:v
+		errors: 0, warnings: 0
+file: ../../Design/uart_tx.v
+	module worklib.uart_tx:v
+		errors: 0, warnings: 0
+file: ../../Design/top.v
+	module worklib.top:v
+		errors: 0, warnings: 0
+file: ../ffa_if.sv
+	interface worklib.ffa_if:sv
+		errors: 0, warnings: 0
+file: ../ffa_sva.sv
+	module worklib.ffa_sva:sv
+		errors: 0, warnings: 0
+file: ../tb_top.sv
+	module worklib.tb_top:sv
+		errors: 0, warnings: 0
+	Total errors/warnings found outside modules and primitives:
+		errors: 0, warnings: 27
+DEFINE gpdk045_sc		$STDCELL/gsclib045
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,47): cds.lib Invalid path '/home/install/FOUNDRY/stdcell/gsclib045' (cds.lib command ignored).
+DEFINE gpdk45_iolib		$STDCELL/giolib045
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,48): cds.lib Invalid path '/home/install/FOUNDRY/stdcell/giolib045' (cds.lib command ignored).
+DEFINE globalfoundries /home/install/FOUNDRY/globalfoundries
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,64): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries' (cds.lib command ignored).
+DEFINE gf180mcu /home/install/FOUNDRY/gf180mcu
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,65): cds.lib Invalid path '/home/install/FOUNDRY/gf180mcu' (cds.lib command ignored).
+DEFINE globalfoundries-pdk /home/install/FOUNDRY/globalfoundries-pdk
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,66): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries-pdk' (cds.lib command ignored).
+DEFINE 180MCU_SPICE_DATA /home/install/FOUNDRY/globalfoundries-pdk/models/ngspice/testing/180MCU_SPICE_DATA
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,67): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries-pdk/models/ngspice/testing/180MCU_SPICE_DATA' (cds.lib command ignored).
+DEFINE imported_sram_lib /home/cmos/Downloads/array_29june_new
+|
+xrun: *W,DLCPTH (/home/install/IC618/share/cdssetup/cds.lib,6): cds.lib Invalid path '/home/cmos/Downloads/array_29june_new' (cds.lib command ignored).
+DEFINE mohan11 /home/cmos/mohan11
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,5): cds.lib Invalid path '/home/cmos/mohan11' (cds.lib command ignored).
+DEFINE pes920 /home/cmos/pes920
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,6): cds.lib Invalid path '/home/cmos/pes920' (cds.lib command ignored).
+DEFINE lab /home/cmos/lab
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,7): cds.lib Invalid path '/home/cmos/lab' (cds.lib command ignored).
+DEFINE lab1 /home/cmos/lab1
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,8): cds.lib Invalid path '/home/cmos/lab1' (cds.lib command ignored).
+DEFINE labe /home/cmos/labe
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,9): cds.lib Invalid path '/home/cmos/labe' (cds.lib command ignored).
+DEFINE labebe /home/cmos/labebe
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,10): cds.lib Invalid path '/home/cmos/labebe' (cds.lib command ignored).
+DEFINE exam /home/cmos/exam
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,11): cds.lib Invalid path '/home/cmos/exam' (cds.lib command ignored).
+DEFINE aryan /home/cmos/aryan
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,12): cds.lib Invalid path '/home/cmos/aryan' (cds.lib command ignored).
+DEFINE new123 /home/cmos/new123
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,13): cds.lib Invalid path '/home/cmos/new123' (cds.lib command ignored).
+DEFINE nnm /home/cmos/nnm
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,14): cds.lib Invalid path '/home/cmos/nnm' (cds.lib command ignored).
+DEFINE ec088 /home/cmos/ec088
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,15): cds.lib Invalid path '/home/cmos/ec088' (cds.lib command ignored).
+DEFINE exam2 /home/cmos/exam2
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,16): cds.lib Invalid path '/home/cmos/exam2' (cds.lib command ignored).
+DEFINE week6 /home/cmos/week6
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,17): cds.lib Invalid path '/home/cmos/week6' (cds.lib command ignored).
+DEFINE ORANGE /home/cmos/ORANGE
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,18): cds.lib Invalid path '/home/cmos/ORANGE' (cds.lib command ignored).
+DEFINE orange_problem /home/cmos/orange_problem
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,19): cds.lib Invalid path '/home/cmos/orange_problem' (cds.lib command ignored).
+DEFINE EC252 /home/cmos/EC252
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,20): cds.lib Invalid path '/home/cmos/EC252' (cds.lib command ignored).
+DEFINE Dhanya_EC340 /home/cmos/Dhanya_EC340
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,21): cds.lib Invalid path '/home/cmos/Dhanya_EC340' (cds.lib command ignored).
+DEFINE PES1UG25EC812 /home/cmos/Documents/PES1UG25EC812
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,22): cds.lib Invalid path '/home/cmos/Documents/PES1UG25EC812' (cds.lib command ignored).
+DEFINE 336 /home/cmos/336
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,24): cds.lib Invalid path '/home/cmos/336' (cds.lib command ignored).
+DEFINE mohanyt /home/vlsilab/mohanyt
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,25): cds.lib Invalid path '/home/vlsilab/mohanyt' (cds.lib command ignored).
+DEFINE gpdk045_sc		$STDCELL/gsclib045
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,47): cds.lib Invalid path '/home/install/FOUNDRY/stdcell/gsclib045' (cds.lib command ignored).
+DEFINE gpdk45_iolib		$STDCELL/giolib045
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,48): cds.lib Invalid path '/home/install/FOUNDRY/stdcell/giolib045' (cds.lib command ignored).
+DEFINE globalfoundries /home/install/FOUNDRY/globalfoundries
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,64): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries' (cds.lib command ignored).
+DEFINE gf180mcu /home/install/FOUNDRY/gf180mcu
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,65): cds.lib Invalid path '/home/install/FOUNDRY/gf180mcu' (cds.lib command ignored).
+DEFINE globalfoundries-pdk /home/install/FOUNDRY/globalfoundries-pdk
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,66): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries-pdk' (cds.lib command ignored).
+DEFINE 180MCU_SPICE_DATA /home/install/FOUNDRY/globalfoundries-pdk/models/ngspice/testing/180MCU_SPICE_DATA
+|
+xrun: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,67): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries-pdk/models/ngspice/testing/180MCU_SPICE_DATA' (cds.lib command ignored).
+DEFINE imported_sram_lib /home/cmos/Downloads/array_29june_new
+|
+xrun: *W,DLCPTH (/home/install/IC618/share/cdssetup/cds.lib,6): cds.lib Invalid path '/home/cmos/Downloads/array_29june_new' (cds.lib command ignored).
+DEFINE mohan11 /home/cmos/mohan11
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,5): cds.lib Invalid path '/home/cmos/mohan11' (cds.lib command ignored).
+DEFINE pes920 /home/cmos/pes920
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,6): cds.lib Invalid path '/home/cmos/pes920' (cds.lib command ignored).
+DEFINE lab /home/cmos/lab
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,7): cds.lib Invalid path '/home/cmos/lab' (cds.lib command ignored).
+DEFINE lab1 /home/cmos/lab1
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,8): cds.lib Invalid path '/home/cmos/lab1' (cds.lib command ignored).
+DEFINE labe /home/cmos/labe
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,9): cds.lib Invalid path '/home/cmos/labe' (cds.lib command ignored).
+DEFINE labebe /home/cmos/labebe
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,10): cds.lib Invalid path '/home/cmos/labebe' (cds.lib command ignored).
+DEFINE exam /home/cmos/exam
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,11): cds.lib Invalid path '/home/cmos/exam' (cds.lib command ignored).
+DEFINE aryan /home/cmos/aryan
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,12): cds.lib Invalid path '/home/cmos/aryan' (cds.lib command ignored).
+DEFINE new123 /home/cmos/new123
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,13): cds.lib Invalid path '/home/cmos/new123' (cds.lib command ignored).
+DEFINE nnm /home/cmos/nnm
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,14): cds.lib Invalid path '/home/cmos/nnm' (cds.lib command ignored).
+DEFINE ec088 /home/cmos/ec088
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,15): cds.lib Invalid path '/home/cmos/ec088' (cds.lib command ignored).
+DEFINE exam2 /home/cmos/exam2
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,16): cds.lib Invalid path '/home/cmos/exam2' (cds.lib command ignored).
+DEFINE week6 /home/cmos/week6
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,17): cds.lib Invalid path '/home/cmos/week6' (cds.lib command ignored).
+DEFINE ORANGE /home/cmos/ORANGE
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,18): cds.lib Invalid path '/home/cmos/ORANGE' (cds.lib command ignored).
+DEFINE orange_problem /home/cmos/orange_problem
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,19): cds.lib Invalid path '/home/cmos/orange_problem' (cds.lib command ignored).
+DEFINE EC252 /home/cmos/EC252
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,20): cds.lib Invalid path '/home/cmos/EC252' (cds.lib command ignored).
+DEFINE Dhanya_EC340 /home/cmos/Dhanya_EC340
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,21): cds.lib Invalid path '/home/cmos/Dhanya_EC340' (cds.lib command ignored).
+DEFINE PES1UG25EC812 /home/cmos/Documents/PES1UG25EC812
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,22): cds.lib Invalid path '/home/cmos/Documents/PES1UG25EC812' (cds.lib command ignored).
+DEFINE 336 /home/cmos/336
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,24): cds.lib Invalid path '/home/cmos/336' (cds.lib command ignored).
+DEFINE mohanyt /home/vlsilab/mohanyt
+|
+xrun: *W,DLCPTH (/home/vlsilab/cds.lib,25): cds.lib Invalid path '/home/vlsilab/mohanyt' (cds.lib command ignored).
+DEFINE gpdk045_sc		$STDCELL/gsclib045
+|
+xmelab: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,47): cds.lib Invalid path '/home/install/FOUNDRY/stdcell/gsclib045' (cds.lib command ignored).
+DEFINE gpdk45_iolib		$STDCELL/giolib045
+|
+xmelab: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,48): cds.lib Invalid path '/home/install/FOUNDRY/stdcell/giolib045' (cds.lib command ignored).
+DEFINE globalfoundries /home/install/FOUNDRY/globalfoundries
+|
+xmelab: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,64): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries' (cds.lib command ignored).
+DEFINE gf180mcu /home/install/FOUNDRY/gf180mcu
+|
+xmelab: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,65): cds.lib Invalid path '/home/install/FOUNDRY/gf180mcu' (cds.lib command ignored).
+DEFINE globalfoundries-pdk /home/install/FOUNDRY/globalfoundries-pdk
+|
+xmelab: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,66): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries-pdk' (cds.lib command ignored).
+DEFINE 180MCU_SPICE_DATA /home/install/FOUNDRY/globalfoundries-pdk/models/ngspice/testing/180MCU_SPICE_DATA
+|
+xmelab: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,67): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries-pdk/models/ngspice/testing/180MCU_SPICE_DATA' (cds.lib command ignored).
+DEFINE imported_sram_lib /home/cmos/Downloads/array_29june_new
+|
+xmelab: *W,DLCPTH (/home/install/IC618/share/cdssetup/cds.lib,6): cds.lib Invalid path '/home/cmos/Downloads/array_29june_new' (cds.lib command ignored).
+DEFINE mohan11 /home/cmos/mohan11
+|
+xmelab: *W,DLCPTH (/home/vlsilab/cds.lib,5): cds.lib Invalid path '/home/cmos/mohan11' (cds.lib command ignored).
+DEFINE pes920 /home/cmos/pes920
+|
+xmelab: *W,DLCPTH (/home/vlsilab/cds.lib,6): cds.lib Invalid path '/home/cmos/pes920' (cds.lib command ignored).
+DEFINE lab /home/cmos/lab
+|
+xmelab: *W,DLCPTH (/home/vlsilab/cds.lib,7): cds.lib Invalid path '/home/cmos/lab' (cds.lib command ignored).
+DEFINE lab1 /home/cmos/lab1
+|
+xmelab: *W,DLCPTH (/home/vlsilab/cds.lib,8): cds.lib Invalid path '/home/cmos/lab1' (cds.lib command ignored).
+DEFINE labe /home/cmos/labe
+|
+xmelab: *W,DLCPTH (/home/vlsilab/cds.lib,9): cds.lib Invalid path '/home/cmos/labe' (cds.lib command ignored).
+DEFINE labebe /home/cmos/labebe
+|
+xmelab: *W,DLCPTH (/home/vlsilab/cds.lib,10): cds.lib Invalid path '/home/cmos/labebe' (cds.lib command ignored).
+DEFINE exam /home/cmos/exam
+|
+xmelab: *W,DLCPTH (/home/vlsilab/cds.lib,11): cds.lib Invalid path '/home/cmos/exam' (cds.lib command ignored).
+DEFINE aryan /home/cmos/aryan
+|
+xmelab: *W,DLCPTH (/home/vlsilab/cds.lib,12): cds.lib Invalid path '/home/cmos/aryan' (cds.lib command ignored).
+DEFINE new123 /home/cmos/new123
+|
+xmelab: *W,DLCPTH (/home/vlsilab/cds.lib,13): cds.lib Invalid path '/home/cmos/new123' (cds.lib command ignored).
+DEFINE nnm /home/cmos/nnm
+|
+xmelab: *W,DLCPTH (/home/vlsilab/cds.lib,14): cds.lib Invalid path '/home/cmos/nnm' (cds.lib command ignored).
+DEFINE ec088 /home/cmos/ec088
+|
+xmelab: *W,DLCPTH (/home/vlsilab/cds.lib,15): cds.lib Invalid path '/home/cmos/ec088' (cds.lib command ignored).
+DEFINE exam2 /home/cmos/exam2
+|
+xmelab: *W,DLCPTH (/home/vlsilab/cds.lib,16): cds.lib Invalid path '/home/cmos/exam2' (cds.lib command ignored).
+DEFINE week6 /home/cmos/week6
+|
+xmelab: *W,DLCPTH (/home/vlsilab/cds.lib,17): cds.lib Invalid path '/home/cmos/week6' (cds.lib command ignored).
+DEFINE ORANGE /home/cmos/ORANGE
+|
+xmelab: *W,DLCPTH (/home/vlsilab/cds.lib,18): cds.lib Invalid path '/home/cmos/ORANGE' (cds.lib command ignored).
+DEFINE orange_problem /home/cmos/orange_problem
+|
+xmelab: *W,DLCPTH (/home/vlsilab/cds.lib,19): cds.lib Invalid path '/home/cmos/orange_problem' (cds.lib command ignored).
+DEFINE EC252 /home/cmos/EC252
+|
+xmelab: *W,DLCPTH (/home/vlsilab/cds.lib,20): cds.lib Invalid path '/home/cmos/EC252' (cds.lib command ignored).
+DEFINE Dhanya_EC340 /home/cmos/Dhanya_EC340
+|
+xmelab: *W,DLCPTH (/home/vlsilab/cds.lib,21): cds.lib Invalid path '/home/cmos/Dhanya_EC340' (cds.lib command ignored).
+DEFINE PES1UG25EC812 /home/cmos/Documents/PES1UG25EC812
+|
+xmelab: *W,DLCPTH (/home/vlsilab/cds.lib,22): cds.lib Invalid path '/home/cmos/Documents/PES1UG25EC812' (cds.lib command ignored).
+DEFINE 336 /home/cmos/336
+|
+xmelab: *W,DLCPTH (/home/vlsilab/cds.lib,24): cds.lib Invalid path '/home/cmos/336' (cds.lib command ignored).
+DEFINE mohanyt /home/vlsilab/mohanyt
+|
+xmelab: *W,DLCPTH (/home/vlsilab/cds.lib,25): cds.lib Invalid path '/home/vlsilab/mohanyt' (cds.lib command ignored).
+		Caching library 'worklib' ....... Done
+	Elaborating the design hierarchy:
+	Top level design units:
+		uvm_pkg
+		cdns_uvmapi
+		cdns_assert2uvm_pkg
+		cdns_uvm_pkg
+		ffa_types_pkg
+		ffa_pkg
+		tb_top
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+DEFINE gpdk045_sc		$STDCELL/gsclib045
+|
+xmvlog_cg: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,47): cds.lib Invalid path '/home/install/FOUNDRY/stdcell/gsclib045' (cds.lib command ignored).
+DEFINE gpdk45_iolib		$STDCELL/giolib045
+|
+xmvlog_cg: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,48): cds.lib Invalid path '/home/install/FOUNDRY/stdcell/giolib045' (cds.lib command ignored).
+DEFINE globalfoundries /home/install/FOUNDRY/globalfoundries
+|
+xmvlog_cg: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,64): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries' (cds.lib command ignored).
+DEFINE gf180mcu /home/install/FOUNDRY/gf180mcu
+|
+xmvlog_cg: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,65): cds.lib Invalid path '/home/install/FOUNDRY/gf180mcu' (cds.lib command ignored).
+DEFINE globalfoundries-pdk /home/install/FOUNDRY/globalfoundries-pdk
+|
+xmvlog_cg: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,66): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries-pdk' (cds.lib command ignored).
+DEFINE 180MCU_SPICE_DATA /home/install/FOUNDRY/globalfoundries-pdk/models/ngspice/testing/180MCU_SPICE_DATA
+|
+xmvlog_cg: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,67): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries-pdk/models/ngspice/testing/180MCU_SPICE_DATA' (cds.lib command ignored).
+DEFINE imported_sram_lib /home/cmos/Downloads/array_29june_new
+|
+xmvlog_cg: *W,DLCPTH (/home/install/IC618/share/cdssetup/cds.lib,6): cds.lib Invalid path '/home/cmos/Downloads/array_29june_new' (cds.lib command ignored).
+DEFINE mohan11 /home/cmos/mohan11
+|
+xmvlog_cg: *W,DLCPTH (/home/vlsilab/cds.lib,5): cds.lib Invalid path '/home/cmos/mohan11' (cds.lib command ignored).
+DEFINE pes920 /home/cmos/pes920
+|
+xmvlog_cg: *W,DLCPTH (/home/vlsilab/cds.lib,6): cds.lib Invalid path '/home/cmos/pes920' (cds.lib command ignored).
+DEFINE lab /home/cmos/lab
+|
+xmvlog_cg: *W,DLCPTH (/home/vlsilab/cds.lib,7): cds.lib Invalid path '/home/cmos/lab' (cds.lib command ignored).
+DEFINE lab1 /home/cmos/lab1
+|
+xmvlog_cg: *W,DLCPTH (/home/vlsilab/cds.lib,8): cds.lib Invalid path '/home/cmos/lab1' (cds.lib command ignored).
+DEFINE labe /home/cmos/labe
+|
+xmvlog_cg: *W,DLCPTH (/home/vlsilab/cds.lib,9): cds.lib Invalid path '/home/cmos/labe' (cds.lib command ignored).
+DEFINE labebe /home/cmos/labebe
+|
+xmvlog_cg: *W,DLCPTH (/home/vlsilab/cds.lib,10): cds.lib Invalid path '/home/cmos/labebe' (cds.lib command ignored).
+DEFINE exam /home/cmos/exam
+|
+xmvlog_cg: *W,DLCPTH (/home/vlsilab/cds.lib,11): cds.lib Invalid path '/home/cmos/exam' (cds.lib command ignored).
+DEFINE aryan /home/cmos/aryan
+|
+xmvlog_cg: *W,DLCPTH (/home/vlsilab/cds.lib,12): cds.lib Invalid path '/home/cmos/aryan' (cds.lib command ignored).
+DEFINE new123 /home/cmos/new123
+|
+xmvlog_cg: *W,DLCPTH (/home/vlsilab/cds.lib,13): cds.lib Invalid path '/home/cmos/new123' (cds.lib command ignored).
+DEFINE nnm /home/cmos/nnm
+|
+xmvlog_cg: *W,DLCPTH (/home/vlsilab/cds.lib,14): cds.lib Invalid path '/home/cmos/nnm' (cds.lib command ignored).
+DEFINE ec088 /home/cmos/ec088
+|
+xmvlog_cg: *W,DLCPTH (/home/vlsilab/cds.lib,15): cds.lib Invalid path '/home/cmos/ec088' (cds.lib command ignored).
+DEFINE exam2 /home/cmos/exam2
+|
+xmvlog_cg: *W,DLCPTH (/home/vlsilab/cds.lib,16): cds.lib Invalid path '/home/cmos/exam2' (cds.lib command ignored).
+DEFINE week6 /home/cmos/week6
+|
+xmvlog_cg: *W,DLCPTH (/home/vlsilab/cds.lib,17): cds.lib Invalid path '/home/cmos/week6' (cds.lib command ignored).
+DEFINE ORANGE /home/cmos/ORANGE
+|
+xmvlog_cg: *W,DLCPTH (/home/vlsilab/cds.lib,18): cds.lib Invalid path '/home/cmos/ORANGE' (cds.lib command ignored).
+DEFINE orange_problem /home/cmos/orange_problem
+|
+xmvlog_cg: *W,DLCPTH (/home/vlsilab/cds.lib,19): cds.lib Invalid path '/home/cmos/orange_problem' (cds.lib command ignored).
+DEFINE EC252 /home/cmos/EC252
+|
+xmvlog_cg: *W,DLCPTH (/home/vlsilab/cds.lib,20): cds.lib Invalid path '/home/cmos/EC252' (cds.lib command ignored).
+DEFINE Dhanya_EC340 /home/cmos/Dhanya_EC340
+|
+xmvlog_cg: *W,DLCPTH (/home/vlsilab/cds.lib,21): cds.lib Invalid path '/home/cmos/Dhanya_EC340' (cds.lib command ignored).
+DEFINE PES1UG25EC812 /home/cmos/Documents/PES1UG25EC812
+|
+xmvlog_cg: *W,DLCPTH (/home/vlsilab/cds.lib,22): cds.lib Invalid path '/home/cmos/Documents/PES1UG25EC812' (cds.lib command ignored).
+DEFINE 336 /home/cmos/336
+|
+xmvlog_cg: *W,DLCPTH (/home/vlsilab/cds.lib,24): cds.lib Invalid path '/home/cmos/336' (cds.lib command ignored).
+DEFINE mohanyt /home/vlsilab/mohanyt
+|
+xmvlog_cg: *W,DLCPTH (/home/vlsilab/cds.lib,25): cds.lib Invalid path '/home/vlsilab/mohanyt' (cds.lib command ignored).
+		worklib.ffa_sva:sv <0x6934646b>
+			streams:  72, words: 48712
+		worklib.uart_tx:v <0x2c0183dd>
+			streams:  15, words:  7669
+		worklib.tb_top:sv <0x33ea5ca7>
+			streams: 1040, words: 1242254
+		worklib.ffa_types_pkg:sv <0x2e9f00ad>
+			streams:   0, words:     0
+		worklib.cdns_uvm_pkg:sv <0x43ecb7f9>
+			streams: 237, words: 381960
+		worklib.cdns_uvmapi:svp <0x7e57ca67>
+			streams:  27, words: 30300
+		worklib.cdns_assert2uvm_pkg:sv <0x48d91933>
+			streams:   3, words:  1818
+		worklib.uvm_pkg:sv <0x20fe4b45>
+			streams: 5291, words: 8244105
+		worklib.ffa_if:sv <0x10d6bfd9>
+			streams:  25, words: 13536
+		worklib.ffa_engine:v <0x2efe9a2d>
+			streams:  31, words: 15701
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                       Instances  Unique
+		Modules:                       5       5
+		Interfaces:                    1       1
+		Verilog packages:              6       6
+		Registers:                 17556   12142
+		Scalar wires:                 14       -
+		Vectored wires:               19       -
+		Named events:                 13      21
+		Always blocks:                84      84
+		Initial blocks:              423     228
+		Clocking blocks:               3       3
+		Clocking items:               11      11
+		Parallel blocks:              27      28
+		Cont. assignments:            11      11
+		Pseudo assignments:           14      14
+		Assertions:                   19      19
+		Covergroup Instances:          0       2
+		SV Class declarations:       253     368
+		SV Class specializations:    485     485
+		Simulation timescale:        1ps
+	Writing initial simulation snapshot: worklib.tb_top:sv
+DEFINE gpdk045_sc		$STDCELL/gsclib045
+|
+xmsim: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,47): cds.lib Invalid path '/home/install/FOUNDRY/stdcell/gsclib045' (cds.lib command ignored).
+DEFINE gpdk45_iolib		$STDCELL/giolib045
+|
+xmsim: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,48): cds.lib Invalid path '/home/install/FOUNDRY/stdcell/giolib045' (cds.lib command ignored).
+DEFINE globalfoundries /home/install/FOUNDRY/globalfoundries
+|
+xmsim: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,64): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries' (cds.lib command ignored).
+DEFINE gf180mcu /home/install/FOUNDRY/gf180mcu
+|
+xmsim: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,65): cds.lib Invalid path '/home/install/FOUNDRY/gf180mcu' (cds.lib command ignored).
+DEFINE globalfoundries-pdk /home/install/FOUNDRY/globalfoundries-pdk
+|
+xmsim: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,66): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries-pdk' (cds.lib command ignored).
+DEFINE 180MCU_SPICE_DATA /home/install/FOUNDRY/globalfoundries-pdk/models/ngspice/testing/180MCU_SPICE_DATA
+|
+xmsim: *W,DLCPTH (/home/install/FOUNDRY/cds.lib,67): cds.lib Invalid path '/home/install/FOUNDRY/globalfoundries-pdk/models/ngspice/testing/180MCU_SPICE_DATA' (cds.lib command ignored).
+DEFINE imported_sram_lib /home/cmos/Downloads/array_29june_new
+|
+xmsim: *W,DLCPTH (/home/install/IC618/share/cdssetup/cds.lib,6): cds.lib Invalid path '/home/cmos/Downloads/array_29june_new' (cds.lib command ignored).
+DEFINE mohan11 /home/cmos/mohan11
+|
+xmsim: *W,DLCPTH (/home/vlsilab/cds.lib,5): cds.lib Invalid path '/home/cmos/mohan11' (cds.lib command ignored).
+DEFINE pes920 /home/cmos/pes920
+|
+xmsim: *W,DLCPTH (/home/vlsilab/cds.lib,6): cds.lib Invalid path '/home/cmos/pes920' (cds.lib command ignored).
+DEFINE lab /home/cmos/lab
+|
+xmsim: *W,DLCPTH (/home/vlsilab/cds.lib,7): cds.lib Invalid path '/home/cmos/lab' (cds.lib command ignored).
+DEFINE lab1 /home/cmos/lab1
+|
+xmsim: *W,DLCPTH (/home/vlsilab/cds.lib,8): cds.lib Invalid path '/home/cmos/lab1' (cds.lib command ignored).
+DEFINE labe /home/cmos/labe
+|
+xmsim: *W,DLCPTH (/home/vlsilab/cds.lib,9): cds.lib Invalid path '/home/cmos/labe' (cds.lib command ignored).
+DEFINE labebe /home/cmos/labebe
+|
+xmsim: *W,DLCPTH (/home/vlsilab/cds.lib,10): cds.lib Invalid path '/home/cmos/labebe' (cds.lib command ignored).
+DEFINE exam /home/cmos/exam
+|
+xmsim: *W,DLCPTH (/home/vlsilab/cds.lib,11): cds.lib Invalid path '/home/cmos/exam' (cds.lib command ignored).
+DEFINE aryan /home/cmos/aryan
+|
+xmsim: *W,DLCPTH (/home/vlsilab/cds.lib,12): cds.lib Invalid path '/home/cmos/aryan' (cds.lib command ignored).
+DEFINE new123 /home/cmos/new123
+|
+xmsim: *W,DLCPTH (/home/vlsilab/cds.lib,13): cds.lib Invalid path '/home/cmos/new123' (cds.lib command ignored).
+DEFINE nnm /home/cmos/nnm
+|
+xmsim: *W,DLCPTH (/home/vlsilab/cds.lib,14): cds.lib Invalid path '/home/cmos/nnm' (cds.lib command ignored).
+DEFINE ec088 /home/cmos/ec088
+|
+xmsim: *W,DLCPTH (/home/vlsilab/cds.lib,15): cds.lib Invalid path '/home/cmos/ec088' (cds.lib command ignored).
+DEFINE exam2 /home/cmos/exam2
+|
+xmsim: *W,DLCPTH (/home/vlsilab/cds.lib,16): cds.lib Invalid path '/home/cmos/exam2' (cds.lib command ignored).
+DEFINE week6 /home/cmos/week6
+|
+xmsim: *W,DLCPTH (/home/vlsilab/cds.lib,17): cds.lib Invalid path '/home/cmos/week6' (cds.lib command ignored).
+DEFINE ORANGE /home/cmos/ORANGE
+|
+xmsim: *W,DLCPTH (/home/vlsilab/cds.lib,18): cds.lib Invalid path '/home/cmos/ORANGE' (cds.lib command ignored).
+DEFINE orange_problem /home/cmos/orange_problem
+|
+xmsim: *W,DLCPTH (/home/vlsilab/cds.lib,19): cds.lib Invalid path '/home/cmos/orange_problem' (cds.lib command ignored).
+DEFINE EC252 /home/cmos/EC252
+|
+xmsim: *W,DLCPTH (/home/vlsilab/cds.lib,20): cds.lib Invalid path '/home/cmos/EC252' (cds.lib command ignored).
+DEFINE Dhanya_EC340 /home/cmos/Dhanya_EC340
+|
+xmsim: *W,DLCPTH (/home/vlsilab/cds.lib,21): cds.lib Invalid path '/home/cmos/Dhanya_EC340' (cds.lib command ignored).
+DEFINE PES1UG25EC812 /home/cmos/Documents/PES1UG25EC812
+|
+xmsim: *W,DLCPTH (/home/vlsilab/cds.lib,22): cds.lib Invalid path '/home/cmos/Documents/PES1UG25EC812' (cds.lib command ignored).
+DEFINE 336 /home/cmos/336
+|
+xmsim: *W,DLCPTH (/home/vlsilab/cds.lib,24): cds.lib Invalid path '/home/cmos/336' (cds.lib command ignored).
+DEFINE mohanyt /home/vlsilab/mohanyt
+|
+xmsim: *W,DLCPTH (/home/vlsilab/cds.lib,25): cds.lib Invalid path '/home/vlsilab/mohanyt' (cds.lib command ignored).
+Loading snapshot worklib.tb_top:sv .................... Done
+SVSEED set from command line: 1
+xmsim: *W,DSEM2009: This SystemVerilog design is simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+xcelium> source /home/install/XCELIUM2209/tools/xcelium/files/xmsimrc
+xcelium> source /home/install/XCELIUM2209/tools/methodology/UVM/CDNS-1.2/additions/sv/files/tcl/uvm_sim.tcl
+xcelium> run
+UVM_INFO /home/install/XCELIUM2209/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_root.svh(412) @ 0: reporter [UVM/RELNOTES] 
+----------------------------------------------------------------
+CDNS-UVM-1.2 (22.09-s003)
+(C) 2007-2014 Mentor Graphics Corporation
+(C) 2007-2014 Cadence Design Systems, Inc.
+(C) 2006-2014 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+(C) 2013-2014 NVIDIA Corporation
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO ../tb_top.sv(98) @ 0: reporter [TB_TOP] Starting FFA Accelerator UVM 1.2 Verification Environment
+UVM_INFO @ 0: reporter [RNTST] Running test ffa_master_verification_test...
+UVM_INFO ../src/tests/ffa_base_test.sv(27) @ 0: uvm_test_top [TOPOLOGY] Displaying UVM Component Topology:
+UVM_INFO /home/install/XCELIUM2209/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_root.svh(605) @ 0: reporter [UVMTOP] UVM testbench topology:
+--------------------------------------------------------------------
+Name                       Type                          Size  Value
+--------------------------------------------------------------------
+uvm_test_top               ffa_master_verification_test  -     @2044
+  env                      ffa_env                       -     @2111
+    adc_agent              ffa_adc_agent                 -     @2143
+      ap                   uvm_analysis_port             -     @2677
+      driver               ffa_adc_driver                -     @3443
+        rsp_port           uvm_analysis_port             -     @3543
+        seq_item_port      uvm_seq_item_pull_port        -     @3493
+      monitor              ffa_adc_monitor               -     @2658
+        ap                 uvm_analysis_port             -     @2759
+      sequencer            ffa_adc_sequencer             -     @2790
+        rsp_export         uvm_analysis_export           -     @2850
+        seq_item_export    uvm_seq_item_pull_imp         -     @3410
+        arbitration_queue  array                         0     -    
+        lock_queue         array                         0     -    
+        num_last_reqs      integral                      32    'd1  
+        num_last_rsps      integral                      32    'd1  
+    coverage_collector     ffa_coverage                  -     @2474
+      adc_cov_export       uvm_analysis_imp_cov_adc      -     @2576
+      analysis_imp         uvm_analysis_imp              -     @2524
+      uart_cov_export      uvm_analysis_imp_cov_uart     -     @2626
+    ref_model              ffa_ref_model                 -     @2205
+      in_export            uvm_analysis_imp              -     @2256
+      out_port             uvm_analysis_port             -     @2308
+    scoreboard             ffa_scoreboard                -     @2341
+      act_export           uvm_analysis_imp_actual       -     @2443
+      exp_export           uvm_analysis_imp_expected     -     @2393
+    uart_agent             ffa_uart_agent                -     @2174
+      ap                   uvm_analysis_port             -     @3657
+      monitor              ffa_uart_monitor              -     @3637
+        ap                 uvm_analysis_port             -     @3739
+--------------------------------------------------------------------
+
+UVM_INFO ../src/tests/ffa_master_verification_test.sv(24) @ 0: uvm_test_top [MASTER_TEST] Launching Unified Master Verification Sequence...
+SDI/Verilog Transaction Recording Facility Version 22.09-s003
+UVM_INFO ../src/ffa_sequence.sv(198) @ 0: uvm_test_top.env.adc_agent.sequencer@@seq [MASTER_SEQ] ==================================================================
+UVM_INFO ../src/ffa_sequence.sv(199) @ 0: uvm_test_top.env.adc_agent.sequencer@@seq [MASTER_SEQ]   STARTING FULL-CHIP FFA ACCELERATOR UVM VERIFICATION ARCHITECTURE 
+UVM_INFO ../src/ffa_sequence.sv(200) @ 0: uvm_test_top.env.adc_agent.sequencer@@seq [MASTER_SEQ] ==================================================================
+UVM_INFO ../src/ffa_sequence.sv(205) @ 0: uvm_test_top.env.adc_agent.sequencer@@seq [STAGE_1] >>> [STAGE 1/4] Running Deterministic Benchmark Sanity Test...
+UVM_INFO ../tb_top.sv(131) @ 400000: reporter [TB_TOP] Deasserted Reset. System operational.
+xmsim: *W,OLDURR: The default algorithm for $urandom_range and randcase is used. It can have distribution problems..
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 7296210000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=200 (200.000 us / 0.2000 ms / 0.000200 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 7296210000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 200 us (Hardware = Golden = 200)
+UVM_INFO ../src/ffa_scoreboard.sv(111) @ 7296210000: uvm_test_top.env.scoreboard [SCB_ATNF_NEW] >>> [ATNF-INFO] Detected period (0.000200 s) does not match known bright catalogue pulsars (Possible New Candidate Discovery)
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 11879310000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 11879310000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 11879310000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 11879310000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 11879310000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_sequence.sv(225) @ 12184730000: uvm_test_top.env.adc_agent.sequencer@@seq [STAGE_2] >>> [STAGE 2/4] Injecting Real ATNF Pulsar Signatures for Database Matching...
+UVM_INFO ../src/ffa_sequence.sv(237) @ 12184730000: uvm_test_top.env.adc_agent.sequencer@@seq [ATNF_INJECT] Injected Target: PSR_DOUBLE_J0737_3039A (Period: 80 cycles)
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 16462410000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 16462410000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 16462410000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 16462410000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 16462410000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 21045510000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 21045510000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 21045510000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 21045510000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 21045510000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 25628610000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 25628610000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 25628610000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 25628610000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 25628610000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_sequence.sv(237) @ 28535010000: uvm_test_top.env.adc_agent.sequencer@@seq [ATNF_INJECT] Injected Target: PSR_CRAB_B0531_21 (Period: 80 cycles)
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 30211710000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 30211710000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 30211710000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 30211710000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 30211710000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 34794810000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 34794810000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 34794810000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 34794810000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 34794810000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 39377910000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 39377910000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 39377910000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 39377910000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 39377910000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_sequence.sv(237) @ 42284310000: uvm_test_top.env.adc_agent.sequencer@@seq [ATNF_INJECT] Injected Target: PSR_VELA_B0833_45 (Period: 80 cycles)
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 43961010000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 43961010000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 43961010000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 43961010000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 43961010000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 48544110000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 48544110000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 48544110000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 48544110000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 48544110000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 53127210000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 53127210000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 53127210000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 53127210000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 53127210000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_sequence.sv(237) @ 56033610000: uvm_test_top.env.adc_agent.sequencer@@seq [ATNF_INJECT] Injected Target: PSR_B0329_54 (Period: 80 cycles)
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 57710310000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 57710310000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 57710310000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 57710310000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 57710310000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 62293410000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 62293410000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 62293410000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 62293410000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 62293410000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 66876510000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 66876510000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 66876510000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 66876510000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 66876510000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_sequence.sv(237) @ 69782910000: uvm_test_top.env.adc_agent.sequencer@@seq [ATNF_INJECT] Injected Target: PSR_B0950_08 (Period: 80 cycles)
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 71459610000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 71459610000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 71459610000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 71459610000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 71459610000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 76042710000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 76042710000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 76042710000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 76042710000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 76042710000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 80625810000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 80625810000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 80625810000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 80625810000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 80625810000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_sequence.sv(237) @ 83532210000: uvm_test_top.env.adc_agent.sequencer@@seq [ATNF_INJECT] Injected Target: PSR_B1937_21 (Period: 80 cycles)
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 85208910000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 85208910000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 85208910000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 85208910000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 85208910000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 89792010000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 89792010000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 89792010000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 89792010000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 89792010000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 94375110000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 94375110000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 94375110000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 94375110000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 94375110000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_sequence.sv(245) @ 97281510000: uvm_test_top.env.adc_agent.sequencer@@seq [STAGE_3] >>> [STAGE 3/4] Sweeping Constrained-Random Noisy Models (Clean, Med, Low, Buried)...
+UVM_INFO ../src/ffa_sequence.sv(256) @ 97281510000: uvm_test_top.env.adc_agent.sequencer@@seq [NOISE_SWEEP] Injected: [ADC Item] BufSize=1024 Period=80 PulWidth=4 SNR_Mode=SNR_CLEAN EstSNR=30.0dB Target=PSR_B0950_08
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 98958210000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 98958210000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 98958210000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 98958210000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 98958210000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 103541310000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 103541310000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 103541310000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 103541310000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 103541310000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 108124410000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 108124410000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 108124410000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 108124410000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 108124410000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_sequence.sv(256) @ 111030810000: uvm_test_top.env.adc_agent.sequencer@@seq [NOISE_SWEEP] Injected: [ADC Item] BufSize=1024 Period=80 PulWidth=4 SNR_Mode=SNR_HIGH EstSNR=15.0dB Target=PSR_TEST_BENCHMARK
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 112707510000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 112707510000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 112707510000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 112707510000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 112707510000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 117290610000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 117290610000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 117290610000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 117290610000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 117290610000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 121873710000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 121873710000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 121873710000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 121873710000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 121873710000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_sequence.sv(256) @ 124780110000: uvm_test_top.env.adc_agent.sequencer@@seq [NOISE_SWEEP] Injected: [ADC Item] BufSize=1024 Period=80 PulWidth=4 SNR_Mode=SNR_MEDIUM EstSNR=6.0dB Target=PSR_B0950_08
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 126456810000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 126456810000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 126456810000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 126456810000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 126456810000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 131039910000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 131039910000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 131039910000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 131039910000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 131039910000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 135623010000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 135623010000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 135623010000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 135623010000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 135623010000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_sequence.sv(256) @ 138529410000: uvm_test_top.env.adc_agent.sequencer@@seq [NOISE_SWEEP] Injected: [ADC Item] BufSize=1024 Period=80 PulWidth=4 SNR_Mode=SNR_LOW EstSNR=0.5dB Target=PSR_DOUBLE_J0737_3039A
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 140206110000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 140206110000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 140206110000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 140206110000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 140206110000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 144789210000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 144789210000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 144789210000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 144789210000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 144789210000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 149372310000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 149372310000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 149372310000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 149372310000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 149372310000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_sequence.sv(264) @ 152278710000: uvm_test_top.env.adc_agent.sequencer@@seq [STAGE_4] >>> [STAGE 4/4] Executing Stress & Buried SNR Verification...
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 153955410000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 153955410000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 153955410000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 153955410000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 153955410000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 158538510000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 158538510000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 158538510000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 158538510000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 158538510000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 163121610000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 163121610000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 163121610000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 163121610000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 163121610000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 167704710000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 167704710000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 167704710000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 167704710000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 167704710000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 172287810000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 172287810000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 172287810000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 172287810000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 172287810000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 176870910000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 176870910000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 176870910000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 176870910000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 176870910000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_sequence.sv(289) @ 179777310000: uvm_test_top.env.adc_agent.sequencer@@seq [MASTER_SEQ] All Verification Sequence Stimulus Completed.
+UVM_INFO ../src/tests/ffa_master_verification_test.sv(27) @ 179777310000: uvm_test_top [MASTER_TEST] All Verification Stages Executed Successfully. Waiting for Pipeline Drain...
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 181454010000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 181454010000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 181454010000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 181454010000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 181454010000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 186037110000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 186037110000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 186037110000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 186037110000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 186037110000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO ../src/ffa_uart_monitor.sv(106) @ 190620210000: uvm_test_top.env.uart_agent.monitor [UART_RECV] Decoded UART Packet: [UART Frame] Preamble=0xaa (Valid=1) Period_Raw=1600 (1600.000 us / 1.6000 ms / 0.001600 s) FramingOK=1
+UVM_INFO ../src/ffa_scoreboard.sv(87) @ 190620210000: uvm_test_top.env.scoreboard [SCB_MATCH_EXACT] [PASS] Bit-Exact Match! Period: 1600 us (Hardware = Golden = 1600)
+UVM_INFO ../src/ffa_scoreboard.sv(101) @ 190620210000: uvm_test_top.env.scoreboard [SCB_ATNF_MATCH] >>> [ATNF-SUCCESS] Cross-referenced detected period (0.001600 s) with ATNF catalogue: Found 2 match(es):
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 190620210000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> B1937+21 (MSP) (PSR B1937+21) | P0 = 0.001558 s | DM = 71.02 pc/cm^3
+UVM_INFO ../src/ffa_scoreboard.sv(106) @ 190620210000: uvm_test_top.env.scoreboard [SCB_ATNF_DETAIL]     -> J1600-3053 (PSR J1600-3053) | P0 = 0.001600 s | DM = 15.00 pc/cm^3
+UVM_INFO /home/install/XCELIUM2209/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_objection.svh(1271) @ 194777310000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+UVM_INFO ../src/ffa_scoreboard.sv(119) @ 194777310000: uvm_test_top.env.scoreboard [SCB_REPORT] =================================================================
+UVM_INFO ../src/ffa_scoreboard.sv(120) @ 194777310000: uvm_test_top.env.scoreboard [SCB_REPORT]              FFA ACCELERATOR UVM VERIFICATION REPORT             
+UVM_INFO ../src/ffa_scoreboard.sv(121) @ 194777310000: uvm_test_top.env.scoreboard [SCB_REPORT] =================================================================
+UVM_INFO ../src/ffa_scoreboard.sv(122) @ 194777310000: uvm_test_top.env.scoreboard [SCB_REPORT]  Total UART Frames Monitored    : 41
+UVM_INFO ../src/ffa_scoreboard.sv(123) @ 194777310000: uvm_test_top.env.scoreboard [SCB_REPORT]  Bit-Exact Hardware Matches      : 41
+UVM_INFO ../src/ffa_scoreboard.sv(124) @ 194777310000: uvm_test_top.env.scoreboard [SCB_REPORT]  Period Calculation Mismatches   : 0
+UVM_INFO ../src/ffa_scoreboard.sv(125) @ 194777310000: uvm_test_top.env.scoreboard [SCB_REPORT]  Preamble Synchronization Errors : 0
+UVM_INFO ../src/ffa_scoreboard.sv(126) @ 194777310000: uvm_test_top.env.scoreboard [SCB_REPORT]  UART Framing Protocol Errors    : 0
+UVM_INFO ../src/ffa_scoreboard.sv(127) @ 194777310000: uvm_test_top.env.scoreboard [SCB_REPORT]  ATNF Catalogue Matches Resolved : 80
+UVM_INFO ../src/ffa_scoreboard.sv(128) @ 194777310000: uvm_test_top.env.scoreboard [SCB_REPORT] -----------------------------------------------------------------
+UVM_INFO ../src/ffa_scoreboard.sv(131) @ 194777310000: uvm_test_top.env.scoreboard [SCB_REPORT]                   >>> UVM VERIFICATION STATUS: PASSED <<<        
+UVM_INFO ../src/ffa_scoreboard.sv(137) @ 194777310000: uvm_test_top.env.scoreboard [SCB_REPORT] =================================================================
+UVM_INFO /home/install/XCELIUM2209/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_report_catcher.svh(705) @ 194777310000: reporter [UVM/REPORT/CATCHER] 
+--- UVM Report catcher Summary ---
+
+
+Number of demoted UVM_FATAL reports  :    0
+Number of demoted UVM_ERROR reports  :    0
+Number of demoted UVM_WARNING reports:    0
+Number of caught UVM_FATAL reports   :    0
+Number of caught UVM_ERROR reports   :    0
+Number of caught UVM_WARNING reports :    0
+
+UVM_INFO /home/install/XCELIUM2209/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_report_server.svh(847) @ 194777310000: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :  243
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[ATNF_INJECT]     6
+[MASTER_SEQ]     4
+[MASTER_TEST]     2
+[NOISE_SWEEP]     4
+[RNTST]     1
+[SCB_ATNF_DETAIL]    80
+[SCB_ATNF_MATCH]    40
+[SCB_ATNF_NEW]     1
+[SCB_MATCH_EXACT]    41
+[SCB_REPORT]    12
+[STAGE_1]     1
+[STAGE_2]     1
+[STAGE_3]     1
+[STAGE_4]     1
+[TB_TOP]     2
+[TEST_DONE]     1
+[TOPOLOGY]     1
+[UART_RECV]    41
+[UVM/RELNOTES]     1
+[UVM/REPORT/CATCHER]     1
+[UVMTOP]     1
+
+Simulation complete via $finish(1) at time 194777310 NS + 59
+/home/install/XCELIUM2209/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_root.svh:543     $finish;
+xcelium> exit
+TOOL:	xrun(64)	22.09-s003: Exiting on Nov 16, 2026 at 23:07:18 IST  (total: 00:00:12)

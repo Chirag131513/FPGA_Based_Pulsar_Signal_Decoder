@@ -7,6 +7,7 @@ ffa_sim_dbg
 
 # Logs and temp files
 *.log
+!uvm/sim/xrun_verify.log
 *.tmp
 *.swp
 
