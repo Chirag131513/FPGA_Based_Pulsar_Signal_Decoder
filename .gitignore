@@ -31,13 +31,25 @@ target/
 *.vvp
 *.vcd
 
-# EDA Simulation Artifacts
+# EDA Simulation Artifacts & Caches (Cadence Xcelium / SimVision / Questa)
 INCA_libs/
 xcelium.d/
+waves.shm/
 *.shm/
+*.shm
+.simvision/
+.simvision*
 *.history
 *.key
 *.diag
 *.dsn
 *.trn
+*.fsdb
+*.vpd
+*.ucdb
+*.vst
 cov_work/
+Output/
+
+# Transient Root Files (canonical dashboard is tracked in uvm/sim/verification_dashboard.html)
+/verification_dashboard.html
