@@ -30,3 +30,14 @@ build/
 target/
 *.vvp
 *.vcd
+
+# EDA Simulation Artifacts
+INCA_libs/
+xcelium.d/
+*.shm/
+*.history
+*.key
+*.diag
+*.dsn
+*.trn
+cov_work/
