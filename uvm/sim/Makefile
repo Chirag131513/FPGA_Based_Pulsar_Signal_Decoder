@@ -12,7 +12,7 @@ XRUN        = xrun
 SIMVISION   = simvision
 GTKWAVE     = gtkwave
 
-.PHONY: all help verify re rebuild wave dashboard clean regression
+.PHONY: all help verify re rebuild wave dashboard view clean regression
 
 all: verify
 
@@ -22,6 +22,7 @@ help:
 	@echo "========================================================================"
 	@echo "  make verify   : [SINGLE COMMAND] Runs the entire verification architecture"
 	@echo "                  (Pre-cleans, compiles, runs SVA + ATNF DB, generates dashboard)"
+	@echo "  make view     : [TERMINAL COVERAGE] Displays detailed coverage report in terminal"
 	@echo "  make dashboard: Re-generates and launches HTML dashboard in browser"
 	@echo "  make clean    : Cleans all previous simulation artifacts, databases, and logs"
 	@echo "  make re       : Clean rebuild & verify from scratch"
@@ -44,8 +45,11 @@ verify: clean
 	@python3 generate_dashboard.py || python generate_dashboard.py || true
 
 # ------------------------------------------------------------------------------
-# 2. View Interactive HTML Dashboard
+# 2. View Interactive HTML Dashboard & Detailed Terminal Coverage
 # ------------------------------------------------------------------------------
+view:
+	@python3 generate_dashboard.py --view || python generate_dashboard.py --view || true
+
 dashboard:
 	@python3 generate_dashboard.py || python generate_dashboard.py || true
 	@if command -v firefox >/dev/null 2>&1; then \

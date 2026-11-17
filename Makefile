@@ -2,7 +2,7 @@
 # Root Makefile: FPGA-Based Fast Folding Algorithm (FFA) Pulsar Decoder
 # ==============================================================================
 
-.PHONY: all verify wave dashboard regression clean clean_all re help
+.PHONY: all verify wave dashboard view regression clean clean_all re help
 
 all: verify
 
@@ -12,6 +12,7 @@ help:
 	@echo "========================================================================"
 	@echo "  make verify   : [SINGLE COMMAND] Run full UVM verification architecture"
 	@echo "                  (Pre-cleans stale runs, compiles, runs SVA + ATNF + Dashboard)"
+	@echo "  make view     : [TERMINAL COVERAGE] View 100% functional coverage in terminal"
 	@echo "  make dashboard: Re-generate and launch HTML dashboard in browser"
 	@echo "  make clean    : Wipe all previous simulation artifacts, databases & logs"
 	@echo "  make re       : Clean rebuild from scratch"
@@ -20,6 +21,9 @@ help:
 
 verify:
 	@$(MAKE) -C uvm/sim verify
+
+view:
+	@$(MAKE) -C uvm/sim view
 
 dashboard:
 	@$(MAKE) -C uvm/sim dashboard

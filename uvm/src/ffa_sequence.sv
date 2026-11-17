@@ -187,12 +187,15 @@ class ffa_master_seq extends ffa_base_seq;
     task body();
         ffa_adc_item item;
         atnf_pulsar_id_e psr_targets[] = '{
-            PSR_DOUBLE_J0737_3039A,  // 1.589 s / benchmark mode
-            PSR_CRAB_B0531_21,       // 33.39 ms Crab Pulsar
-            PSR_VELA_B0833_45,       // 89.33 ms Vela Pulsar
-            PSR_B0329_54,            // 714.52 ms Standard Candle
-            PSR_B0950_08,            // 253.06 ms Low Dispersion Pulsar
-            PSR_B1937_21             // 1.558 ms Millisecond Pulsar
+            PSR_TEST_BENCHMARK,      // Scaled verification benchmark (80 cycles)
+            PSR_DOUBLE_J0737_3039A,  // 1.589 s / benchmark mode (80 cycles)
+            PSR_CRAB_B0531_21,       // 33.39 ms Crab Pulsar (34 cycles)
+            PSR_VELA_B0833_45,       // 89.33 ms Vela Pulsar (90 cycles)
+            PSR_B0329_54,            // 714.52 ms Standard Candle (180 cycles)
+            PSR_B0950_08,            // 253.06 ms Low Dispersion Pulsar (120 cycles)
+            PSR_B1937_21,            // 1.558 ms Millisecond Pulsar (40 cycles)
+            PSR_J0437_4715,          // 5.757 ms Brightest MSP (140 cycles)
+            PSR_BELL_B1919_21        // 1337.3 ms Discovery Pulsar (200 cycles)
         };
 
         `uvm_info("MASTER_SEQ", "==================================================================", UVM_NONE)
@@ -230,11 +233,19 @@ class ffa_master_seq extends ffa_base_seq;
                 buffer_size   == 1024;
                 target_pulsar == psr_targets[idx];
                 snr_mode inside {SNR_HIGH, SNR_MEDIUM};
+                if (idx == 0 || idx == 1) { period_cycles == 80;  pulse_width_cycles == 4; }
+                else if (idx == 2)        { period_cycles == 34;  pulse_width_cycles == 3; }
+                else if (idx == 3)        { period_cycles == 90;  pulse_width_cycles == 6; }
+                else if (idx == 4)        { period_cycles == 180; pulse_width_cycles == 16; }
+                else if (idx == 5)        { period_cycles == 120; pulse_width_cycles == 8; }
+                else if (idx == 6)        { period_cycles == 40;  pulse_width_cycles == 3; }
+                else if (idx == 7)        { period_cycles == 140; pulse_width_cycles == 12; }
+                else if (idx == 8)        { period_cycles == 200; pulse_width_cycles == 20; }
             }) begin
                 `uvm_fatal("RND_FAIL", "ATNF item randomization failed!")
             end
-            `uvm_info("ATNF_INJECT", $sformatf("Injected Target: %s (Period: %0d cycles)", 
-                      psr_targets[idx].name(), item.period_cycles), UVM_LOW)
+            `uvm_info("ATNF_INJECT", $sformatf("Injected Target: %s (Period: %0d cycles, Width: %0d cycles)", 
+                      psr_targets[idx].name(), item.period_cycles, item.pulse_width_cycles), UVM_LOW)
             finish_item(item);
             #12_000_000;
         end
