@@ -15,7 +15,7 @@ An enterprise-grade FPGA hardware accelerator and comprehensive UVM 1.2 verifica
 
 The **Fast Folding Algorithm (FFA)** is a computationally intensive time-domain algorithm designed to uncover faint, periodic pulsed signals from rotating neutron stars (pulsars) buried deep within galactic background noise and dispersion smear. 
 
-Unlike traditional FFT-based periodicity searches that lose sensitivity when harmonic components are split across Fourier bins, the FFA coherently folds the raw time-series data at thousands of discrete trial periods in the time domain, maximizing signal-to-noise ratio ($SNR \propto \sqrt{N}$).
+Unlike traditional FFT-based periodicity searches that lose sensitivity when harmonic components are split across Fourier bins, the FFA coherently folds the raw time-series data at thousands of discrete trial periods in the time domain, maximizing signal-to-noise ratio (SNR ∝ √N).
 
 ### Hardware & Verification Highlights
 * **Synthesizable FPGA Core**: Pipelined 6-state FSM folding engine supporting up to 16,384 time-series samples, 2,048 trial periods, and 256 folded phase bins.
@@ -50,14 +50,14 @@ The complete UVM 1.2 verification suite executed in Cadence Xcelium on the unifi
 ```
 
 ### Verified Astronomical Pulsar Detections
-| Pulsar Designation | Official PSRJ Name | Measured Period ($P_0$) | Dispersion Measure ($DM$) | Verification Match Status |
+| Pulsar Designation | Official PSRJ Name | Measured Period (P₀) | Dispersion Measure (DM) | Verification Match Status |
 | :--- | :--- | :--- | :--- | :--- |
-| **PSR J0737-3039A** | PSR J0737-3039A | $1.6000\text{ ms}$ (benchmark) | $15.00\text{ pc/cm}^3$ | **BIT-EXACT MATCH** |
-| **PSR B1937+21 (MSP)** | PSR B1937+21 | $1.5580\text{ ms}$ | $71.02\text{ pc/cm}^3$ | **RESOLVED ATNF TARGET** |
-| **PSR J1600-3053** | PSR J1600-3053 | $1.6000\text{ ms}$ | $15.00\text{ pc/cm}^3$ | **RESOLVED ATNF TARGET** |
-| **PSR B0531+21 (Crab)**| PSR B0531+21 | $33.392\text{ ms}$ | $56.77\text{ pc/cm}^3$ | **RESOLVED ATNF TARGET** |
-| **PSR B0833-45 (Vela)**| PSR B0833-45 | $89.328\text{ ms}$ | $67.99\text{ pc/cm}^3$ | **RESOLVED ATNF TARGET** |
-| **PSR B0329+54** | PSR B0329+54 | $714.52\text{ ms}$ | $26.76\text{ pc/cm}^3$ | **RESOLVED ATNF TARGET** |
+| **PSR J0737-3039A** | PSR J0737-3039A | 1.6000 ms (benchmark) | 15.00 pc/cm³ | **BIT-EXACT MATCH** |
+| **PSR B1937+21 (MSP)** | PSR B1937+21 | 1.5580 ms | 71.02 pc/cm³ | **RESOLVED ATNF TARGET** |
+| **PSR J1600-3053** | PSR J1600-3053 | 1.6000 ms | 15.00 pc/cm³ | **RESOLVED ATNF TARGET** |
+| **PSR B0531+21 (Crab)**| PSR B0531+21 | 33.392 ms | 56.77 pc/cm³ | **RESOLVED ATNF TARGET** |
+| **PSR B0833-45 (Vela)**| PSR B0833-45 | 89.328 ms | 67.99 pc/cm³ | **RESOLVED ATNF TARGET** |
+| **PSR B0329+54** | PSR B0329+54 | 714.52 ms | 26.76 pc/cm³ | **RESOLVED ATNF TARGET** |
 
 ---
 
@@ -156,13 +156,19 @@ To eliminate synthesis multi-driver race conditions and ensure clean inferencing
 | `S_DETECT_PEAK` | `3'b100` | Sweeps profile memory to isolate the maximum coherent power bin and calculate period. |
 | `S_SEND_RESULT` | `3'b101` | Handshakes with UART transmitter, asserting `tx_start` when transmitter is ready. |
 
-### 2. High-Precision Folding Acculumator
+### 2. High-Precision Folding Accumulator
 Traditional modulo calculation (`sample_index % trial_period`) requires expensive multi-cycle hardware divider IPs. This design features a synthesizable phase accumulator that increments per sample and automatically wraps at `trial_period`, maintaining single-cycle throughput during folding:
 
-$$\text{Bin Address} = (\text{trial\_period} \times \text{PROFILE\_BINS}) + \text{active\_bin}$$
+```verilog
+// Direct hardware phase bin mapping
+assign active_bin    = (phase_counter < PROFILE_BINS) ? 
+                       phase_counter[$clog2(PROFILE_BINS)-1:0] : 
+                       (phase_counter % PROFILE_BINS);
+assign fold_mem_addr = (trial_period * PROFILE_BINS) + active_bin;
+```
 
 ### 3. UART Transmitter with Frame Synchronization (`uart_tx.v`)
-* **Clock Frequency**: 50 MHz ($\text{Period} = 20\text{ ns}$).
+* **Clock Frequency**: 50 MHz (Period = 20 ns).
 * **Baud Rate**: 9600 Baud (`CLKS_PER_BIT = 5208` clock cycles per bit).
 * **Frame Framing**: 1 Start bit (`0`), 8-bit Preamble byte (`0xAA`), 1 Stop bit (`1`), followed by 1 Start bit (`0`), 32-bit detected period payload (LSB first), and 1 Stop bit (`1`).
 
@@ -222,14 +228,14 @@ The testbench strictly conforms to the Accellera IEEE 1800.2 UVM 1.2 standard:
 ```
 
 ### 4 Verification Stages (`ffa_master_seq`)
-1. **Stage 1: Deterministic Sanity Benchmark**: Injects a calibrated $1600\ \mu\text{s}$ pulsar signal to verify basic acquisition, memory initialization, folding, and UART framing.
+1. **Stage 1: Deterministic Sanity Benchmark**: Injects a calibrated 1600 µs pulsar signal to verify basic acquisition, memory initialization, folding, and UART framing.
 2. **Stage 2: ATNF Astrophysical Pulsar Injections**: Injects celestial pulsar periods from the ATNF catalogue (Double Pulsar J0737-3039A, Crab Pulsar, Vela, B0329+54, B1937+21 MSP) and validates autonomous database resolution.
 3. **Stage 3: Constrained-Random Noisy SNR Sweeps**: Sweeps through 4 SNR regimes:
-   * `SNR_CLEAN` ($+30\text{ dB}$)
-   * `SNR_HIGH` ($+15\text{ dB}$)
-   * `SNR_MEDIUM` ($+6\text{ dB}$)
-   * `SNR_LOW` ($+0.5\text{ dB}$)
-4. **Stage 4: Extreme Stress & Negative SNR Testing**: Tests sub-zero buried SNR ($<0\text{ dB}$) verifying coherent accumulation gain, followed by pure noise injection to verify false-positive candidate rejection.
+   * `SNR_CLEAN` (+30 dB)
+   * `SNR_HIGH` (+15 dB)
+   * `SNR_MEDIUM` (+6 dB)
+   * `SNR_LOW` (+0.5 dB)
+4. **Stage 4: Extreme Stress & Negative SNR Testing**: Tests sub-zero buried SNR (< 0 dB) verifying coherent accumulation gain, followed by pure noise injection to verify false-positive candidate rejection.
 
 ---
 
