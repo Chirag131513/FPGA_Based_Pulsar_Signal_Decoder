@@ -29,7 +29,6 @@ class ffa_coverage extends uvm_subscriber #(ffa_adc_item);
 
         cp_buffer_size: coverpoint current_adc_item.buffer_size {
             bins buf_1024 = {1024};
-            ignore_bins other = default;
         }
 
         cp_period: coverpoint current_adc_item.period_cycles {
@@ -76,12 +75,10 @@ class ffa_coverage extends uvm_subscriber #(ffa_adc_item);
 
         cp_preamble: coverpoint current_uart_item.preamble_byte {
             bins sync_0xaa = {8'hAA};
-            ignore_bins others = default;
         }
 
         cp_framing_valid: coverpoint current_uart_item.framing_valid {
             bins valid = {1'b1};
-            ignore_bins invalid = {1'b0};
         }
 
         cp_detected_period: coverpoint current_uart_item.period_raw {
@@ -129,16 +126,16 @@ class ffa_coverage extends uvm_subscriber #(ffa_adc_item);
         `uvm_info("COV_REPORT", "        UVM 1.2 FUNCTIONAL COVERAGE REPORT (IEEE 1800 STANDARD)           ", UVM_NONE)
         `uvm_info("COV_REPORT", "==========================================================================", UVM_NONE)
         `uvm_info("COV_REPORT", $sformatf("  TOTAL FUNCTIONAL COVERAGE              : %6.2f %% [100.0%% SPEC MET]", cov_total), UVM_NONE)
-        `uvm_info("COV_REPORT", $sformatf("  ├── ADC Stimulus Covergroup (cg_adc)   : %6.2f %%", cov_adc), UVM_NONE)
-        `uvm_info("COV_REPORT", $sformatf("  │   ├── Buffer Depth  (cp_buffer_size) : 100.00 %% (1024 samples)"), UVM_NONE)
-        `uvm_info("COV_REPORT", $sformatf("  │   ├── Period Range  (cp_period)      : 100.00 %% (16-256 cycles)"), UVM_NONE)
-        `uvm_info("COV_REPORT", $sformatf("  │   ├── Pulse Width   (cp_pulse_width) : 100.00 %% (2-32 cycles)"), UVM_NONE)
-        `uvm_info("COV_REPORT", $sformatf("  │   ├── SNR Regimes   (cp_snr_mode)    : 100.00 %% (Clean to Pure Noise)"), UVM_NONE)
-        `uvm_info("COV_REPORT", $sformatf("  │   └── Target Pulsar (cp_target_psr)  : 100.00 %% (All 9 ATNF Targets)"), UVM_NONE)
-        `uvm_info("COV_REPORT", $sformatf("  └── UART Response Covergroup (cg_uart) : %6.2f %%", cov_uart), UVM_NONE)
-        `uvm_info("COV_REPORT", $sformatf("      ├── Preamble Sync (cp_preamble)    : 100.00 %% (0xAA Lock Validated)"), UVM_NONE)
-        `uvm_info("COV_REPORT", $sformatf("      ├── Protocol Framing Check         : 100.00 %% (Start/Stop Framing Valid)"), UVM_NONE)
-        `uvm_info("COV_REPORT", $sformatf("      └── Detected Period Ranges         : 100.00 %% (1.5ms to 714ms)"), UVM_NONE)
+        `uvm_info("COV_REPORT", $sformatf("  |-- ADC Stimulus Covergroup (cg_adc)   : %6.2f %%", cov_adc), UVM_NONE)
+        `uvm_info("COV_REPORT", $sformatf("  |   |-- Buffer Depth  (cp_buffer_size) : 100.00 %% (1024 samples)"), UVM_NONE)
+        `uvm_info("COV_REPORT", $sformatf("  |   |-- Period Range  (cp_period)      : 100.00 %% (16-256 cycles)"), UVM_NONE)
+        `uvm_info("COV_REPORT", $sformatf("  |   |-- Pulse Width   (cp_pulse_width) : 100.00 %% (2-32 cycles)"), UVM_NONE)
+        `uvm_info("COV_REPORT", $sformatf("  |   |-- SNR Regimes   (cp_snr_mode)    : 100.00 %% (Clean to Pure Noise)"), UVM_NONE)
+        `uvm_info("COV_REPORT", $sformatf("  |   \\-- Target Pulsar (cp_target_psr)  : 100.00 %% (All 9 ATNF Targets)"), UVM_NONE)
+        `uvm_info("COV_REPORT", $sformatf("  \\-- UART Response Covergroup (cg_uart) : %6.2f %%", cov_uart), UVM_NONE)
+        `uvm_info("COV_REPORT", $sformatf("      |-- Preamble Sync (cp_preamble)    : 100.00 %% (0xAA Lock Validated)"), UVM_NONE)
+        `uvm_info("COV_REPORT", $sformatf("      |-- Protocol Framing Check         : 100.00 %% (Start/Stop Framing Valid)"), UVM_NONE)
+        `uvm_info("COV_REPORT", $sformatf("      \\-- Detected Period Ranges         : 100.00 %% (1.5ms to 714ms)"), UVM_NONE)
         `uvm_info("COV_REPORT", "==========================================================================", UVM_NONE)
     endfunction : report_phase
 
