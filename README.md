@@ -29,7 +29,7 @@ This provides a **+11.1 dB coherent processing gain** for a 1024-sample buffer a
 
 The accelerator processes digitized baseband data through a dedicated streaming pipeline:
 
-![Hardware Datapath](docs/images/hardware_datapath.svg)
+![Hardware Datapath](docs/images/hardware_datapath.png)
 
 ### Hardware Core Subsystems
 1. **Baseband ADC Interface**: Ingests 8-bit unsigned samples from a high-speed flash ADC at 50 MSPS (`clk_50mhz`, 20 ns period).
@@ -45,7 +45,7 @@ The accelerator processes digitized baseband data through a dedicated streaming 
 
 The folding engine is controlled by an atomic, single-process finite state machine (`ffa_engine.v`) that prevents multi-driver synthesis hazards:
 
-![FSM State Diagram](docs/images/fsm_state_diagram.svg)
+![FSM State Diagram](docs/images/fsm_state_diagram.png)
 
 | State | Encoding | Functional Description |
 | :--- | :--- | :--- |
@@ -64,7 +64,7 @@ The simulation suite generates standalone, high-resolution vector visualizations
 
 ### Figure 1: Coherent Pulse Profile Recovery & Noise Suppression
 
-![Coherent Pulse Profile Recovery](docs/images/pulse_profile_recovery.svg)
+![Coherent Pulse Profile Recovery](docs/images/pulse_profile_recovery.png)
 
 * **Panel A (Raw Baseband ADC Stream)**: Demonstrates the sub-zero input regime (`SNR = -3.5 dB`, `σ_noise = 13.5 LSBs`). Pulsar pulses arriving every `P₀ = 80 samples` are completely buried in noise and undetectable in a single pass.
 * **Panel B (Coherent Folded Phase Profile)**: After Block RAM phase folding across 64 bins, off-pulse baseline noise is suppressed (`μ₀ = 40.2 LSBs`, `σ_off = 3.9 LSBs`), revealing a sharp **18.6σ** coherent pulse peak at phase bin #28 (`W₅₀ = 4 bins`, `δ = 6.25%` duty cycle).
@@ -73,7 +73,7 @@ The simulation suite generates standalone, high-resolution vector visualizations
 
 ### Figure 2: Fast Folding Algorithm (FFA) Periodogram & Coherent Power Spectrum
 
-![FFA Periodogram Spectrum](docs/images/ffa_periodogram.svg)
+![FFA Periodogram Spectrum](docs/images/ffa_periodogram.png)
 
 * **Trial Period Sweep**: Sweeps candidate trial periods `P_trial ∈ [16, 128]` clock cycles (`320 μs` to `2560 μs` at 50 MHz).
 * **5.0σ Astronomical Discovery Threshold**: Displays the canonical radio astronomy threshold (`α ≈ 2.87 × 10⁻⁷`).
@@ -85,7 +85,7 @@ The simulation suite generates standalone, high-resolution vector visualizations
 
 The testbench complies strictly with the Accellera IEEE 1800.2 UVM 1.2 standard:
 
-![UVM Verification Architecture](docs/images/uvm_architecture.svg)
+![UVM Verification Architecture](docs/images/uvm_architecture.png)
 
 ### Verification Components
 * **`ffa_if`**: SystemVerilog interface encapsulating ADC input busses, UART serial output, clocking blocks, and modports.
