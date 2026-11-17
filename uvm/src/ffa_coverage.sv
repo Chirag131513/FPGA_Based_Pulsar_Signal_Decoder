@@ -120,6 +120,26 @@ class ffa_coverage extends uvm_subscriber #(ffa_adc_item);
         cg_uart_response.sample();
     endfunction : write_cov_uart
 
+    virtual function void report_phase(uvm_phase phase);
+        real cov_adc;
+        real cov_uart;
+        real cov_total;
+
+        super.report_phase(phase);
+
+        cov_adc   = cg_adc_stimulus.get_inst_coverage();
+        cov_uart  = cg_uart_response.get_inst_coverage();
+        cov_total = (cov_adc + cov_uart) / 2.0;
+
+        `uvm_info("COV_REPORT", "==========================================================================", UVM_NONE)
+        `uvm_info("COV_REPORT", "        UVM 1.2 FUNCTIONAL COVERAGE REPORT (IEEE 1800 STANDARD)           ", UVM_NONE)
+        `uvm_info("COV_REPORT", "==========================================================================", UVM_NONE)
+        `uvm_info("COV_REPORT", $sformatf("  TOTAL FUNCTIONAL COVERAGE              : %6.2f %%", cov_total), UVM_NONE)
+        `uvm_info("COV_REPORT", $sformatf("  ├── ADC Stimulus Covergroup (cg_adc)   : %6.2f %%", cov_adc), UVM_NONE)
+        `uvm_info("COV_REPORT", $sformatf("  └── UART Response Covergroup (cg_uart) : %6.2f %%", cov_uart), UVM_NONE)
+        `uvm_info("COV_REPORT", "==========================================================================", UVM_NONE)
+    endfunction : report_phase
+
 endclass : ffa_coverage
 
 `endif // FFA_COVERAGE_SV
