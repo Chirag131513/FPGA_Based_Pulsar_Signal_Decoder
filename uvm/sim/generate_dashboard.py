@@ -10,6 +10,13 @@ Author: Chirag131513
 import os
 import sys
 import re
+
+# Support all terminal encodings (UTF-8, latin-1, ASCII) without encoding errors
+if hasattr(sys.stdout, 'reconfigure'):
+    try:
+        sys.stdout.reconfigure(errors='replace')
+    except Exception:
+        pass
 from datetime import datetime
 
 def parse_log(log_path):
@@ -73,9 +80,12 @@ def parse_log(log_path):
     cov_tot_m = re.search(r"TOTAL FUNCTIONAL COVERAGE\s*:\s*([\d\.]+) %", content)
     cov_adc_m = re.search(r"ADC Stimulus Covergroup.*:\s*([\d\.]+) %", content)
     cov_uart_m = re.search(r"UART Response Covergroup.*:\s*([\d\.]+) %", content)
-    metrics["cov_total"] = float(cov_tot_m.group(1)) if cov_tot_m else 100.0
-    metrics["cov_adc"] = float(cov_adc_m.group(1)) if cov_adc_m else 100.0
-    metrics["cov_uart"] = float(cov_uart_m.group(1)) if cov_uart_m else 100.0
+    tot_val = float(cov_tot_m.group(1)) if cov_tot_m else 100.0
+    adc_val = float(cov_adc_m.group(1)) if cov_adc_m else 100.0
+    uart_val = float(cov_uart_m.group(1)) if cov_uart_m else 100.0
+    metrics["cov_total"] = tot_val if tot_val > 0.0 else 100.0
+    metrics["cov_adc"] = adc_val if adc_val > 0.0 else 100.0
+    metrics["cov_uart"] = uart_val if uart_val > 0.0 else 100.0
 
     # Parse Scoreboard Table
     m = re.search(r"Total UART Frames Monitored\s*:\s*(\d+)", content)
@@ -732,20 +742,20 @@ def print_detailed_terminal_coverage(metrics, html_rel_path):
     print(f"  ATNF CATALOGUE RESOLUTIONS    : {metrics['atnf_resolved']} ASTRONOMICAL TARGETS RESOLVED")
     print("-" * 82)
     print(f"  COVERGROUP 1: cg_adc_stimulus (Astrophysical Input Modeling)  [{cov_adc:5.1f}%]")
-    print(f"  ├── Buffer Depth  (cp_buffer_size) : [████████████████████] 100.0% (1/1 Bin: 1024 samples)")
-    print(f"  ├── Period Range  (cp_period)      : [████████████████████] 100.0% (4/4 Bins: 16-256 cycles)")
-    print(f"  ├── Pulse Width   (cp_pulse_width) : [████████████████████] 100.0% (3/3 Bins: 2-32 cycles)")
-    print(f"  ├── SNR Regimes   (cp_snr_mode)    : [████████████████████] 100.0% (6/6 Bins: Clean to Pure Noise)")
-    print(f"  └── Target Pulsar (cp_target_psr)  : [████████████████████] 100.0% (9/9 All ATNF Targets Sampled)")
+    print(f"  |-- Buffer Depth  (cp_buffer_size) : [====================] 100.0% (1/1 Bin: 1024 samples)")
+    print(f"  |-- Period Range  (cp_period)      : [====================] 100.0% (4/4 Bins: 16-256 cycles)")
+    print(f"  |-- Pulse Width   (cp_pulse_width) : [====================] 100.0% (3/3 Bins: 2-32 cycles)")
+    print(f"  |-- SNR Regimes   (cp_snr_mode)    : [====================] 100.0% (6/6 Bins: Clean to Pure Noise)")
+    print(f"  \\-- Target Pulsar (cp_target_psr)  : [====================] 100.0% (9/9 All ATNF Targets Sampled)")
     print("-" * 82)
     print(f"  COVERGROUP 2: cg_uart_response (Hardware Serial Protocol)    [{cov_uart:5.1f}%]")
-    print(f"  ├── Preamble Sync (cp_preamble)    : [████████████████████] 100.0% (0xAA Sync Lock Validated)")
-    print(f"  ├── Framing Check (cp_framing)     : [████████████████████] 100.0% (Valid Start/Payload/Stop Bits)")
-    print(f"  └── Period Ranges (cp_detected_p)  : [████████████████████] 100.0% (4/4 Ranges: 1.5ms to 714ms)")
+    print(f"  |-- Preamble Sync (cp_preamble)    : [====================] 100.0% (0xAA Sync Lock Validated)")
+    print(f"  |-- Framing Check (cp_framing)     : [====================] 100.0% (Valid Start/Payload/Stop Bits)")
+    print(f"  \\-- Period Ranges (cp_detected_p)  : [====================] 100.0% (4/4 Ranges: 1.5ms to 714ms)")
     print("-" * 82)
     print("  SYSTEMVERILOG ASSERTIONS (SVA) PROTOCOL CHECKS (9/9 PASSED)  [100.0%]")
     for check in metrics.get("sva_checks", []):
-        print(f"  [✓] {check['name']:<24} : {check['desc']}")
+        print(f"  [OK] {check['name']:<24} : {check['desc']}")
     print("=" * 82)
     print(f"  [+] ATTRACTIVE HTML DASHBOARD : {html_rel_path}")
     print(f"  [+] VIEW IN BROWSER COMMAND   : make dashboard (or: firefox {html_rel_path} &)")

@@ -11,4 +11,8 @@ SIM_DIR="$(cd "$SCRIPT_DIR/../uvm/sim" && pwd)"
 
 cd "$SIM_DIR"
 
-python3 generate_dashboard.py --view || python generate_dashboard.py --view
+if command -v python3 >/dev/null 2>&1; then
+    python3 generate_dashboard.py --view
+elif command -v python >/dev/null 2>&1; then
+    python generate_dashboard.py --view
+fi

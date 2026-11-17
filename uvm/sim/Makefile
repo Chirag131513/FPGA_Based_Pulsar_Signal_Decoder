@@ -48,10 +48,10 @@ verify: clean
 # 2. View Interactive HTML Dashboard & Detailed Terminal Coverage
 # ------------------------------------------------------------------------------
 view:
-	@python3 generate_dashboard.py --view || python generate_dashboard.py --view || true
+	@if command -v python3 >/dev/null 2>&1; then python3 generate_dashboard.py --view; else python generate_dashboard.py --view; fi
 
 dashboard:
-	@python3 generate_dashboard.py || python generate_dashboard.py || true
+	@if command -v python3 >/dev/null 2>&1; then python3 generate_dashboard.py; else python generate_dashboard.py; fi
 	@if command -v firefox >/dev/null 2>&1; then \
 		firefox verification_dashboard.html & \
 	elif command -v google-chrome >/dev/null 2>&1; then \
