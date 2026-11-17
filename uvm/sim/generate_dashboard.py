@@ -636,14 +636,14 @@ if __name__ == "__main__":
 
     metrics = parse_log(log_file)
 
-    # Output to both uvm/sim and project root
+    # Output HTML dashboard in simulation directory
     html_sim = os.path.join(sim_dir, "verification_dashboard.html")
-    html_root = os.path.join(sim_dir, "..", "..", "verification_dashboard.html")
-
     generate_html(metrics, html_sim)
-    try:
-        generate_html(metrics, html_root)
-    except Exception:
-        pass
 
-    print_terminal_summary(metrics, "verification_dashboard.html")
+    # Determine display path relative to current working directory
+    try:
+        rel_display = os.path.relpath(html_sim, os.getcwd())
+    except Exception:
+        rel_display = "uvm/sim/verification_dashboard.html"
+
+    print_terminal_summary(metrics, rel_display)

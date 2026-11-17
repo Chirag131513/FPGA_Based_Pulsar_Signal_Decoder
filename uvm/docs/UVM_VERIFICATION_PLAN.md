@@ -160,14 +160,16 @@ $$\Delta P_{\text{rel}} = \frac{|P_{\text{cat}} - P_{\text{meas}}|}{P_{\text{cat
 # 1. Single Command to execute complete UVM 1.2 Verification Architecture:
 make verify
 # OR
-./run_verification.sh
+./scripts/run_verification.sh
 
 # 2. View Interactive White HTML Verification Dashboard:
 make dashboard
-# OR open verification_dashboard.html in any browser
+# OR open uvm/sim/verification_dashboard.html in any browser
 
 # 3. Waveform Generation & Cadence SimVision Viewer:
 make wave
+# OR
+./scripts/run_waveform.sh
 
 # 4. Clean Workspace:
 make clean

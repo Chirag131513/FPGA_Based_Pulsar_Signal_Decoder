@@ -5,7 +5,7 @@ REM Purpose: Windows separate waveform runner
 REM ==============================================================================
 
 set SCRIPT_DIR=%~dp0
-set SIM_DIR=%SCRIPT_DIR%uvm\sim
+set SIM_DIR=%SCRIPT_DIR%..\uvm\sim
 
 echo ========================================================================
 echo     FFA ACCELERATOR: RUNNING SIMULATION WITH WAVEFORM PROBING          

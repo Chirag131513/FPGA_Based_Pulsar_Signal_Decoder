@@ -8,7 +8,7 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SIM_DIR="$SCRIPT_DIR/uvm/sim"
+SIM_DIR="$(cd "$SCRIPT_DIR/../uvm/sim" && pwd)"
 
 echo "========================================================================"
 echo "    FFA ACCELERATOR: RUNNING FULL UVM 1.2 VERIFICATION ARCHITECTURE     "

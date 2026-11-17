@@ -35,7 +35,7 @@ regression:
 clean:
 	@echo "[CLEAN] Purging simulation artifacts and databases..."
 	@$(MAKE) -C uvm/sim clean
-	rm -rf *.vvp *.vcd Output/*.vcd Output/*.txt waves* INCA_libs xcelium.d cov_work *.log *.history *.key .simvision*
+	rm -rf *.vvp *.vcd Output/*.vcd Output/*.txt waves* INCA_libs xcelium.d cov_work *.log *.history *.key .simvision* verification_dashboard.html
 	@echo "[CLEAN] Complete."
 
 clean_all: clean
